@@ -1,7 +1,3 @@
-Voici la version anglaise de ton fichier :
-
----
-
 # VFourny's Node Toolkit
 
 [![fr](https://img.shields.io/badge/lang-fr-blue)](https://github.com/vfourny/node-toolkit/blob/main/README.fr.md)
