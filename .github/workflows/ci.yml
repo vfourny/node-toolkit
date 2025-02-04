@@ -1,0 +1,13 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+      - next
+
+jobs:
+  build:
+    uses: vfourny/.github/.github/workflows/build.yml@main
+    with:
+      is_build: false

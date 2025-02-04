@@ -1,0 +1,68 @@
+{
+  "name": "@vfourny/node-toolkit",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "private": false,
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "type-check": "tsc --noEmit",
+    "prepare": "husky"
+  },
+  "files": [
+    "tsconfig.json",
+    ".commitlintrc.js",
+    "release.config.js",
+    "eslint.config.js",
+    "prettier.config.js"
+  ],
+  "exports": {
+    "./eslint": "./eslint.config.js",
+    "./prettier": "./prettier.config.js",
+    "./commitlint": "./.commitlintrc.js",
+    "./tsconfig": "./tsconfig.json",
+    "./release": "./release.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@commitlint/config-angular": "^19.3.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-vue": "^9.32.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@eslint/js": "^9.4.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^22.0.0",
+    "conventional-changelog-conventionalcommits": "^8.0.0",
+    "eslint": "^9.3.0",
+    "globals": "^15.3.0",
+    "husky": "^9.0.11",
+    "prettier": "^3.2.5",
+    "semantic-release": "^24.0.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vfourny/node-toolkit.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=20.13 <23",
+    "npm": ">= 10"
+  }
+}
