@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/vfourny/node-toolkit/compare/v1.0.2...v1.0.3) (2025-02-04)
+
+
+### Bug Fixes
+
+* reorganize devDep ([#9](https://github.com/vfourny/node-toolkit/issues/9)) ([7c17a14](https://github.com/vfourny/node-toolkit/commit/7c17a14090674d96c0accf477c4dc3c0ff1b306f))
+
 ## [1.0.2](https://github.com/vfourny/node-toolkit/compare/v1.0.1...v1.0.2) (2025-02-04)
 
 
