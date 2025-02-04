@@ -1,6 +1,6 @@
 {
-  "exclude": ["node_modules", "dist"],
-  "include": ["src/**/*.ts"],
+  "exclude": ["${configDir}/node_modules", "${configDir}/dist"],
+  "include": ["${configDir}/src/**/*.ts"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
