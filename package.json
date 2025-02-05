@@ -21,20 +21,20 @@
   ],
   "exports": {
     "./eslint": {
-      "types": "./eslint.config.d.ts",
-      "default": "./eslint.config.js"
+      "types": "./dist/eslint.config.d.ts",
+      "default": "./dist/eslint.config.js"
     },
     "./prettier": {
-      "types": "./prettier.config.d.ts",
-      "default": "./prettier.config.js"
+      "types": "./dist/prettier.config.d.ts",
+      "default": "./dist/prettier.config.js"
     },
     "./commitlint": {
-      "types": "./.commitlintrc.d.ts",
-      "default": "./.commitlintrc.js"
+      "types": "./dist/.commitlintrc.d.ts",
+      "default": "./dist/.commitlintrc.js"
     },
     "./release": {
-      "types": "./release.config.d.ts",
-      "default": "./release.config.js"
+      "types": "./dist/release.config.d.ts",
+      "default": "./dist/release.config.js"
     },
     "./tsconfig": "./tsconfig.base.json"
   },
