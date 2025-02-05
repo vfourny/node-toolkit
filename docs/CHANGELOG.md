@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/vfourny/node-toolkit/compare/v1.0.5...v1.0.6) (2025-02-05)
+
+
+### Bug Fixes
+
+* add dist to export ([#12](https://github.com/vfourny/node-toolkit/issues/12)) ([459f2fd](https://github.com/vfourny/node-toolkit/commit/459f2fdf704052b7b2dce3c8e744746e3c449045))
+
 ## [1.0.5](https://github.com/vfourny/node-toolkit/compare/v1.0.4...v1.0.5) (2025-02-05)
 
 
