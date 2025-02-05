@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/vfourny/node-toolkit/compare/v1.0.3...v1.0.4) (2025-02-05)
+
+
+### Bug Fixes
+
+* update export build ([#10](https://github.com/vfourny/node-toolkit/issues/10)) ([4aad5bd](https://github.com/vfourny/node-toolkit/commit/4aad5bdcdef256e9e5e6865f04a0a33cb5b010f3))
+
 ## [1.0.3](https://github.com/vfourny/node-toolkit/compare/v1.0.2...v1.0.3) (2025-02-04)
 
 
