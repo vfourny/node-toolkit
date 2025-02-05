@@ -10,13 +10,13 @@ jobs:
   build:
     uses: vfourny/.github/.github/workflows/build.yml@main
     with:
-      is_build: false
+      is_build: true
   release:
     needs: build
     uses: vfourny/.github/.github/workflows/release.yml@main
     with:
       is_publish: true
-      is_build: false
+      is_build: true
     secrets:
       SEMANTIC_BOT_APP_ID: ${{ secrets.SEMANTIC_BOT_APP_ID }}
       SEMANTIC_BOT_PRIVATE_KEY: ${{ secrets.SEMANTIC_BOT_PRIVATE_KEY }}
