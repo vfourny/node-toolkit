@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "./dist"
+  },
+  "include": [
+    "./eslint.config.ts",
+    "./prettier.config.js",
+    ".commitlintrc.js",
+    "release.config.js"
+  ],
+  "exclude": ["node_modules", "dist"]
+}

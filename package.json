@@ -1,13 +1,13 @@
 {
   "name": "@vfourny/node-toolkit",
   "version": "1.0.3",
-  "description": "",
+  "description": "Toolkit for Node.js projects",
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/libs/index.js",
+  "types": "dist/libs/index.d.ts",
   "private": false,
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -b",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write .",
@@ -16,21 +16,38 @@
     "prepare": "husky"
   },
   "files": [
-    "tsconfig.json",
-    ".commitlintrc.js",
-    "release.config.js",
-    "eslint.config.js",
-    "prettier.config.js"
+    "tsconfig.base.json",
+    "dist"
   ],
   "exports": {
-    "./eslint": "./eslint.config.js",
-    "./prettier": "./prettier.config.js",
-    "./commitlint": "./.commitlintrc.js",
-    "./tsconfig": "./tsconfig.json",
-    "./release": "./release.config.js"
+    "./eslint": {
+      "types": "./eslint.config.d.ts",
+      "default": "./eslint.config.js"
+    },
+    "./prettier": {
+      "types": "./prettier.config.d.ts",
+      "default": "./prettier.config.js"
+    },
+    "./commitlint": {
+      "types": "./.commitlintrc.d.ts",
+      "default": "./.commitlintrc.js"
+    },
+    "./release": {
+      "types": "./release.config.d.ts",
+      "default": "./release.config.js"
+    },
+    "./tsconfig": "./tsconfig.base.json"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "eslint",
+    "prettier",
+    "commitlint",
+    "semantic-release",
+    "formatting",
+    "linting",
+    "typescript"
+  ],
+  "author": "Valentin Fourny",
   "license": "ISC",
   "dependencies": {
     "@commitlint/config-angular": "^19.3.0",
@@ -43,6 +60,7 @@
   "devDependencies": {
     "@eslint/js": "^9.4.0",
     "@types/eslint__js": "^8.42.3",
+    "@types/eslint-config-prettier": "^6.11.3",
     "@types/node": "^22.0.0",
     "conventional-changelog-conventionalcommits": "^8.0.0",
     "eslint": "^9.3.0",

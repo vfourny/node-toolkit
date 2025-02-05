@@ -34,8 +34,8 @@ Pour que `semantic-release` fonctionne correctement, certaines variables d'envir
 
 ## Fichiers de Configuration
 
-- `eslint.config.js` : Configuration ESLint pour le linting du code JavaScript.
-- `prettier.config.js` : Configuration Prettier pour le formatage du code JavaScript.
+- `eslint.config.ts` : Configuration ESLint pour le linting du code JavaScript.
+- `prettier.js` : Configuration Prettier pour le formatage du code JavaScript.
 - `tsconfig.json` : Configuration TypeScript pour le transpilage du code TypeScript.
 - `release.config.js` : Configuration Semantic Release pour la gestion des versions.
 - `commitlintrc.js` : Configuration Commitlint pour la validation des messages de commit.
@@ -45,7 +45,7 @@ Pour que `semantic-release` fonctionne correctement, certaines variables d'envir
 Pour importer la configuration ESLint dans votre projet, ajoutez le code suivant à votre fichier de config [ESLint](https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file) :
 
 ```javascript
-import nodeToolkitEslintConfig from "@vfourny/node-toolkit/eslint"
+import nodeToolkitEslintConfig from '@vfourny/node-toolkit/eslint'
 
 export default {
   ...nodeToolkitEslintConfig,
@@ -58,7 +58,7 @@ export default {
 Pour importer la configuration Prettier dans votre projet, ajoutez le code suivant à votre fichier de config [Prettier](https://prettier.io/docs/en/configuration.html) :
 
 ```javascript
-import nodeToolkitPrettierConfig from "@vfourny/node-toolkit/prettier"
+import nodeToolkitPrettierConfig from '@vfourny/node-toolkit/prettier'
 
 export default {
   ...seyrinianToolsPrettierConfig,
@@ -84,10 +84,10 @@ Pour importer la configuration TypeScript dans votre projet, ajoutez le code sui
 Pour importer la configuration Semantic Release dans votre projet, ajoutez le code suivant à votre fichier de config [Semantic Release](https://semantic-release.gitbook.io/semantic-release) :
 
 ```javascript
-import nodeToolkitReleaseConfig from "@vfourny/node-toolkit/release"
+import nodeToolkitReleaseConfig from '@vfourny/node-toolkit/release'
 
 export default {
-  extends: "@vfourny/node-toolkit/release",
+  extends: '@vfourny/node-toolkit/release',
   // Vos configurations personnalisées
 }
 ```
@@ -98,7 +98,7 @@ Pour importer la configuration Commitlint dans votre projet, ajoutez le code sui
 
 ```javascript
 export default {
-  extends: "@vfourny/node-toolkit/commitlint",
+  extends: '@vfourny/node-toolkit/commitlint',
 }
 ```
 
