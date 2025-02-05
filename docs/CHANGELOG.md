@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/vfourny/node-toolkit/compare/v1.0.4...v1.0.5) (2025-02-05)
+
+
+### Bug Fixes
+
+* update ci ([#11](https://github.com/vfourny/node-toolkit/issues/11)) ([6c72241](https://github.com/vfourny/node-toolkit/commit/6c7224160fb6f604aeb9c8a9c9899f30f8e4675a))
+
 ## [1.0.4](https://github.com/vfourny/node-toolkit/compare/v1.0.3...v1.0.4) (2025-02-05)
 
 
