@@ -29,8 +29,8 @@
       "default": "./dist/prettier.config.js"
     },
     "./commitlint": {
-      "types": "./dist/.commitlintrc.d.ts",
-      "default": "./dist/.commitlintrc.js"
+      "types": "./dist/commitlint.config.d.ts",
+      "default": "./dist/commitlint.config.js"
     },
     "./release": {
       "types": "./dist/release.config.d.ts",

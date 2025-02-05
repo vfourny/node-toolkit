@@ -7,7 +7,7 @@
   "include": [
     "./eslint.config.ts",
     "./prettier.config.js",
-    ".commitlintrc.js",
+    "./commitlint.config.ts",
     "release.config.js"
   ],
   "exclude": ["node_modules", "dist"]
