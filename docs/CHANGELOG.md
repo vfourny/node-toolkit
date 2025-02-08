@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/vfourny/node-toolkit/compare/v1.0.7...v1.0.8) (2025-02-08)
+
+
+### Bug Fixes
+
+* add new ts rule ([#14](https://github.com/vfourny/node-toolkit/issues/14)) ([c8ae3c2](https://github.com/vfourny/node-toolkit/commit/c8ae3c2d650a9ec758b1e2bd81b8267481753338))
+
 ## [1.0.7](https://github.com/vfourny/node-toolkit/compare/v1.0.6...v1.0.7) (2025-02-05)
 
 
