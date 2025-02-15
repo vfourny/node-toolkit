@@ -56,6 +56,7 @@
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-vue": "^9.32.0",
     "globals": "^15.3.0",
+    "prettier": "^3.2.5",
     "typescript-eslint": "^8.0.0"
   },
   "devDependencies": {
@@ -63,10 +64,8 @@
     "@types/eslint__js": "^8.42.3",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/node": "^22.0.0",
-    "conventional-changelog-conventionalcommits": "^8.0.0",
     "eslint": "^9.3.0",
     "husky": "^9.0.11",
-    "prettier": "^3.2.5",
     "semantic-release": "^24.0.0",
     "typescript": "^5.4.5"
   },
