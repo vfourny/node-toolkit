@@ -1,6 +1,6 @@
 {
   "name": "@vfourny/node-toolkit",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Toolkit for Node.js projects",
   "type": "module",
   "main": "dist/libs/index.js",

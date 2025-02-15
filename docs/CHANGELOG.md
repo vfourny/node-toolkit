@@ -1,3 +1,13 @@
+## [1.0.9](https://github.com/vfourny/node-toolkit/compare/v1.0.8...v1.0.9) (2025-02-15)
+
+
+### Bug Fixes
+
+* cd ([ecdf10c](https://github.com/vfourny/node-toolkit/commit/ecdf10c53e9b5e3fe50dacbc8a9e39c8da5fa3ac))
+* update ci ([a9be3ac](https://github.com/vfourny/node-toolkit/commit/a9be3ac4507ed3e6f26e0af7b2312c0b8b3c1a02))
+* update prettier local ([13ac118](https://github.com/vfourny/node-toolkit/commit/13ac11809e6c269c5a30e0f3189a1e01879d07ac))
+* upodate iccid ([79938b8](https://github.com/vfourny/node-toolkit/commit/79938b879fac8d2ca0e29e292c74bdfe5aaa30da))
+
 ## [1.0.8](https://github.com/vfourny/node-toolkit/compare/v1.0.7...v1.0.8) (2025-02-08)
 
 
