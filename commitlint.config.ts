@@ -1,5 +1,13 @@
 import type { UserConfig } from '@commitlint/types'
 
+interface CommitParsedResult {
+  type?: string
+  scope?: string
+  subScope?: string
+  subject?: string
+  [key: string]: string | undefined
+}
+
 export const defaultConfig: UserConfig = {
   extends: ['@commitlint/config-angular'],
   rules: {
@@ -21,7 +29,6 @@ export const defaultConfig: UserConfig = {
       ],
     ],
     'scope-empty': [2, 'never'],
-    'subject-case': [2, 'always', 'sentence-case'],
     'subject-empty': [2, 'never'],
   },
 }
@@ -50,7 +57,7 @@ export const createCommitlintMonorepoConfig = (options: {
     plugins: [
       {
         rules: {
-          'custom-subscope-validation': ({ subScope }: any) => {
+          'custom-subscope-validation': ({ subScope }: CommitParsedResult) => {
             if (!subScope) return [false, '']
             return [true, '']
           },
