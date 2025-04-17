@@ -7,7 +7,7 @@
   "types": "dist/libs/index.d.ts",
   "private": false,
   "scripts": {
-    "build": "tsc -b",
+    "build": "tsc --build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write .",
@@ -60,14 +60,19 @@
     "typescript-eslint": "^8.0.0"
   },
   "devDependencies": {
+    "@commitlint/types": "^19.8.0",
     "@eslint/js": "^9.4.0",
     "@types/eslint__js": "^8.42.3",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/node": "^22.0.0",
+    "commitlint": "^19.8.0",
     "eslint": "^9.3.0",
     "husky": "^9.0.11",
     "semantic-release": "^24.0.0",
     "typescript": "^5.4.5"
+  },
+  "peerDependencies": {
+    "commitlint": "ˆ19.8.0"
   },
   "repository": {
     "type": "git",
