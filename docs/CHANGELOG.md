@@ -1,3 +1,10 @@
+## [1.0.11](https://github.com/vfourny/node-toolkit/compare/v1.0.10...v1.0.11) (2025-04-17)
+
+
+### Bug Fixes
+
+* **chore:** udpaet caret ([#23](https://github.com/vfourny/node-toolkit/issues/23)) ([c2198c0](https://github.com/vfourny/node-toolkit/commit/c2198c00e7b00f605ee0704bd004fd7d5165d256))
+
 ## [1.0.10](https://github.com/vfourny/node-toolkit/compare/v1.0.9...v1.0.10) (2025-04-17)
 
 
