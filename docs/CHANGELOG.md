@@ -1,3 +1,11 @@
+## [1.0.10](https://github.com/vfourny/node-toolkit/compare/v1.0.9...v1.0.10) (2025-04-17)
+
+
+### Bug Fixes
+
+* **commitlint:** add ([0dce533](https://github.com/vfourny/node-toolkit/commit/0dce533d64b09523ab04a69d72018ac1935544f3))
+* **d:** update tpye ([3afbe10](https://github.com/vfourny/node-toolkit/commit/3afbe106fa5f85ccae7aa9ace19e6590be79129c))
+
 ## [1.0.9](https://github.com/vfourny/node-toolkit/compare/v1.0.8...v1.0.9) (2025-02-15)
 
 
