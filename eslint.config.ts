@@ -28,6 +28,11 @@ const defaultConfig: Linter.Config = {
       ...globals.node,
     },
   },
+  rules: {},
+}
+
+const customConfig: Linter.Config = {
+  name: 'eslint-config-node-tools/custom-config',
   rules: {
     'no-console': ['error'],
     'no-debugger': ['error'],
@@ -41,6 +46,7 @@ export default tseslint.config(
   ...tseslint.configs.stylistic,
   vueFilesConfig,
   defaultConfig,
+  customConfig,
   eslintConfigPrettier,
   {
     ignores: ['node_modules', 'dist', '.nuxt', 'coverage', '.output'],
