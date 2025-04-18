@@ -1,3 +1,10 @@
+## [1.0.12](https://github.com/vfourny/node-toolkit/compare/v1.0.11...v1.0.12) (2025-04-18)
+
+
+### Bug Fixes
+
+* **prtetteir:** ccartet ([#24](https://github.com/vfourny/node-toolkit/issues/24)) ([64c12f0](https://github.com/vfourny/node-toolkit/commit/64c12f021af531a0eb06bf530ef573b4d6441dc4))
+
 ## [1.0.11](https://github.com/vfourny/node-toolkit/compare/v1.0.10...v1.0.11) (2025-04-17)
 
 
