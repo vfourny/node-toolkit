@@ -1,3 +1,10 @@
+## [1.0.13](https://github.com/vfourny/node-toolkit/compare/v1.0.12...v1.0.13) (2025-04-22)
+
+
+### Bug Fixes
+
+* **prettier:** update prettier conf with lf ([#25](https://github.com/vfourny/node-toolkit/issues/25)) ([d28d715](https://github.com/vfourny/node-toolkit/commit/d28d7152f5bed4e31b1b2d6db578e8bad8be910e))
+
 ## [1.0.12](https://github.com/vfourny/node-toolkit/compare/v1.0.11...v1.0.12) (2025-04-18)
 
 
