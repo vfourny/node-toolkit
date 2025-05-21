@@ -1,5 +1,5 @@
 import eslintJS from '@eslint/js'
-import tseslint from 'typescript-eslint'
+import tsEslint from 'typescript-eslint'
 import typescriptEslint, { ConfigWithExtends } from 'typescript-eslint'
 import globals from 'globals'
 import eslintPluginVue from 'eslint-plugin-vue'
@@ -39,11 +39,11 @@ const customConfig: Linter.Config = {
   },
 }
 
-export default tseslint.config(
+export default tsEslint.config(
   eslintJS.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...tseslint.configs.strict,
-  ...tseslint.configs.stylistic,
+  tsEslint.configs.recommended,
+  tsEslint.configs.strict,
+  tsEslint.configs.stylistic,
   vueFilesConfig,
   defaultConfig,
   customConfig,
