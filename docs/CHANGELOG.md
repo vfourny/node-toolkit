@@ -1,3 +1,10 @@
+## [1.0.14](https://github.com/vfourny/node-toolkit/compare/v1.0.13...v1.0.14) (2025-05-21)
+
+
+### Bug Fixes
+
+* **eslint:** delete spread operator on eslint config ([#26](https://github.com/vfourny/node-toolkit/issues/26)) ([75860e8](https://github.com/vfourny/node-toolkit/commit/75860e801f5f4d9a6d1440618a308d7ce011b320))
+
 ## [1.0.13](https://github.com/vfourny/node-toolkit/compare/v1.0.12...v1.0.13) (2025-04-22)
 
 
