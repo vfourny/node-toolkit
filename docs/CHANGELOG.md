@@ -1,3 +1,10 @@
+## [1.0.15](https://github.com/vfourny/node-toolkit/compare/v1.0.14...v1.0.15) (2025-05-25)
+
+
+### Bug Fixes
+
+* **deps:** update minor/patch updates ([#15](https://github.com/vfourny/node-toolkit/issues/15)) ([82bb200](https://github.com/vfourny/node-toolkit/commit/82bb200a95429558d8b3a9631e5567c227fea356))
+
 ## [1.0.14](https://github.com/vfourny/node-toolkit/compare/v1.0.13...v1.0.14) (2025-05-21)
 
 
