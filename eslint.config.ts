@@ -4,6 +4,8 @@ import typescriptEslint, { ConfigWithExtends } from 'typescript-eslint'
 import globals from 'globals'
 import eslintPluginVue from 'eslint-plugin-vue'
 import eslintConfigPrettier from 'eslint-config-prettier'
+import importPlugin from 'eslint-plugin-import'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import { Linter } from 'eslint'
 
 const vueFilesConfig: ConfigWithExtends = {
@@ -18,7 +20,15 @@ const vueFilesConfig: ConfigWithExtends = {
       parser: typescriptEslint.parser,
     },
   },
-  rules: {},
+  rules: {
+    'vue/component-name-in-template-casing': [
+      'error',
+      'PascalCase',
+      {
+        registeredComponentsOnly: false,
+      },
+    ],
+  },
 }
 
 const defaultConfig: Linter.Config = {
@@ -33,9 +43,32 @@ const defaultConfig: Linter.Config = {
 
 const customConfig: Linter.Config = {
   name: 'eslint-config-node-tools/custom-config',
+  plugins: {
+    import: importPlugin,
+    'simple-import-sort': simpleImportSort,
+  },
   rules: {
-    'no-console': ['error'],
-    'no-debugger': ['error'],
+    'no-console': 'error',
+    'no-debugger': 'error',
+    'import/no-default-export': 'error',
+    'import/no-named-as-default': 'error',
+    'import/no-named-as-default-member': 'error',
+    'import/no-namespace': 'error',
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: [
+          {
+            group: ['../*', './*'],
+            message:
+              'Relative imports are not allowed. Use absolute imports instead with @/.',
+          },
+        ],
+      },
+    ],
+    'sort-imports': 'off',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
   },
 }
 
@@ -48,6 +81,10 @@ export default tsEslint.config(
   defaultConfig,
   customConfig,
   eslintConfigPrettier,
+  {
+    files: ['*.config.{js,ts}'],
+    rules: { 'import/no-default-export': 'off' },
+  },
   {
     ignores: ['node_modules', 'dist', '.nuxt', 'coverage', '.output'],
   },
