@@ -1,3 +1,10 @@
+## [1.0.18](https://github.com/vfourny/node-toolkit/compare/v1.0.17...v1.0.18) (2025-08-01)
+
+
+### Bug Fixes
+
+* **ts:** update ts ([#30](https://github.com/vfourny/node-toolkit/issues/30)) ([4d829c0](https://github.com/vfourny/node-toolkit/commit/4d829c03d5a95a0ddfb6ac1b4177efd81e54339b))
+
 ## [1.0.17](https://github.com/vfourny/node-toolkit/compare/v1.0.16...v1.0.17) (2025-08-01)
 
 
