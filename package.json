@@ -71,14 +71,14 @@
     "husky": "^9.0.11",
     "prettier": "^3.2.5",
     "semantic-release": "^24.0.0",
-    "typescript": "^5.9.2"
+    "typescript": "^5.5.2"
   },
   "peerDependencies": {
     "commitlint": "^19.8.0",
     "eslint": "^9.3.0",
     "prettier": "^3.2.5",
     "semantic-release": "^24.0.0",
-    "typescript": "^5.9.2"
+    "typescript": "^5.5.2"
   },
   "repository": {
     "type": "git",
