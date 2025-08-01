@@ -1,3 +1,10 @@
+## [1.0.16](https://github.com/vfourny/node-toolkit/compare/v1.0.15...v1.0.16) (2025-08-01)
+
+
+### Bug Fixes
+
+* **eslint:** update eslint config for monorepo ([#28](https://github.com/vfourny/node-toolkit/issues/28)) ([b5a00f5](https://github.com/vfourny/node-toolkit/commit/b5a00f5088c4279087fb4c1b6e12b34cc43c0f31))
+
 ## [1.0.15](https://github.com/vfourny/node-toolkit/compare/v1.0.14...v1.0.15) (2025-05-25)
 
 
