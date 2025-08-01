@@ -1,12 +1,12 @@
 import eslintJS from '@eslint/js'
-import tsEslint from 'typescript-eslint'
-import typescriptEslint, { ConfigWithExtends } from 'typescript-eslint'
-import globals from 'globals'
-import eslintPluginVue from 'eslint-plugin-vue'
+import { Linter } from 'eslint'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import importPlugin from 'eslint-plugin-import'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
-import { Linter } from 'eslint'
+import eslintPluginVue from 'eslint-plugin-vue'
+import globals from 'globals'
+import tsEslint from 'typescript-eslint'
+import typescriptEslint, { ConfigWithExtends } from 'typescript-eslint'
 
 const vueFilesConfig: ConfigWithExtends = {
   name: 'eslint-config-node-tools/vue',
