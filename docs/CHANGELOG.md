@@ -1,3 +1,10 @@
+## [1.0.17](https://github.com/vfourny/node-toolkit/compare/v1.0.16...v1.0.17) (2025-08-01)
+
+
+### Bug Fixes
+
+* **package:** update lock json ([#29](https://github.com/vfourny/node-toolkit/issues/29)) ([ad0baa5](https://github.com/vfourny/node-toolkit/commit/ad0baa589d21977120cd861c7fa0180b775395bf))
+
 ## [1.0.16](https://github.com/vfourny/node-toolkit/compare/v1.0.15...v1.0.16) (2025-08-01)
 
 
