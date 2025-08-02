@@ -50,10 +50,6 @@ const customConfig: Linter.Config = {
   rules: {
     'no-console': 'error',
     'no-debugger': 'error',
-    'import/no-default-export': 'error',
-    'import/no-named-as-default': 'error',
-    'import/no-named-as-default-member': 'error',
-    'import/no-namespace': 'error',
     'no-restricted-imports': [
       'error',
       {
@@ -67,6 +63,14 @@ const customConfig: Linter.Config = {
       },
     ],
     'sort-imports': 'off',
+
+    '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+
+    'import/no-default-export': 'error',
+    'import/no-named-as-default': 'error',
+    'import/no-named-as-default-member': 'error',
+    'import/no-namespace': 'error',
+
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
   },
