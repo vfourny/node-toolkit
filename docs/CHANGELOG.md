@@ -1,3 +1,10 @@
+## [1.0.19](https://github.com/vfourny/node-toolkit/compare/v1.0.18...v1.0.19) (2025-08-02)
+
+
+### Bug Fixes
+
+* **eslint:** add typescript config to eslint ([#31](https://github.com/vfourny/node-toolkit/issues/31)) ([82d7ef6](https://github.com/vfourny/node-toolkit/commit/82d7ef67a68ab0bbf2fe3364a19106f736013f98))
+
 ## [1.0.18](https://github.com/vfourny/node-toolkit/compare/v1.0.17...v1.0.18) (2025-08-01)
 
 
