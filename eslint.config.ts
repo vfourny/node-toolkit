@@ -48,8 +48,17 @@ const customConfig: Linter.Config = {
     'simple-import-sort': simpleImportSort,
   },
   rules: {
+    eqeqeq: ['error', 'always'],
+    'prefer-const': ['error', { destructuring: 'all' }],
+    'no-useless-rename': 'error',
+    'no-useless-constructor': 'error',
     'no-console': 'error',
     'no-debugger': 'error',
+    'no-throw-literal': 'error',
+    'no-unused-expressions': 'error',
+    'no-var': 'error',
+    'no-redeclare': 'error',
+    'no-const-assign': 'error',
     'no-restricted-imports': [
       'error',
       {
@@ -65,6 +74,47 @@ const customConfig: Linter.Config = {
     'sort-imports': 'off',
 
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+    '@typescript-eslint/no-explicit-any': ['error', { fixToUnknown: true }],
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      { prefer: 'type-imports' },
+    ],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'import',
+
+        format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+      },
+      { selector: 'class', format: ['PascalCase'] },
+      {
+        selector: 'variable',
+        modifiers: ['const'],
+        format: ['camelCase', 'UPPER_CASE'],
+      },
+      {
+        selector: 'typeParameter',
+        format: ['PascalCase'],
+      },
+      { selector: 'enum', format: ['PascalCase'] },
+    ],
+    '@typescript-eslint/no-use-before-define': 'error',
+    '@typescript-eslint/no-inferrable-types': [
+      'error',
+      {
+        ignoreParameters: true,
+        ignoreProperties: true,
+      },
+    ],
+    '@typescript-eslint/no-unsafe-declaration-merging': 'error',
 
     'import/no-default-export': 'error',
     'import/no-named-as-default': 'error',
