@@ -1,3 +1,11 @@
+## [1.0.20](https://github.com/vfourny/node-toolkit/compare/v1.0.19...v1.0.20) (2025-08-06)
+
+
+### Bug Fixes
+
+* **eslint:** add new eslint rules ([#32](https://github.com/vfourny/node-toolkit/issues/32)) ([307843b](https://github.com/vfourny/node-toolkit/commit/307843b8c976978c362b0880136496090bfe972e))
+* **eslint:** use linter to fix import ([#33](https://github.com/vfourny/node-toolkit/issues/33)) ([fc15454](https://github.com/vfourny/node-toolkit/commit/fc15454bf67e764e312be9179a305ac17615cf2c))
+
 ## [1.0.19](https://github.com/vfourny/node-toolkit/compare/v1.0.18...v1.0.19) (2025-08-02)
 
 
