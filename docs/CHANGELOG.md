@@ -1,3 +1,10 @@
+## [1.0.21](https://github.com/vfourny/node-toolkit/compare/v1.0.20...v1.0.21) (2025-08-11)
+
+
+### Bug Fixes
+
+* **tsconfig:** typescript rules ([#34](https://github.com/vfourny/node-toolkit/issues/34)) ([0e01cd2](https://github.com/vfourny/node-toolkit/commit/0e01cd2f631e9627a1f4e2202462208bee4f95e6))
+
 ## [1.0.20](https://github.com/vfourny/node-toolkit/compare/v1.0.19...v1.0.20) (2025-08-06)
 
 
