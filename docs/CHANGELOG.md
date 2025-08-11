@@ -1,3 +1,10 @@
+## [1.0.22](https://github.com/vfourny/node-toolkit/compare/v1.0.21...v1.0.22) (2025-08-11)
+
+
+### Bug Fixes
+
+* **tsc:** update module resolution ([#35](https://github.com/vfourny/node-toolkit/issues/35)) ([e0e4fcc](https://github.com/vfourny/node-toolkit/commit/e0e4fccde82a94968c1a7e2613c1520a018d6e18))
+
 ## [1.0.21](https://github.com/vfourny/node-toolkit/compare/v1.0.20...v1.0.21) (2025-08-11)
 
 
