@@ -12,4 +12,4 @@ jobs:
     with:
       is_build: true
       is_type_checked: true
-      is_tested: false
+      is_tested: true
