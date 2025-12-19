@@ -1,3 +1,10 @@
+## [1.0.23](https://github.com/vfourny/node-toolkit/compare/v1.0.22...v1.0.23) (2025-12-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency globals to v16 ([#37](https://github.com/vfourny/node-toolkit/issues/37)) ([ea906cc](https://github.com/vfourny/node-toolkit/commit/ea906ccdf4303bd03e01651d562e409fff5df843))
+
 ## [1.0.22](https://github.com/vfourny/node-toolkit/compare/v1.0.21...v1.0.22) (2025-08-11)
 
 
