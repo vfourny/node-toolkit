@@ -12,7 +12,7 @@ jobs:
     with:
       is_build: true
       is_type_checked: true
-      is_tested: false
+      is_tested: true
   release:
     needs: build
     uses: vfourny/.github/.github/workflows/release.yml@main
