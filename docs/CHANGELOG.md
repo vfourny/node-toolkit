@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/vfourny/node-toolkit/compare/v1.0.23...v1.1.0) (2025-12-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency eslint-import-resolver-typescript to v4 ([#45](https://github.com/vfourny/node-toolkit/issues/45)) ([d71e771](https://github.com/vfourny/node-toolkit/commit/d71e7716b2b5515db6af71940370b1cbca0cf2da))
+
+
+### Features
+
+* **eslint:** add eslint config files for each environment ([#44](https://github.com/vfourny/node-toolkit/issues/44)) ([a4ae6d1](https://github.com/vfourny/node-toolkit/commit/a4ae6d14a2c8486e83e1a1831f7627f64dabdaa6))
+
 ## [1.0.23](https://github.com/vfourny/node-toolkit/compare/v1.0.22...v1.0.23) (2025-12-19)
 
 ### Bug Fixes
