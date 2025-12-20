@@ -19,4 +19,3 @@ jobs:
     secrets:
       SEMANTIC_BOT_APP_ID: ${{ secrets.SEMANTIC_BOT_APP_ID }}
       SEMANTIC_BOT_PRIVATE_KEY: ${{ secrets.SEMANTIC_BOT_PRIVATE_KEY }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
