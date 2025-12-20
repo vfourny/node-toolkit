@@ -3,6 +3,8 @@
   "compilerOptions": {
     "composite": true,
     "outDir": "./dist/libs",
-    "rootDir": "./src"
-  }
+    "rootDir": "./src",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo-src"
+  },
+  "include": ["./src/**/*"]
 }
