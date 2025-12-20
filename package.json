@@ -25,8 +25,24 @@
   ],
   "exports": {
     "./eslint": {
-      "types": "./dist/eslint.config.d.ts",
-      "default": "./dist/eslint.config.js"
+      "types": "./dist/configs/eslint/index.d.ts",
+      "default": "./dist/configs/eslint/index.js"
+    },
+    "./eslint/base": {
+      "types": "./dist/configs/eslint/base.d.ts",
+      "default": "./dist/configs/eslint/base.js"
+    },
+    "./eslint/node": {
+      "types": "./dist/configs/eslint/node.d.ts",
+      "default": "./dist/configs/eslint/node.js"
+    },
+    "./eslint/vue": {
+      "types": "./dist/configs/eslint/vue.d.ts",
+      "default": "./dist/configs/eslint/vue.js"
+    },
+    "./eslint/nuxt": {
+      "types": "./dist/configs/eslint/nuxt.d.ts",
+      "default": "./dist/configs/eslint/nuxt.js"
     },
     "./prettier": {
       "types": "./dist/prettier.config.d.ts",
@@ -58,6 +74,7 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^3.7.0",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-vue": "^10.6.2",

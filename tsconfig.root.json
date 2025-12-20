@@ -3,12 +3,18 @@
   "compilerOptions": {
     "composite": true,
     "outDir": "./dist",
-    "rootDir": "."
+    "rootDir": ".",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo-root"
   },
   "include": [
     "./eslint.config.ts",
     "./prettier.config.js",
     "./commitlint.config.ts",
     "./release.config.js"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.configs.json"
+    }
   ]
 }
