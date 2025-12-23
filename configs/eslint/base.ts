@@ -119,7 +119,7 @@ export const commonIgnores: Linter.Config = {
  * Allow default exports and relative imports in config files
  */
 export const configFilesOverride: Linter.Config = {
-  files: ['*.config.{js,ts}'],
+  files: ['**/*.config.{js,ts}'],
   rules: {
     'import/no-default-export': 'off',
     'no-restricted-imports': 'off',
