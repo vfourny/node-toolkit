@@ -5,10 +5,10 @@
       "path": "./tsconfig.src.json"
     },
     {
-      "path": "./tsconfig.root.json"
+      "path": "./tsconfig.configs.json"
     },
     {
-      "path": "./tsconfig.configs.json"
+      "path": "./tsconfig.tests.json"
     }
   ]
 }

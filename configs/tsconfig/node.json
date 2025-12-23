@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./base.json",
+  "exclude": [
+    "${configDir}/node_modules",
+    "${configDir}/dist",
+    "${configDir}/.nuxt",
+    "${configDir}/.output"
+  ],
+  "include": ["${configDir}/src/**/*"],
+  "compilerOptions": {
+    /* Build Configuration */
+    "tsBuildInfoFile": "${configDir}/.cache/.tsbuildinfo",
+
+    /* Modules */
+    "rootDir": "${configDir}/src",
+    "baseUrl": "${configDir}",
+    "paths": {
+      "@/*": ["${configDir}/src/*"]
+    },
+
+    /* Emit */
+    "declaration": true,
+    "outDir": "${configDir}/dist",
+    "removeComments": true,
+    "noEmitOnError": true
+  }
+}

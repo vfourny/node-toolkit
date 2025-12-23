@@ -126,7 +126,7 @@ export const configFilesOverride: Linter.Config = {
 /**
  * Recommended TypeScript ESLint configs
  */
-export const typescriptConfigs = [
+export const typescriptConfigs: Linter.Config[] = [
   eslintJS.configs.recommended,
   ...typescriptEslint.configs.recommended,
   ...typescriptEslint.configs.strict,
