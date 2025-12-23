@@ -7,13 +7,15 @@ Welcome to **VFourny's Node Toolkit**! This repository contains a collection of 
 ## Table of Contents
 
 - [Installation](#installation)
-- [Variables d'Environnement](#variables-d'environnement)
-- [Fichiers de Configuration](#fichiers-de-configuration)
-  - [Eslint](#eslint)
+- [Environment Variables](#environment-variables)
+- [Configuration Files](#configuration-files)
+  - [ESLint](#eslint)
   - [Prettier](#prettier)
   - [TypeScript](#typescript)
+  - [Vitest](#vitest)
   - [Semantic Release](#semantic-release)
   - [Commitlint](#commitlint)
+- [Utility Functions](#utility-functions)
 
 ## Installation
 
@@ -33,7 +35,8 @@ npm install -D eslint prettier typescript commitlint semantic-release
 
 **Minimum versions:**
 
-- Node.js: `>=20.13 <25`
+- Node.js: `>= 22`
+- npm: `>= 10.9.4`
 - ESLint: `^9.3.0`
 - Prettier: `^3.2.5`
 - TypeScript: `^5.5.2`
@@ -171,7 +174,65 @@ export default {
 
 ### TypeScript
 
-To import the TypeScript configuration into your project, add the following code to your [TypeScript](https://www.typescriptlang.org/tsconfig) configuration file:
+This package provides multiple TypeScript configurations for different project types:
+
+#### For Node.js Projects
+
+```json
+{
+  "extends": "@vfourny/node-toolkit/tsconfig/node",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+    // Your custom configurations
+  }
+}
+```
+
+#### For Vue Projects
+
+```json
+{
+  "extends": "@vfourny/node-toolkit/tsconfig/vue",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+    // Your custom configurations
+  }
+}
+```
+
+#### For Nuxt Projects
+
+```json
+{
+  "extends": "@vfourny/node-toolkit/tsconfig/nuxt",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+    // Your custom configurations
+  }
+}
+```
+
+#### For Test Files
+
+```json
+{
+  "extends": "@vfourny/node-toolkit/tsconfig/test",
+  "compilerOptions": {
+    // Your custom configurations
+  }
+}
+```
+
+#### Default Import (Node.js)
 
 ```json
 {
@@ -187,6 +248,40 @@ To import the TypeScript configuration into your project, add the following code
 ```
 
 **Important:** The `paths` configuration is required for the ESLint import resolver to work correctly with absolute imports using the `@/` prefix.
+
+**Base Configuration:** All TypeScript configurations extend from `@vfourny/node-toolkit/tsconfig/base` which provides strict TypeScript settings including:
+- Strict mode enabled
+- No implicit any
+- No unused locals/parameters
+- ESNext module resolution
+- ES2020 target
+
+### Vitest
+
+To use the Vitest configuration in your project, create a `vitest.config.ts` file:
+
+```typescript
+// vitest.config.ts
+import { defineConfig, mergeConfig } from 'vitest/config'
+import baseConfig from '@vfourny/node-toolkit/vitest'
+
+export default mergeConfig(
+  baseConfig,
+  defineConfig({
+    test: {
+      include: ['tests/**/*.test.ts'],
+      // Your custom configurations
+    },
+  })
+)
+```
+
+**Features:**
+- Node.js environment by default
+- Global test APIs enabled (`describe`, `it`, `expect`, etc.)
+- V8 coverage provider
+- Text, JSON, and HTML coverage reports
+- Default reporter for test results
 
 ### Semantic Release
 
@@ -210,6 +305,28 @@ export default {
   extends: '@vfourny/node-toolkit/commitlint',
 }
 ```
+
+## Utility Functions
+
+This package also exports utility functions that can be used in your projects:
+
+```typescript
+import { kebabCase, lowerCaseFirstLetter } from '@vfourny/node-toolkit'
+
+// Convert strings to kebab-case
+kebabCase('HelloWorld') // 'hello-world'
+kebabCase('myVariableName') // 'my-variable-name'
+kebabCase('hello_world') // 'hello-world'
+
+// Convert first letter to lowercase
+lowerCaseFirstLetter('HelloWorld') // 'helloWorld'
+lowerCaseFirstLetter('HELLO') // 'hELLO'
+```
+
+### Available Functions
+
+- **`kebabCase(string: string): string`** - Converts camelCase, PascalCase, snake_case, or space-separated strings to kebab-case
+- **`lowerCaseFirstLetter(string: string): string`** - Converts the first letter of a string to lowercase while preserving the rest
 
 ---
 

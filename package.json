@@ -120,7 +120,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "engines": {
-    "node": ">= 22.22.1",
+    "node": ">= 22",
     "npm": ">= 10.9.4"
   }
 }
