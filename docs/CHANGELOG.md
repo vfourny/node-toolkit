@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/vfourny/node-toolkit/compare/v1.1.1...v1.1.2) (2025-12-23)
+
+
+### Bug Fixes
+
+* **doc:** update readme ([#51](https://github.com/vfourny/node-toolkit/issues/51)) ([77bcda2](https://github.com/vfourny/node-toolkit/commit/77bcda26a17724c9413711995f736290d5177a45))
+
 ## [1.1.1](https://github.com/vfourny/node-toolkit/compare/v1.1.0...v1.1.1) (2025-12-23)
 
 
