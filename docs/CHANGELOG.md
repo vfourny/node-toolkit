@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/vfourny/node-toolkit/compare/v1.1.0...v1.1.1) (2025-12-23)
+
+
+### Bug Fixes
+
+* **config:** add config folder ([#48](https://github.com/vfourny/node-toolkit/issues/48)) ([9c6d8ac](https://github.com/vfourny/node-toolkit/commit/9c6d8ac0a51eaefa44316b8b5c5474bb19d7c92f))
+* **eslint:** add exlcusion ([#50](https://github.com/vfourny/node-toolkit/issues/50)) ([a899016](https://github.com/vfourny/node-toolkit/commit/a899016ed21e33079d22ddfed5e0cd649d55acfc))
+* **release:** test ([#49](https://github.com/vfourny/node-toolkit/issues/49)) ([eeee0de](https://github.com/vfourny/node-toolkit/commit/eeee0dec56cc27a98a1c080cd730f77ec5085f08))
+
 # [1.1.0](https://github.com/vfourny/node-toolkit/compare/v1.0.23...v1.1.0) (2025-12-20)
 
 ### Bug Fixes
