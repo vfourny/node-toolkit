@@ -12,7 +12,7 @@ import nodeConfig from './configs/eslint/node'
  * since these are internal config files that need to use ESLint's standard patterns
  */
 const configsOverride: Linter.Config = {
-  files: ['configs/**/*.ts', 'eslint.config.ts'],
+  files: ['configs/**/*.{ts,js}', 'eslint.config.ts'],
   rules: {
     'no-restricted-imports': 'off',
     'import/no-default-export': 'off',
