@@ -116,17 +116,20 @@ export const commonIgnores: Linter.Config = {
 }
 
 /**
- * Allow default exports in config files
+ * Allow default exports and relative imports in config files
  */
 export const configFilesOverride: Linter.Config = {
   files: ['*.config.{js,ts}'],
-  rules: { 'import/no-default-export': 'off' },
+  rules: {
+    'import/no-default-export': 'off',
+    'no-restricted-imports': 'off',
+  },
 }
 
 /**
  * Recommended TypeScript ESLint configs
  */
-export const typescriptConfigs = [
+export const typescriptConfigs: Linter.Config[] = [
   eslintJS.configs.recommended,
   ...typescriptEslint.configs.recommended,
   ...typescriptEslint.configs.strict,
