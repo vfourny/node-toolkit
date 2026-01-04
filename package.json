@@ -1,5 +1,6 @@
 {
   "name": "@vfourny/node-toolkit",
+  "author": "Valentin Fourny - @VFOURNY",
   "version": "1.1.2",
   "description": "Toolkit for Node.js projects",
   "type": "module",
@@ -71,7 +72,6 @@
     "linting",
     "typescript"
   ],
-  "author": "Valentin Fourny",
   "license": "ISC",
   "dependencies": {
     "@commitlint/config-angular": "^20.2.0",
