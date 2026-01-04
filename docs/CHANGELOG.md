@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/vfourny/node-toolkit/compare/v1.1.2...v1.1.3) (2026-01-04)
+
+
+### Bug Fixes
+
+* **eslint:** update authoe ([#56](https://github.com/vfourny/node-toolkit/issues/56)) ([314a01f](https://github.com/vfourny/node-toolkit/commit/314a01f1c9b74b00275657a954b58389da684a19))
+
 ## [1.1.2](https://github.com/vfourny/node-toolkit/compare/v1.1.1...v1.1.2) (2025-12-23)
 
 
