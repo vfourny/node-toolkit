@@ -5,8 +5,8 @@
     "target": "ES2020",
 
     /* Modules */
-    "module": "ESNext",
-    "moduleResolution": "bundler",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
 
     /* JavaScript Support */
