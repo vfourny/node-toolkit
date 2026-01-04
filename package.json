@@ -24,10 +24,6 @@
   ],
   "exports": {
     "./eslint": {
-      "types": "./dist/configs/eslint/index.d.ts",
-      "default": "./dist/configs/eslint/index.js"
-    },
-    "./eslint/base": {
       "types": "./dist/configs/eslint/base.d.ts",
       "default": "./dist/configs/eslint/base.js"
     },

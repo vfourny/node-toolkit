@@ -45,7 +45,7 @@ Pour que `semantic-release` fonctionne correctement, certaines variables d'envir
 Pour importer la configuration ESLint dans votre projet, ajoutez le code suivant à votre fichier de config [ESLint](https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file) :
 
 ```javascript
-import nodeToolkitEslintConfig from '@vfourny/node-toolkit/eslint'
+import nodeToolkitEslintConfig from '@vfourny/node-toolkit/eslint/node'
 
 export default {
   ...nodeToolkitEslintConfig,
