@@ -95,7 +95,7 @@ export default nuxtConfig
 
 ```typescript
 // eslint.config.ts
-import config from '@vfourny/node-toolkit/eslint'
+import config from '@vfourny/node-toolkit/eslint/node'
 
 export default config
 ```
