@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { kebabCase, lowerCaseFirstLetter } from '@/index'
+import { kebabCase, lowerCaseFirstLetter } from '@/index.js'
 
 describe('kebabCase', () => {
   it('should convert camelCase to kebab-case', () => {

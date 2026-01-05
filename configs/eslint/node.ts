@@ -8,7 +8,7 @@ import {
   configFilesOverride,
   prettierConfig,
   typescriptConfigs,
-} from './base'
+} from './base.js'
 
 /**
  * Node.js-specific configuration with Node.js globals

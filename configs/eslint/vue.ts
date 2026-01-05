@@ -8,8 +8,8 @@ import {
   configFilesOverride,
   prettierConfig,
   typescriptConfigs,
-} from './base'
-import { nodeGlobalsConfig } from './node'
+} from './base.js'
+import { nodeGlobalsConfig } from './node.js'
 
 /**
  * Vue-specific configuration
