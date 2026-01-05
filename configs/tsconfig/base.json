@@ -6,7 +6,7 @@
 
     /* Modules */
     "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
 
     /* JavaScript Support */

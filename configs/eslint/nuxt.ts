@@ -7,9 +7,9 @@ import {
   configFilesOverride,
   prettierConfig,
   typescriptConfigs,
-} from './base'
-import { nodeGlobalsConfig } from './node'
-import { vueFilesConfig } from './vue'
+} from './base.js'
+import { nodeGlobalsConfig } from './node.js'
+import { vueFilesConfig } from './vue.js'
 
 /**
  * Nuxt-specific globals for auto-imports
