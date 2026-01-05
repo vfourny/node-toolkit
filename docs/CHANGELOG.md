@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/vfourny/node-toolkit/compare/v1.1.3...v1.1.4) (2026-01-05)
+
+
+### Bug Fixes
+
+* **tsconfig:** update bundelr config ([#57](https://github.com/vfourny/node-toolkit/issues/57)) ([146f212](https://github.com/vfourny/node-toolkit/commit/146f212b2b0d7cc3dcef3608a1bdc108d18faef0))
+
 ## [1.1.3](https://github.com/vfourny/node-toolkit/compare/v1.1.2...v1.1.3) (2026-01-04)
 
 
