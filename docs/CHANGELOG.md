@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/vfourny/node-toolkit/compare/v1.1.4...v1.1.5) (2026-01-08)
+
+
+### Bug Fixes
+
+* **tsconfig:** update base config ([#59](https://github.com/vfourny/node-toolkit/issues/59)) ([9452349](https://github.com/vfourny/node-toolkit/commit/9452349ead4be7d57cd53e99c2ec92213c8dbffc))
+
 ## [1.1.4](https://github.com/vfourny/node-toolkit/compare/v1.1.3...v1.1.4) (2026-01-05)
 
 
