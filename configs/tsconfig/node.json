@@ -21,8 +21,6 @@
 
     /* Emit */
     "declaration": true,
-    "outDir": "${configDir}/dist",
-    "removeComments": true,
-    "noEmitOnError": true
+    "outDir": "${configDir}/dist"
   }
 }
