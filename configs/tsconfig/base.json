@@ -34,6 +34,10 @@
     "noUncheckedSideEffectImports": true,
 
     /* Completeness */
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    /* Emit */
+    "removeComments": true,
+    "noEmitOnError": true
   }
 }
