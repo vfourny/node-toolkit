@@ -9,6 +9,9 @@
   ],
   "include": ["${configDir}/src/**/*", "${configDir}/src/**/*.vue"],
   "compilerOptions": {
+    /* Build Configuration */
+    "tsBuildInfoFile": "${configDir}/.cache/vue.tsbuildinfo",
+
     /* Language and Environment */
     "jsx": "preserve",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],

@@ -2,6 +2,9 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "./base.json",
   "compilerOptions": {
+    /* Build Configuration */
+    "tsBuildInfoFile": "${configDir}/.cache/test.tsbuildinfo",
+
     /* Types */
     "types": ["vitest/globals"],
 

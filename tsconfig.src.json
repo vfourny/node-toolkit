@@ -1,14 +1,8 @@
 {
-  "extends": "./configs/tsconfig/base.json",
+  "extends": "./configs/tsconfig/node.json",
   "compilerOptions": {
     "composite": true,
-    "outDir": "./dist/libs",
-    "rootDir": "./src",
-    "tsBuildInfoFile": "./dist/.tsbuildinfo-src",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "outDir": "./dist/libs"
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules", "dist", ".nuxt", ".output"]

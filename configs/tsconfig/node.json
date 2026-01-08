@@ -10,7 +10,7 @@
   "include": ["${configDir}/src/**/*"],
   "compilerOptions": {
     /* Build Configuration */
-    "tsBuildInfoFile": "${configDir}/.cache/.tsbuildinfo",
+    "tsBuildInfoFile": "${configDir}/.cache/node.tsbuildinfo",
 
     /* Modules */
     "rootDir": "${configDir}/src",
