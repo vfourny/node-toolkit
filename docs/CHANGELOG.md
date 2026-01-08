@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/vfourny/node-toolkit/compare/v1.1.5...v1.1.6) (2026-01-08)
+
+
+### Bug Fixes
+
+* **tsconfig:** add tsbuildinfo root ([#60](https://github.com/vfourny/node-toolkit/issues/60)) ([6b59e26](https://github.com/vfourny/node-toolkit/commit/6b59e26a66fdc48cfefb111a88d00a38bbc33b7c))
+
 ## [1.1.5](https://github.com/vfourny/node-toolkit/compare/v1.1.4...v1.1.5) (2026-01-08)
 
 
