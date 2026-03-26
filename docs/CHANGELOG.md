@@ -1,3 +1,13 @@
+## [1.1.7](https://github.com/vfourny/node-toolkit/compare/v1.1.6...v1.1.7) (2026-03-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency globals to v17 ([#78](https://github.com/vfourny/node-toolkit/issues/78)) ([4d4793b](https://github.com/vfourny/node-toolkit/commit/4d4793bf29787d1fd1d020d74f160b490bab2e79))
+* **deps:** update minor updates ([#103](https://github.com/vfourny/node-toolkit/issues/103)) ([4ddd855](https://github.com/vfourny/node-toolkit/commit/4ddd8554c112ac87e930db7904adb3a8b28c96e8))
+* **eslint:** downgrade ([#105](https://github.com/vfourny/node-toolkit/issues/105)) ([87438ad](https://github.com/vfourny/node-toolkit/commit/87438ad565d9a96b583a7b8693225fd11fab1411))
+* **package:** update versioning semantic ([#101](https://github.com/vfourny/node-toolkit/issues/101)) ([d249329](https://github.com/vfourny/node-toolkit/commit/d249329cdc3e316da6f22fda1a2ecfa454a488df))
+
 ## [1.1.6](https://github.com/vfourny/node-toolkit/compare/v1.1.5...v1.1.6) (2026-01-08)
 
 
