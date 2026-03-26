@@ -74,16 +74,16 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "@commitlint/config-angular": "20.2.0",
+    "@commitlint/config-angular": "20.5.0",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
     "eslint-config-prettier": "10.1.8",
-    "eslint-import-resolver-typescript": "4.0.0",
+    "eslint-import-resolver-typescript": "4.4.4",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-simple-import-sort": "12.1.1",
-    "eslint-plugin-vue": "10.6.2",
-    "globals": "17.0.0",
-    "typescript-eslint": "8.50.0"
+    "eslint-plugin-vue": "10.8.0",
+    "globals": "17.4.0",
+    "typescript-eslint": "8.57.2"
   },
   "devDependencies": {
     "@commitlint/types": "20.5.0",
