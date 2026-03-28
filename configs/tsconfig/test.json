@@ -11,7 +11,8 @@
     /* Modules */
     "baseUrl": "${configDir}",
     "paths": {
-      "@/*": ["${configDir}/src/*"]
+      "@/*": ["${configDir}/src/*"],
+      "@test/*": ["${configDir}/tests/*"]
     },
 
     /* Emit */
