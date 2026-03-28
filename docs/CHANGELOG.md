@@ -1,3 +1,10 @@
+## [1.1.8](https://github.com/vfourny/node-toolkit/compare/v1.1.7...v1.1.8) (2026-03-28)
+
+
+### Bug Fixes
+
+* **tsconfig:** add path mapping for test files ([d7fc5dd](https://github.com/vfourny/node-toolkit/commit/d7fc5ddbaa1ca630e18fae16ed098925419d8f55))
+
 ## [1.1.7](https://github.com/vfourny/node-toolkit/compare/v1.1.6...v1.1.7) (2026-03-26)
 
 
