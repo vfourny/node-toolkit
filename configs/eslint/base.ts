@@ -53,6 +53,9 @@ export const baseConfig: Linter.Config = {
     // Disable default sort-imports in favor of simple-import-sort
     'sort-imports': 'off',
 
+    // Enforce alphabetical ordering of object keys
+    'sort-keys': ['error', 'asc', { caseSensitive: false, natural: true }],
+
     // TypeScript-specific rules
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
     '@typescript-eslint/no-explicit-any': ['error', { fixToUnknown: true }],

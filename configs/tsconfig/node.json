@@ -19,6 +19,9 @@
       "@/*": ["${configDir}/src/*"]
     },
 
+    /* Types */
+    "types": ["node"],
+
     /* Emit */
     "declaration": true,
     "outDir": "${configDir}/dist"
