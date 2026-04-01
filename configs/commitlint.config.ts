@@ -32,30 +32,12 @@ export const createCommitlintMonorepoConfig = (options: {
   const { scopes = [], extraRules = {} } = options
 
   return {
-    extends: ['@commitlint/config-angular'],
-    parserPreset: {
-      parserOpts: {
-        headerPattern:
-          /^(\w*)(?:\(([\w$.\-*/ ]+)(?::([\w$.\-*/ ]+))?\))?: (.*)$/,
-        headerCorrespondence: ['type', 'scope', 'subScope', 'subject'],
-      },
-    },
+    ...defaultConfig,
     rules: {
       ...defaultConfig.rules,
       'scope-enum': [2, 'always', scopes],
-      'custom-subscope-validation': [2, 'always'],
       ...extraRules,
     },
-    plugins: [
-      {
-        rules: {
-          'custom-subscope-validation': ({ subScope }) => {
-            if (!subScope) return [false, '']
-            return [true, '']
-          },
-        },
-      },
-    ],
   }
 }
 
