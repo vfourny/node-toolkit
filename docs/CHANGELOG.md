@@ -1,70 +1,61 @@
 ## [1.1.9](https://github.com/vfourny/node-toolkit/compare/v1.1.8...v1.1.9) (2026-04-01)
 
-
 ### Bug Fixes
 
-* **commitlint:** update commitlint config ([#108](https://github.com/vfourny/node-toolkit/issues/108)) ([b44ae95](https://github.com/vfourny/node-toolkit/commit/b44ae9573e2f097170b703d2ad681b149ab71929))
+- **commitlint:** update commitlint config ([#108](https://github.com/vfourny/node-toolkit/issues/108)) ([b44ae95](https://github.com/vfourny/node-toolkit/commit/b44ae9573e2f097170b703d2ad681b149ab71929))
 
 ## [1.1.8](https://github.com/vfourny/node-toolkit/compare/v1.1.7...v1.1.8) (2026-03-28)
 
-
 ### Bug Fixes
 
-* **tsconfig:** add path mapping for test files ([d7fc5dd](https://github.com/vfourny/node-toolkit/commit/d7fc5ddbaa1ca630e18fae16ed098925419d8f55))
+- **tsconfig:** add path mapping for test files ([d7fc5dd](https://github.com/vfourny/node-toolkit/commit/d7fc5ddbaa1ca630e18fae16ed098925419d8f55))
 
 ## [1.1.7](https://github.com/vfourny/node-toolkit/compare/v1.1.6...v1.1.7) (2026-03-26)
 
-
 ### Bug Fixes
 
-* **deps:** update dependency globals to v17 ([#78](https://github.com/vfourny/node-toolkit/issues/78)) ([4d4793b](https://github.com/vfourny/node-toolkit/commit/4d4793bf29787d1fd1d020d74f160b490bab2e79))
-* **deps:** update minor updates ([#103](https://github.com/vfourny/node-toolkit/issues/103)) ([4ddd855](https://github.com/vfourny/node-toolkit/commit/4ddd8554c112ac87e930db7904adb3a8b28c96e8))
-* **eslint:** downgrade ([#105](https://github.com/vfourny/node-toolkit/issues/105)) ([87438ad](https://github.com/vfourny/node-toolkit/commit/87438ad565d9a96b583a7b8693225fd11fab1411))
-* **package:** update versioning semantic ([#101](https://github.com/vfourny/node-toolkit/issues/101)) ([d249329](https://github.com/vfourny/node-toolkit/commit/d249329cdc3e316da6f22fda1a2ecfa454a488df))
+- **deps:** update dependency globals to v17 ([#78](https://github.com/vfourny/node-toolkit/issues/78)) ([4d4793b](https://github.com/vfourny/node-toolkit/commit/4d4793bf29787d1fd1d020d74f160b490bab2e79))
+- **deps:** update minor updates ([#103](https://github.com/vfourny/node-toolkit/issues/103)) ([4ddd855](https://github.com/vfourny/node-toolkit/commit/4ddd8554c112ac87e930db7904adb3a8b28c96e8))
+- **eslint:** downgrade ([#105](https://github.com/vfourny/node-toolkit/issues/105)) ([87438ad](https://github.com/vfourny/node-toolkit/commit/87438ad565d9a96b583a7b8693225fd11fab1411))
+- **package:** update versioning semantic ([#101](https://github.com/vfourny/node-toolkit/issues/101)) ([d249329](https://github.com/vfourny/node-toolkit/commit/d249329cdc3e316da6f22fda1a2ecfa454a488df))
 
 ## [1.1.6](https://github.com/vfourny/node-toolkit/compare/v1.1.5...v1.1.6) (2026-01-08)
 
-
 ### Bug Fixes
 
-* **tsconfig:** add tsbuildinfo root ([#60](https://github.com/vfourny/node-toolkit/issues/60)) ([6b59e26](https://github.com/vfourny/node-toolkit/commit/6b59e26a66fdc48cfefb111a88d00a38bbc33b7c))
+- **tsconfig:** add tsbuildinfo root ([#60](https://github.com/vfourny/node-toolkit/issues/60)) ([6b59e26](https://github.com/vfourny/node-toolkit/commit/6b59e26a66fdc48cfefb111a88d00a38bbc33b7c))
 
 ## [1.1.5](https://github.com/vfourny/node-toolkit/compare/v1.1.4...v1.1.5) (2026-01-08)
 
-
 ### Bug Fixes
 
-* **tsconfig:** update base config ([#59](https://github.com/vfourny/node-toolkit/issues/59)) ([9452349](https://github.com/vfourny/node-toolkit/commit/9452349ead4be7d57cd53e99c2ec92213c8dbffc))
+- **tsconfig:** update base config ([#59](https://github.com/vfourny/node-toolkit/issues/59)) ([9452349](https://github.com/vfourny/node-toolkit/commit/9452349ead4be7d57cd53e99c2ec92213c8dbffc))
 
 ## [1.1.4](https://github.com/vfourny/node-toolkit/compare/v1.1.3...v1.1.4) (2026-01-05)
 
-
 ### Bug Fixes
 
-* **tsconfig:** update bundelr config ([#57](https://github.com/vfourny/node-toolkit/issues/57)) ([146f212](https://github.com/vfourny/node-toolkit/commit/146f212b2b0d7cc3dcef3608a1bdc108d18faef0))
+- **tsconfig:** update bundelr config ([#57](https://github.com/vfourny/node-toolkit/issues/57)) ([146f212](https://github.com/vfourny/node-toolkit/commit/146f212b2b0d7cc3dcef3608a1bdc108d18faef0))
 
 ## [1.1.3](https://github.com/vfourny/node-toolkit/compare/v1.1.2...v1.1.3) (2026-01-04)
 
-
 ### Bug Fixes
 
-* **eslint:** update authoe ([#56](https://github.com/vfourny/node-toolkit/issues/56)) ([314a01f](https://github.com/vfourny/node-toolkit/commit/314a01f1c9b74b00275657a954b58389da684a19))
+- **eslint:** update authoe ([#56](https://github.com/vfourny/node-toolkit/issues/56)) ([314a01f](https://github.com/vfourny/node-toolkit/commit/314a01f1c9b74b00275657a954b58389da684a19))
 
 ## [1.1.2](https://github.com/vfourny/node-toolkit/compare/v1.1.1...v1.1.2) (2025-12-23)
 
-
 ### Bug Fixes
 
-* **doc:** update readme ([#51](https://github.com/vfourny/node-toolkit/issues/51)) ([77bcda2](https://github.com/vfourny/node-toolkit/commit/77bcda26a17724c9413711995f736290d5177a45))
+- **doc:** update readme ([#51](https://github.com/vfourny/node-toolkit/issues/51)) ([77bcda2](https://github.com/vfourny/node-toolkit/commit/77bcda26a17724c9413711995f736290d5177a45))
 
 ## [1.1.1](https://github.com/vfourny/node-toolkit/compare/v1.1.0...v1.1.1) (2025-12-23)
 
-
 ### Bug Fixes
 
-* **config:** add config folder ([#48](https://github.com/vfourny/node-toolkit/issues/48)) ([9c6d8ac](https://github.com/vfourny/node-toolkit/commit/9c6d8ac0a51eaefa44316b8b5c5474bb19d7c92f))
-* **eslint:** add exlcusion ([#50](https://github.com/vfourny/node-toolkit/issues/50)) ([a899016](https://github.com/vfourny/node-toolkit/commit/a899016ed21e33079d22ddfed5e0cd649d55acfc))
-* **release:** test ([#49](https://github.com/vfourny/node-toolkit/issues/49)) ([eeee0de](https://github.com/vfourny/node-toolkit/commit/eeee0dec56cc27a98a1c080cd730f77ec5085f08))
+- **config:** add config folder ([#48](https://github.com/vfourny/node-toolkit/issues/48)) ([9c6d8ac](https://github.com/vfourny/node-toolkit/commit/9c6d8ac0a51eaefa44316b8b5c5474bb19d7c92f))
+- **eslint:** add exlcusion ([#50](https://github.com/vfourny/node-toolkit/issues/50)) ([a899016](https://github.com/vfourny/node-toolkit/commit/a899016ed21e33079d22ddfed5e0cd649d55acfc))
+- **release:** test ([#49](https://github.com/vfourny/node-toolkit/issues/49)) ([eeee0de](https://github.com/vfourny/node-toolkit/commit/eeee0dec56cc27a98a1c080cd730f77ec5085f08))
 
 # [1.1.0](https://github.com/vfourny/node-toolkit/compare/v1.0.23...v1.1.0) (2025-12-20)
 

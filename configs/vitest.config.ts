@@ -25,14 +25,14 @@
  */
 const config = {
   test: {
-    reporters: ['default'],
-    globals: true,
-    environment: 'node',
     coverage: {
+      clean: true,
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      clean: true,
     },
+    environment: 'node',
+    globals: true,
+    reporters: ['default'],
   },
 }
 

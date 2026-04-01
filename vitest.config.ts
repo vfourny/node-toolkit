@@ -13,10 +13,7 @@ export default mergeConfig(
       },
     },
     test: {
-      include: ['tests/**/*.test.ts'],
       coverage: {
-        thresholds: { 100: true },
-        include: ['src/**/*.ts'],
         exclude: [
           'src/**/*.test.ts',
           'src/**/*.spec.ts',
@@ -24,7 +21,10 @@ export default mergeConfig(
           'src/**/*.d.ts',
           'src/**/index.ts',
         ],
+        include: ['src/**/*.ts'],
+        thresholds: { 100: true },
       },
+      include: ['tests/**/*.test.ts'],
     },
   }),
 )

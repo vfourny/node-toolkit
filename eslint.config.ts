@@ -14,8 +14,8 @@ import nodeConfig from './configs/eslint/node'
 const configsOverride: Linter.Config = {
   files: ['configs/**/*.{ts,js}', 'eslint.config.ts'],
   rules: {
-    'no-restricted-imports': 'off',
     'import/no-default-export': 'off',
+    'no-restricted-imports': 'off',
   },
 }
 

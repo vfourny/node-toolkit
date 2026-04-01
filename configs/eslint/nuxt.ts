@@ -16,70 +16,121 @@ import { vueFilesConfig } from './vue.js'
  * These are commonly auto-imported by Nuxt and should not trigger no-undef errors
  */
 const nuxtGlobals: Linter.Config = {
-  name: 'node-toolkit/nuxt-globals',
   languageOptions: {
     globals: {
+      // Process (Nuxt provides this)
+      $fetch: 'readonly',
+
+      abortNavigation: 'readonly',
+
+      addRouteMiddleware: 'readonly',
+
+      callOnce: 'readonly',
+
+      clearError: 'readonly',
+
+      computed: 'readonly',
+
+      createError: 'readonly',
+
+      defineNuxtComponent: 'readonly',
+
+      defineNuxtPlugin: 'readonly',
+
+      defineNuxtRouteMiddleware: 'readonly',
+
+      definePageMeta: 'readonly',
+
+      inject: 'readonly',
+
+      isRef: 'readonly',
+
+      navigateTo: 'readonly',
+
+      nextTick: 'readonly',
+
+      onBeforeMount: 'readonly',
+
+      onBeforeUnmount: 'readonly',
+
+      onBeforeUpdate: 'readonly',
+
+      onMounted: 'readonly',
+
+      onUnmounted: 'readonly',
+
+      onUpdated: 'readonly',
+
+      prefetchComponents: 'readonly',
+
+      preloadComponents: 'readonly',
+
+      preloadRouteComponents: 'readonly',
+
+      provide: 'readonly',
+
+      reactive: 'readonly',
+
+      readonly: 'readonly',
+
       // Vue auto-imports
       ref: 'readonly',
-      computed: 'readonly',
-      reactive: 'readonly',
-      readonly: 'readonly',
-      watch: 'readonly',
-      watchEffect: 'readonly',
-      toRef: 'readonly',
-      toRefs: 'readonly',
-      isRef: 'readonly',
-      unref: 'readonly',
-      shallowRef: 'readonly',
+
+      refreshNuxtData: 'readonly',
+
+      reloadNuxtApp: 'readonly',
+
       shallowReactive: 'readonly',
-      onMounted: 'readonly',
-      onBeforeMount: 'readonly',
-      onBeforeUnmount: 'readonly',
-      onUnmounted: 'readonly',
-      onUpdated: 'readonly',
-      onBeforeUpdate: 'readonly',
-      nextTick: 'readonly',
-      provide: 'readonly',
-      inject: 'readonly',
+
+      shallowRef: 'readonly',
+
+      showError: 'readonly',
+
+      toRef: 'readonly',
+
+      toRefs: 'readonly',
+
+      unref: 'readonly',
+
+      useAppConfig: 'readonly',
+
+      useAsyncData: 'readonly',
+
+      useCookie: 'readonly',
+
+      useError: 'readonly',
+
+      useFetch: 'readonly',
+
+      useHead: 'readonly',
+
+      useLazyAsyncData: 'readonly',
+
+      useLazyFetch: 'readonly',
+
+      useNuxtApp: 'readonly',
+
+      useRequestEvent: 'readonly',
+
+      useRequestHeaders: 'readonly',
+
+      useRoute: 'readonly',
 
       // Nuxt auto-imports
       useRouter: 'readonly',
-      useRoute: 'readonly',
-      useFetch: 'readonly',
-      useAsyncData: 'readonly',
-      useLazyFetch: 'readonly',
-      useLazyAsyncData: 'readonly',
-      useState: 'readonly',
-      useCookie: 'readonly',
-      useRequestHeaders: 'readonly',
-      useRequestEvent: 'readonly',
-      useRuntimeConfig: 'readonly',
-      useAppConfig: 'readonly',
-      useHead: 'readonly',
-      useSeoMeta: 'readonly',
-      useNuxtApp: 'readonly',
-      useError: 'readonly',
-      navigateTo: 'readonly',
-      abortNavigation: 'readonly',
-      definePageMeta: 'readonly',
-      defineNuxtComponent: 'readonly',
-      defineNuxtPlugin: 'readonly',
-      defineNuxtRouteMiddleware: 'readonly',
-      createError: 'readonly',
-      showError: 'readonly',
-      clearError: 'readonly',
-      reloadNuxtApp: 'readonly',
-      refreshNuxtData: 'readonly',
-      callOnce: 'readonly',
-      prefetchComponents: 'readonly',
-      preloadComponents: 'readonly',
-      preloadRouteComponents: 'readonly',
-      addRouteMiddleware: 'readonly',
 
-      // Process (Nuxt provides this)
-      $fetch: 'readonly',
+      useRuntimeConfig: 'readonly',
+
+      useSeoMeta: 'readonly',
+
+      useState: 'readonly',
+
+      watch: 'readonly',
+
+      watchEffect: 'readonly',
     },
   },
+  name: 'node-toolkit/nuxt-globals',
 }
 
 /**
@@ -87,8 +138,8 @@ const nuxtGlobals: Linter.Config = {
  * Disables multi-word component names rule (pages/index.vue is common in Nuxt)
  */
 const nuxtVueOverride: Linter.Config = {
-  name: 'node-toolkit/nuxt-vue-override',
   files: ['**/*.vue'],
+  name: 'node-toolkit/nuxt-vue-override',
   rules: {
     'vue/multi-word-component-names': 'off',
   },

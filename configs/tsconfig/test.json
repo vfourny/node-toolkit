@@ -6,7 +6,7 @@
     "tsBuildInfoFile": "${configDir}/.cache/test.tsbuildinfo",
 
     /* Types */
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals", "node"],
 
     /* Modules */
     "baseUrl": "${configDir}",

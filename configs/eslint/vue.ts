@@ -17,17 +17,17 @@ import { nodeGlobalsConfig } from './node.js'
  * Exported for reuse in other configs (Nuxt, etc.)
  */
 export const vueFilesConfig: ConfigWithExtends = {
-  name: 'node-toolkit/vue',
   extends: [...eslintPluginVue.configs['flat/recommended']],
   files: ['**/*.vue'],
   languageOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module',
     globals: globals.browser,
     parserOptions: {
       parser: typescriptEslint.parser,
     },
+    sourceType: 'module',
   },
+  name: 'node-toolkit/vue',
   rules: {
     'vue/component-name-in-template-casing': [
       'error',

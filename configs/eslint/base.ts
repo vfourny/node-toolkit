@@ -15,26 +15,76 @@ export const baseConfig: Linter.Config = {
     import: importPlugin,
     'simple-import-sort': simpleImportSort,
   },
-  settings: {
-    'import/resolver': {
-      typescript: {
-        alwaysTryTypes: true,
-      },
-    },
-  },
   rules: {
+    // TypeScript-specific rules
+    '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      { prefer: 'type-imports' },
+    ],
+
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+        selector: 'import',
+      },
+      { format: ['PascalCase'], selector: 'class' },
+      {
+        format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
+        modifiers: ['const'],
+        selector: 'variable',
+      },
+      {
+        format: ['PascalCase'],
+        selector: 'typeParameter',
+      },
+      { format: ['PascalCase'], selector: 'enum' },
+    ],
+
+    '@typescript-eslint/no-explicit-any': ['error', { fixToUnknown: true }],
+
+    '@typescript-eslint/no-inferrable-types': [
+      'error',
+      {
+        ignoreParameters: true,
+        ignoreProperties: true,
+      },
+    ],
+
+    '@typescript-eslint/no-unsafe-declaration-merging': 'error',
+
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
+    ],
+
+    '@typescript-eslint/no-use-before-define': 'error',
+
     // General JavaScript/TypeScript rules
     eqeqeq: ['error', 'always'],
-    'prefer-const': ['error', { destructuring: 'all' }],
-    'no-useless-rename': 'error',
-    'no-useless-constructor': 'error',
+
+    // Import plugin rules
+    'import/no-default-export': 'error',
+
+    'import/no-named-as-default': 'error',
+
+    'import/no-named-as-default-member': 'error',
+
+    'import/no-namespace': 'error',
+
     'no-console': 'error',
-    'no-debugger': 'error',
-    'no-throw-literal': 'error',
-    'no-unused-expressions': 'error',
-    'no-var': 'error',
-    'no-redeclare': 'error',
+
     'no-const-assign': 'error',
+
+    'no-debugger': 'error',
+
+    'no-redeclare': 'error',
 
     // Enforce absolute imports with @/ prefix
     'no-restricted-imports': [
@@ -50,61 +100,35 @@ export const baseConfig: Linter.Config = {
       },
     ],
 
-    // Disable default sort-imports in favor of simple-import-sort
-    'sort-imports': 'off',
+    'no-throw-literal': 'error',
 
-    // TypeScript-specific rules
-    '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
-    '@typescript-eslint/no-explicit-any': ['error', { fixToUnknown: true }],
-    '@typescript-eslint/consistent-type-imports': [
-      'error',
-      { prefer: 'type-imports' },
-    ],
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-        caughtErrorsIgnorePattern: '^_',
-      },
-    ],
-    '@typescript-eslint/naming-convention': [
-      'error',
-      {
-        selector: 'import',
-        format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-      },
-      { selector: 'class', format: ['PascalCase'] },
-      {
-        selector: 'variable',
-        modifiers: ['const'],
-        format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
-      },
-      {
-        selector: 'typeParameter',
-        format: ['PascalCase'],
-      },
-      { selector: 'enum', format: ['PascalCase'] },
-    ],
-    '@typescript-eslint/no-use-before-define': 'error',
-    '@typescript-eslint/no-inferrable-types': [
-      'error',
-      {
-        ignoreParameters: true,
-        ignoreProperties: true,
-      },
-    ],
-    '@typescript-eslint/no-unsafe-declaration-merging': 'error',
+    'no-unused-expressions': 'error',
 
-    // Import plugin rules
-    'import/no-default-export': 'error',
-    'import/no-named-as-default': 'error',
-    'import/no-named-as-default-member': 'error',
-    'import/no-namespace': 'error',
+    'no-useless-constructor': 'error',
+
+    'no-useless-rename': 'error',
+
+    'no-var': 'error',
+
+    'prefer-const': ['error', { destructuring: 'all' }],
+
+    'simple-import-sort/exports': 'error',
 
     // Import sorting
     'simple-import-sort/imports': 'error',
-    'simple-import-sort/exports': 'error',
+
+    // Disable default sort-imports in favor of simple-import-sort
+    'sort-imports': 'off',
+
+    // Enforce alphabetical ordering of object keys
+    'sort-keys': ['error', 'asc', { caseSensitive: false, natural: true }],
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
   },
 }
 

@@ -3,6 +3,8 @@ import type { UserConfig } from '@commitlint/types'
 export const defaultConfig: UserConfig = {
   extends: ['@commitlint/config-angular'],
   rules: {
+    'scope-empty': [2, 'never'],
+    'subject-empty': [2, 'never'],
     'type-enum': [
       2,
       'always',
@@ -20,8 +22,6 @@ export const defaultConfig: UserConfig = {
         'chore',
       ],
     ],
-    'scope-empty': [2, 'never'],
-    'subject-empty': [2, 'never'],
   },
 }
 

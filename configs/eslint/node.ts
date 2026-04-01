@@ -15,12 +15,12 @@ import {
  * Exported for reuse in other configs (Vue, Nuxt, etc.)
  */
 export const nodeGlobalsConfig: Linter.Config = {
-  name: 'node-toolkit/node-globals',
   languageOptions: {
     globals: {
       ...globals.node,
     },
   },
+  name: 'node-toolkit/node-globals',
 }
 
 /**

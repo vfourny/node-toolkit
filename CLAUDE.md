@@ -66,6 +66,7 @@ The main `tsconfig.json` orchestrates these using project references. This multi
 The package uses explicit exports in package.json:
 
 **ESLint configurations:**
+
 - `@vfourny/node-toolkit/eslint` → Default ESLint configuration (Node.js)
 - `@vfourny/node-toolkit/eslint/base` → Base ESLint configuration for custom composition
 - `@vfourny/node-toolkit/eslint/node` → Node.js ESLint configuration
@@ -73,6 +74,7 @@ The package uses explicit exports in package.json:
 - `@vfourny/node-toolkit/eslint/nuxt` → Nuxt.js ESLint configuration
 
 **TypeScript configurations:**
+
 - `@vfourny/node-toolkit/tsconfig` → Default TypeScript configuration (Node.js)
 - `@vfourny/node-toolkit/tsconfig/base` → Base TypeScript configuration
 - `@vfourny/node-toolkit/tsconfig/node` → Node.js TypeScript configuration
@@ -81,12 +83,14 @@ The package uses explicit exports in package.json:
 - `@vfourny/node-toolkit/tsconfig/test` → Test files TypeScript configuration
 
 **Other configurations:**
+
 - `@vfourny/node-toolkit/prettier` → Prettier configuration
 - `@vfourny/node-toolkit/commitlint` → Commitlint configuration
 - `@vfourny/node-toolkit/release` → Semantic Release configuration
 - `@vfourny/node-toolkit/vitest` → Vitest configuration
 
 **Library utilities:**
+
 - `@vfourny/node-toolkit` → Utility functions (kebabCase, lowerCaseFirstLetter)
 
 Each export points to the compiled output in `dist/` with both `.js` and `.d.ts` files.
@@ -106,6 +110,7 @@ The package provides multiple ESLint configurations:
 - **index.ts** - Default export (same as node.ts)
 
 All configurations:
+
 - Enforce TypeScript strict rules and stylistic conventions
 - Require absolute imports with `@/` prefix (no relative imports)
 - Enforce interface over type for type definitions
