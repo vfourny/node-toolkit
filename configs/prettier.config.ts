@@ -28,15 +28,15 @@ import type { Config } from 'prettier'
  * ```
  */
 const config: Config = {
-  singleQuote: true,
-  trailingComma: 'all',
-  semi: false,
-  printWidth: 80,
-  tabWidth: 2,
-  bracketSpacing: true,
-  bracketSameLine: false,
   arrowParens: 'always',
+  bracketSameLine: false,
+  bracketSpacing: true,
   endOfLine: 'lf',
+  printWidth: 80,
+  semi: false,
+  singleQuote: true,
+  tabWidth: 2,
+  trailingComma: 'all',
 }
 
 export default config

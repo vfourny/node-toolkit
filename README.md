@@ -250,6 +250,7 @@ This package provides multiple TypeScript configurations for different project t
 **Important:** The `paths` configuration is required for the ESLint import resolver to work correctly with absolute imports using the `@/` prefix.
 
 **Base Configuration:** All TypeScript configurations extend from `@vfourny/node-toolkit/tsconfig/base` which provides strict TypeScript settings including:
+
 - Strict mode enabled
 - No implicit any
 - No unused locals/parameters
@@ -272,11 +273,12 @@ export default mergeConfig(
       include: ['tests/**/*.test.ts'],
       // Your custom configurations
     },
-  })
+  }),
 )
 ```
 
 **Features:**
+
 - Node.js environment by default
 - Global test APIs enabled (`describe`, `it`, `expect`, etc.)
 - V8 coverage provider
