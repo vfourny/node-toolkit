@@ -1,3 +1,10 @@
+## [1.1.9](https://github.com/vfourny/node-toolkit/compare/v1.1.8...v1.1.9) (2026-04-01)
+
+
+### Bug Fixes
+
+* **commitlint:** update commitlint config ([#108](https://github.com/vfourny/node-toolkit/issues/108)) ([b44ae95](https://github.com/vfourny/node-toolkit/commit/b44ae9573e2f097170b703d2ad681b149ab71929))
+
 ## [1.1.8](https://github.com/vfourny/node-toolkit/compare/v1.1.7...v1.1.8) (2026-03-28)
 
 ### Bug Fixes
