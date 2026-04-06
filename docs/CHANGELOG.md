@@ -1,9 +1,8 @@
 ## [1.1.10](https://github.com/vfourny/node-toolkit/compare/v1.1.9...v1.1.10) (2026-04-01)
 
-
 ### Bug Fixes
 
-* **tsconfig:** add node types to tscofnig ([#109](https://github.com/vfourny/node-toolkit/issues/109)) ([2f08725](https://github.com/vfourny/node-toolkit/commit/2f0872548f6f1267dd5de9fac4aebfe567dcb59e))
+- **tsconfig:** add node types to tscofnig ([#109](https://github.com/vfourny/node-toolkit/issues/109)) ([2f08725](https://github.com/vfourny/node-toolkit/commit/2f0872548f6f1267dd5de9fac4aebfe567dcb59e))
 
 ## [1.1.9](https://github.com/vfourny/node-toolkit/compare/v1.1.8...v1.1.9) (2026-04-01)
 
