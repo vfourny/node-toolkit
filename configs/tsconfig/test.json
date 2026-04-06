@@ -12,7 +12,7 @@
     "baseUrl": "${configDir}",
     "paths": {
       "@/*": ["${configDir}/src/*"],
-      "@test/*": ["${configDir}/tests/*"]
+      "@tests/*": ["${configDir}/tests/*"]
     },
 
     /* Emit */
