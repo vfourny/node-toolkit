@@ -1,9 +1,8 @@
 ## [1.1.11](https://github.com/vfourny/node-toolkit/compare/v1.1.10...v1.1.11) (2026-04-07)
 
-
 ### Bug Fixes
 
-* **tsconfig:** update test path alias in tsconfig ([#112](https://github.com/vfourny/node-toolkit/issues/112)) ([6513536](https://github.com/vfourny/node-toolkit/commit/6513536e4ae1dab41e506d0ebb46e55e6f3dc9f5))
+- **tsconfig:** update test path alias in tsconfig ([#112](https://github.com/vfourny/node-toolkit/issues/112)) ([6513536](https://github.com/vfourny/node-toolkit/commit/6513536e4ae1dab41e506d0ebb46e55e6f3dc9f5))
 
 ## [1.1.10](https://github.com/vfourny/node-toolkit/compare/v1.1.9...v1.1.10) (2026-04-01)
 

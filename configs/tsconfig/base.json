@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-
     /* JavaScript Support */
     "allowJs": true,
     "alwaysStrict": true,
@@ -10,7 +9,6 @@
     /* Interop Constraints */
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-
 
     /* Modules */
     "module": "ESNext",
