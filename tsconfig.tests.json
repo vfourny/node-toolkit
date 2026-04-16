@@ -1,8 +1,8 @@
 {
-  "extends": "./configs/tsconfig/test.json",
   "compilerOptions": {
     "composite": true
   },
+  "extends": "./configs/tsconfig/test.json",
   "references": [
     {
       "path": "./tsconfig.src.json"

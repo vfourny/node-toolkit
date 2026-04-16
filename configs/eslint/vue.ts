@@ -6,6 +6,7 @@ import {
   baseConfig,
   commonIgnores,
   configFilesOverride,
+  jsonConfigs,
   prettierConfig,
   typescriptConfigs,
 } from './base.js'
@@ -39,7 +40,7 @@ export const vueFilesConfig: ConfigWithExtends = {
       },
     ],
   },
-}
+} satisfies ConfigWithExtends
 
 /**
  * Complete ESLint configuration for Vue projects
@@ -57,6 +58,7 @@ export default typescriptEslint.config(
   nodeGlobalsConfig,
   baseConfig,
   vueFilesConfig,
+  ...jsonConfigs,
   prettierConfig,
   configFilesOverride,
   commonIgnores,
