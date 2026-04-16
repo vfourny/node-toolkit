@@ -29,6 +29,8 @@ export const vueFilesConfig: ConfigWithExtends = {
   },
   name: 'node-toolkit/vue',
   rules: {
+    'vue/attributes-order': ['error', { alphabetical: true }],
+
     'vue/component-name-in-template-casing': [
       'error',
       'PascalCase',

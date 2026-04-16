@@ -2,6 +2,7 @@ import eslintJS from '@eslint/js'
 import type { Linter } from 'eslint'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import importPlugin from 'eslint-plugin-import'
+import perfectionist from 'eslint-plugin-perfectionist'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import typescriptEslint from 'typescript-eslint'
 
@@ -13,6 +14,7 @@ export const baseConfig: Linter.Config = {
   name: 'node-toolkit/base',
   plugins: {
     import: importPlugin,
+    perfectionist,
     'simple-import-sort': simpleImportSort,
   },
   rules: {
@@ -84,8 +86,6 @@ export const baseConfig: Linter.Config = {
 
     'no-debugger': 'error',
 
-    'no-redeclare': 'error',
-
     // Enforce absolute imports with @/ prefix
     'no-restricted-imports': [
       'error',
@@ -110,6 +110,24 @@ export const baseConfig: Linter.Config = {
 
     'no-var': 'error',
 
+    // Enforce alphabetical ordering of class members (auto-fixable)
+    'perfectionist/sort-classes': [
+      'error',
+      { ignoreCase: true, order: 'asc', type: 'natural' },
+    ],
+
+    // Enforce alphabetical ordering of interface/type keys (auto-fixable)
+    'perfectionist/sort-interfaces': [
+      'error',
+      { ignoreCase: true, order: 'asc', type: 'natural' },
+    ],
+
+    // Enforce alphabetical ordering of object keys (auto-fixable)
+    'perfectionist/sort-objects': [
+      'error',
+      { ignoreCase: true, order: 'asc', type: 'natural' },
+    ],
+
     'prefer-const': ['error', { destructuring: 'all' }],
 
     'simple-import-sort/exports': 'error',
@@ -119,9 +137,7 @@ export const baseConfig: Linter.Config = {
 
     // Disable default sort-imports in favor of simple-import-sort
     'sort-imports': 'off',
-
-    // Enforce alphabetical ordering of object keys
-    'sort-keys': ['error', 'asc', { caseSensitive: false, natural: true }],
+    'sort-keys': 'off',
   },
   settings: {
     'import/resolver': {
