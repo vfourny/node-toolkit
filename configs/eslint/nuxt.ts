@@ -5,6 +5,7 @@ import {
   baseConfig,
   commonIgnores,
   configFilesOverride,
+  jsonConfigs,
   prettierConfig,
   typescriptConfigs,
 } from './base.js'
@@ -15,7 +16,7 @@ import { vueFilesConfig } from './vue.js'
  * Nuxt-specific globals for auto-imports
  * These are commonly auto-imported by Nuxt and should not trigger no-undef errors
  */
-const nuxtGlobals: Linter.Config = {
+const nuxtGlobals = {
   languageOptions: {
     globals: {
       // Process (Nuxt provides this)
@@ -131,19 +132,19 @@ const nuxtGlobals: Linter.Config = {
     },
   },
   name: 'node-toolkit/nuxt-globals',
-}
+} as const satisfies Linter.Config
 
 /**
  * Nuxt-specific override for Vue files
  * Disables multi-word component names rule (pages/index.vue is common in Nuxt)
  */
-const nuxtVueOverride: Linter.Config = {
+const nuxtVueOverride = {
   files: ['**/*.vue'],
   name: 'node-toolkit/nuxt-vue-override',
   rules: {
     'vue/multi-word-component-names': 'off',
   },
-}
+} satisfies Linter.Config
 
 /**
  * Complete ESLint configuration for Nuxt projects
@@ -173,6 +174,7 @@ export default typescriptEslint.config(
   baseConfig,
   vueFilesConfig,
   nuxtVueOverride,
+  ...jsonConfigs,
   prettierConfig,
   configFilesOverride,
   commonIgnores,

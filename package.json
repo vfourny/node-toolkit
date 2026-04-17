@@ -1,95 +1,25 @@
 {
-  "name": "@vfourny/node-toolkit",
   "author": "Valentin Fourny - @VFOURNY",
-  "version": "1.1.11",
-  "description": "Toolkit for Node.js projects",
-  "type": "module",
-  "main": "dist/libs/index.js",
-  "types": "dist/libs/index.d.ts",
-  "private": false,
-  "scripts": {
-    "build": "tsc --build",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "ts:check": "tsc --noEmit",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage",
-    "prepare": "husky"
-  },
-  "files": [
-    "dist"
-  ],
-  "exports": {
-    "./eslint": {
-      "types": "./dist/configs/eslint/base.d.ts",
-      "default": "./dist/configs/eslint/base.js"
-    },
-    "./eslint/node": {
-      "types": "./dist/configs/eslint/node.d.ts",
-      "default": "./dist/configs/eslint/node.js"
-    },
-    "./eslint/vue": {
-      "types": "./dist/configs/eslint/vue.d.ts",
-      "default": "./dist/configs/eslint/vue.js"
-    },
-    "./eslint/nuxt": {
-      "types": "./dist/configs/eslint/nuxt.d.ts",
-      "default": "./dist/configs/eslint/nuxt.js"
-    },
-    "./prettier": {
-      "types": "./dist/configs/prettier.config.d.ts",
-      "default": "./dist/configs/prettier.config.js"
-    },
-    "./commitlint": {
-      "types": "./dist/configs/commitlint.config.d.ts",
-      "default": "./dist/configs/commitlint.config.js"
-    },
-    "./release": {
-      "types": "./dist/configs/release.config.d.ts",
-      "default": "./dist/configs/release.config.js"
-    },
-    "./tsconfig": "./dist/configs/tsconfig/node.json",
-    "./tsconfig/base": "./dist/configs/tsconfig/base.json",
-    "./tsconfig/node": "./dist/configs/tsconfig/node.json",
-    "./tsconfig/vue": "./dist/configs/tsconfig/vue.json",
-    "./tsconfig/nuxt": "./dist/configs/tsconfig/nuxt.json",
-    "./tsconfig/test": "./dist/configs/tsconfig/test.json",
-    "./vitest": {
-      "types": "./dist/configs/vitest.config.d.ts",
-      "default": "./dist/configs/vitest.config.js"
-    }
-  },
-  "keywords": [
-    "eslint",
-    "prettier",
-    "commitlint",
-    "semantic-release",
-    "formatting",
-    "linting",
-    "typescript"
-  ],
-  "license": "ISC",
   "dependencies": {
-    "@commitlint/config-angular": "20.5.0",
-    "@semantic-release/changelog": "6.0.3",
-    "@semantic-release/git": "10.0.1",
-    "eslint-config-prettier": "10.1.8",
-    "eslint-import-resolver-typescript": "4.4.4",
-    "eslint-plugin-import": "2.32.0",
-    "eslint-plugin-simple-import-sort": "12.1.1",
-    "eslint-plugin-vue": "10.8.0",
-    "globals": "17.4.0",
-    "typescript-eslint": "8.57.2"
+    "@commitlint/config-angular": "^20.5.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsonc": "^3.1.2",
+    "eslint-plugin-perfectionist": "^5.8.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-vue": "^10.8.0",
+    "globals": "^17.4.0",
+    "typescript-eslint": "^8.57.2"
   },
+  "description": "Toolkit for Node.js projects",
   "devDependencies": {
     "@commitlint/types": "20.5.0",
     "@eslint/js": "9.39.4",
     "@types/eslint-config-prettier": "6.11.3",
-    "@types/node": "25.5.0",
+    "@types/node": "^22.0.0",
     "@vitest/ui": "4.1.2",
     "commitlint": "20.5.0",
     "eslint": "9.39.4",
@@ -100,6 +30,68 @@
     "vitest": "4.1.2",
     "vue-eslint-parser": "10.4.0"
   },
+  "engines": {
+    "node": "22.22.2"
+  },
+  "exports": {
+    "./commitlint": {
+      "default": "./dist/configs/commitlint.config.js",
+      "types": "./dist/configs/commitlint.config.d.ts"
+    },
+    "./eslint": {
+      "default": "./dist/configs/eslint/base.js",
+      "types": "./dist/configs/eslint/base.d.ts"
+    },
+    "./eslint/node": {
+      "default": "./dist/configs/eslint/node.js",
+      "types": "./dist/configs/eslint/node.d.ts"
+    },
+    "./eslint/nuxt": {
+      "default": "./dist/configs/eslint/nuxt.js",
+      "types": "./dist/configs/eslint/nuxt.d.ts"
+    },
+    "./eslint/vue": {
+      "default": "./dist/configs/eslint/vue.js",
+      "types": "./dist/configs/eslint/vue.d.ts"
+    },
+    "./prettier": {
+      "default": "./dist/configs/prettier.config.js",
+      "types": "./dist/configs/prettier.config.d.ts"
+    },
+    "./release": {
+      "default": "./dist/configs/release.config.js",
+      "types": "./dist/configs/release.config.d.ts"
+    },
+    "./tsconfig": "./dist/configs/tsconfig/node.json",
+    "./tsconfig/base": "./dist/configs/tsconfig/base.json",
+    "./tsconfig/node": "./dist/configs/tsconfig/node.json",
+    "./tsconfig/nuxt": "./dist/configs/tsconfig/nuxt.json",
+    "./tsconfig/test": "./dist/configs/tsconfig/test.json",
+    "./tsconfig/vue": "./dist/configs/tsconfig/vue.json",
+    "./vitest": {
+      "default": "./dist/configs/vitest.config.js",
+      "types": "./dist/configs/vitest.config.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "eslint",
+    "prettier",
+    "commitlint",
+    "semantic-release",
+    "formatting",
+    "linting",
+    "typescript"
+  ],
+  "license": "ISC",
+  "main": "dist/libs/index.js",
+  "name": "@vfourny/node-toolkit",
+  "optionalDependencies": {
+    "@rolldown/binding-linux-x64-gnu": "1.0.0-rc.12"
+  },
+  "packageManager": "npm@10.9.7",
   "peerDependencies": {
     "commitlint": "^19.8.0 || ^20.1.0",
     "eslint": "^9.3.0 || ^10.0.0",
@@ -107,16 +99,29 @@
     "semantic-release": "^24.0.0 || ^25.0.0",
     "typescript": "^5.5.2"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vfourny/node-toolkit.git"
-  },
+  "private": false,
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "engines": {
-    "node": ">= 22",
-    "npm": ">= 10.9.4"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vfourny/node-toolkit.git"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "prepare": "husky",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest",
+    "ts:check": "tsc --noEmit"
+  },
+  "type": "module",
+  "types": "dist/libs/index.d.ts",
+  "version": "1.1.11"
 }

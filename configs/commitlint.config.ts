@@ -29,7 +29,7 @@ export const createCommitlintMonorepoConfig = (options: {
   scopes?: string[]
   extraRules?: UserConfig['rules']
 }): UserConfig => {
-  const { scopes = [], extraRules = {} } = options
+  const { extraRules = {}, scopes = [] } = options
 
   return {
     ...defaultConfig,
