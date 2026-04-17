@@ -89,7 +89,7 @@
   "main": "dist/libs/index.js",
   "name": "@vfourny/node-toolkit",
   "optionalDependencies": {
-    "@rolldown/binding-linux-x64-gnu": "1.0.0-rc.12"
+    "@rolldown/binding-linux-x64-gnu": "1.0.0-rc.16"
   },
   "packageManager": "npm@10.9.7",
   "peerDependencies": {
