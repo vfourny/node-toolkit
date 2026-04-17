@@ -1,10 +1,9 @@
 ## [1.1.12](https://github.com/vfourny/node-toolkit/compare/v1.1.11...v1.1.12) (2026-04-17)
 
-
 ### Bug Fixes
 
-* **chore:** update ci ([#114](https://github.com/vfourny/node-toolkit/issues/114)) ([332e8c3](https://github.com/vfourny/node-toolkit/commit/332e8c3548b63dd670c68302606739d4331a4508))
-* **eslint:** add sorting rules ([#113](https://github.com/vfourny/node-toolkit/issues/113)) ([cb5436b](https://github.com/vfourny/node-toolkit/commit/cb5436baaead41acde9dfa3b542435065016ab04))
+- **chore:** update ci ([#114](https://github.com/vfourny/node-toolkit/issues/114)) ([332e8c3](https://github.com/vfourny/node-toolkit/commit/332e8c3548b63dd670c68302606739d4331a4508))
+- **eslint:** add sorting rules ([#113](https://github.com/vfourny/node-toolkit/issues/113)) ([cb5436b](https://github.com/vfourny/node-toolkit/commit/cb5436baaead41acde9dfa3b542435065016ab04))
 
 ## [1.1.11](https://github.com/vfourny/node-toolkit/compare/v1.1.10...v1.1.11) (2026-04-07)
 
