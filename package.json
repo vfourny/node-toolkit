@@ -35,32 +35,32 @@
   },
   "exports": {
     "./commitlint": {
-      "default": "./dist/configs/commitlint.config.js",
-      "types": "./dist/configs/commitlint.config.d.ts"
+      "types": "./dist/configs/commitlint.config.d.ts",
+      "default": "./dist/configs/commitlint.config.js"
     },
     "./eslint": {
-      "default": "./dist/configs/eslint/base.js",
-      "types": "./dist/configs/eslint/base.d.ts"
+      "types": "./dist/configs/eslint/base.d.ts",
+      "default": "./dist/configs/eslint/base.js"
     },
     "./eslint/node": {
-      "default": "./dist/configs/eslint/node.js",
-      "types": "./dist/configs/eslint/node.d.ts"
+      "types": "./dist/configs/eslint/node.d.ts",
+      "default": "./dist/configs/eslint/node.js"
     },
     "./eslint/nuxt": {
-      "default": "./dist/configs/eslint/nuxt.js",
-      "types": "./dist/configs/eslint/nuxt.d.ts"
+      "types": "./dist/configs/eslint/nuxt.d.ts",
+      "default": "./dist/configs/eslint/nuxt.js"
     },
     "./eslint/vue": {
-      "default": "./dist/configs/eslint/vue.js",
-      "types": "./dist/configs/eslint/vue.d.ts"
+      "types": "./dist/configs/eslint/vue.d.ts",
+      "default": "./dist/configs/eslint/vue.js"
     },
     "./prettier": {
-      "default": "./dist/configs/prettier.config.js",
-      "types": "./dist/configs/prettier.config.d.ts"
+      "types": "./dist/configs/prettier.config.d.ts",
+      "default": "./dist/configs/prettier.config.js"
     },
     "./release": {
-      "default": "./dist/configs/release.config.js",
-      "types": "./dist/configs/release.config.d.ts"
+      "types": "./dist/configs/release.config.d.ts",
+      "default": "./dist/configs/release.config.js"
     },
     "./tsconfig": "./dist/configs/tsconfig/node.json",
     "./tsconfig/base": "./dist/configs/tsconfig/base.json",
@@ -69,8 +69,8 @@
     "./tsconfig/test": "./dist/configs/tsconfig/test.json",
     "./tsconfig/vue": "./dist/configs/tsconfig/vue.json",
     "./vitest": {
-      "default": "./dist/configs/vitest.config.js",
-      "types": "./dist/configs/vitest.config.d.ts"
+      "types": "./dist/configs/vitest.config.d.ts",
+      "default": "./dist/configs/vitest.config.js"
     }
   },
   "files": [

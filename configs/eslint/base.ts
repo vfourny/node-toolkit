@@ -183,7 +183,10 @@ export const jsonConfigs: Linter.Config[] = [
     rules: {
       'jsonc/sort-keys': [
         'error',
-        { order: { type: 'asc' }, pathPattern: '.*' },
+        {
+          order: { type: 'asc' },
+          pathPattern: '^((?!exports).)*$',
+        },
       ],
     },
   } satisfies Linter.Config,
