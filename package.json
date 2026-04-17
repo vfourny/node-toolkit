@@ -88,10 +88,10 @@
   "license": "ISC",
   "main": "dist/libs/index.js",
   "name": "@vfourny/node-toolkit",
-  "packageManager": "npm@10.9.7",
   "optionalDependencies": {
     "@rolldown/binding-linux-x64-gnu": "1.0.0-rc.12"
   },
+  "packageManager": "npm@10.9.7",
   "peerDependencies": {
     "commitlint": "^19.8.0 || ^20.1.0",
     "eslint": "^9.3.0 || ^10.0.0",
