@@ -19,8 +19,9 @@ jobs:
     needs: build
     uses: vfourny/.github/.github/workflows/release.yml@main
     with:
-      is_publish: true
       is_build: true
+      is_publish: true
+      node_version: '22'
     secrets:
       SEMANTIC_BOT_APP_ID: ${{ secrets.SEMANTIC_BOT_APP_ID }}
       SEMANTIC_BOT_PRIVATE_KEY: ${{ secrets.SEMANTIC_BOT_PRIVATE_KEY }}
