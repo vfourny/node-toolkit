@@ -12,7 +12,8 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-vue": "^10.8.0",
     "globals": "^17.4.0",
-    "typescript-eslint": "^8.57.2"
+    "typescript-eslint": "^8.57.2",
+    "vue-eslint-parser": "10.4.0"
   },
   "description": "Toolkit for Node.js projects",
   "devDependencies": {
@@ -27,8 +28,7 @@
     "prettier": "3.8.3",
     "semantic-release": "25.0.3",
     "typescript": "5.9.3",
-    "vitest": "4.1.4",
-    "vue-eslint-parser": "10.4.0"
+    "vitest": "4.1.4"
   },
   "engines": {
     "node": "22.22.2"
