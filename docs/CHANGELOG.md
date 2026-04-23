@@ -1,3 +1,10 @@
+## [1.1.14](https://github.com/vfourny/node-toolkit/compare/v1.1.13...v1.1.14) (2026-04-23)
+
+
+### Bug Fixes
+
+* **eslint:** add eslint aprser ([#117](https://github.com/vfourny/node-toolkit/issues/117)) ([d9f035e](https://github.com/vfourny/node-toolkit/commit/d9f035ec058c0302a1a412ba8fa3be5779eac7ee))
+
 ## [1.1.13](https://github.com/vfourny/node-toolkit/compare/v1.1.12...v1.1.13) (2026-04-17)
 
 ### Bug Fixes
