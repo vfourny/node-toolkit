@@ -1,9 +1,8 @@
 ## [1.1.13](https://github.com/vfourny/node-toolkit/compare/v1.1.12...v1.1.13) (2026-04-17)
 
-
 ### Bug Fixes
 
-* **eslint:** change sort order rules for export ([#116](https://github.com/vfourny/node-toolkit/issues/116)) ([00f7ec6](https://github.com/vfourny/node-toolkit/commit/00f7ec67dfca2be2e4aa1db8e7ace99b0310a821))
+- **eslint:** change sort order rules for export ([#116](https://github.com/vfourny/node-toolkit/issues/116)) ([00f7ec6](https://github.com/vfourny/node-toolkit/commit/00f7ec67dfca2be2e4aa1db8e7ace99b0310a821))
 
 ## [1.1.12](https://github.com/vfourny/node-toolkit/compare/v1.1.11...v1.1.12) (2026-04-17)
 
