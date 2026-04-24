@@ -39,6 +39,7 @@ export const vueFilesConfig: ConfigWithExtends = {
         registeredComponentsOnly: false,
       },
     ],
+    'vue/order-in-components': 'off',
   },
 } satisfies ConfigWithExtends
 
