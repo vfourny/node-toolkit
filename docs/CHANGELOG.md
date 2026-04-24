@@ -1,3 +1,10 @@
+## [1.1.15](https://github.com/vfourny/node-toolkit/compare/v1.1.14...v1.1.15) (2026-04-24)
+
+
+### Bug Fixes
+
+* **eslint:vue:** disable vue/order-in-components to avoid circular fi… ([#118](https://github.com/vfourny/node-toolkit/issues/118)) ([e918750](https://github.com/vfourny/node-toolkit/commit/e918750423ea276770cd7add0ea5834110765dde))
+
 ## [1.1.14](https://github.com/vfourny/node-toolkit/compare/v1.1.13...v1.1.14) (2026-04-23)
 
 ### Bug Fixes
