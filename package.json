@@ -19,12 +19,16 @@
   "description": "Toolkit for Node.js projects",
   "devDependencies": {
     "@commitlint/types": "20.5.0",
+    "@next/eslint-plugin-next": "16.4.0",
     "@types/eslint-config-prettier": "6.11.3",
     "@types/node": "^22.0.0",
     "@vitest/coverage-v8": "4.1.4",
     "@vitest/ui": "4.1.4",
     "commitlint": "20.5.0",
     "eslint": "9.39.4",
+    "eslint-plugin-astro": "1.7.0",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.1.1",
     "husky": "9.1.7",
     "prettier": "3.8.3",
     "semantic-release": "25.0.3",
@@ -47,9 +51,17 @@
       "types": "./dist/configs/eslint/node.d.ts",
       "default": "./dist/configs/eslint/node.js"
     },
+    "./eslint/astro": {
+      "types": "./dist/configs/eslint/astro.d.ts",
+      "default": "./dist/configs/eslint/astro.js"
+    },
     "./eslint/base": {
       "types": "./dist/configs/eslint/base.d.ts",
       "default": "./dist/configs/eslint/base.js"
+    },
+    "./eslint/next": {
+      "types": "./dist/configs/eslint/next.d.ts",
+      "default": "./dist/configs/eslint/next.js"
     },
     "./eslint/node": {
       "types": "./dist/configs/eslint/node.d.ts",
@@ -58,6 +70,10 @@
     "./eslint/nuxt": {
       "types": "./dist/configs/eslint/nuxt.d.ts",
       "default": "./dist/configs/eslint/nuxt.js"
+    },
+    "./eslint/react": {
+      "types": "./dist/configs/eslint/react.d.ts",
+      "default": "./dist/configs/eslint/react.js"
     },
     "./eslint/vue": {
       "types": "./dist/configs/eslint/vue.d.ts",
@@ -73,8 +89,10 @@
     },
     "./tsconfig": "./dist/configs/tsconfig/node.json",
     "./tsconfig/base": "./dist/configs/tsconfig/base.json",
+    "./tsconfig/next": "./dist/configs/tsconfig/next.json",
     "./tsconfig/node": "./dist/configs/tsconfig/node.json",
     "./tsconfig/nuxt": "./dist/configs/tsconfig/nuxt.json",
+    "./tsconfig/react": "./dist/configs/tsconfig/react.json",
     "./tsconfig/test": "./dist/configs/tsconfig/test.json",
     "./tsconfig/vue": "./dist/configs/tsconfig/vue.json",
     "./vitest": {
@@ -92,22 +110,43 @@
     "semantic-release",
     "formatting",
     "linting",
-    "typescript"
+    "typescript",
+    "vue",
+    "nuxt",
+    "react",
+    "nextjs",
+    "astro"
   ],
   "license": "ISC",
   "main": "dist/libs/index.js",
   "name": "@vfourny/node-toolkit",
   "packageManager": "npm@10.9.7",
   "peerDependencies": {
+    "@next/eslint-plugin-next": "^15.0.0 || ^16.0.0",
     "@vitest/coverage-v8": "^3.0.0 || ^4.0.0",
     "commitlint": "^19.8.0 || ^20.1.0",
     "eslint": "^9.3.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "eslint-plugin-react": "^7.37.0",
+    "eslint-plugin-react-hooks": "^7.0.0",
     "prettier": "^3.2.5",
     "semantic-release": "^24.0.0 || ^25.0.0",
     "typescript": "^5.5.2"
   },
   "peerDependenciesMeta": {
+    "@next/eslint-plugin-next": {
+      "optional": true
+    },
     "@vitest/coverage-v8": {
+      "optional": true
+    },
+    "eslint-plugin-astro": {
+      "optional": true
+    },
+    "eslint-plugin-react": {
+      "optional": true
+    },
+    "eslint-plugin-react-hooks": {
       "optional": true
     }
   },

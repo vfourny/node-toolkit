@@ -97,7 +97,7 @@ export const commonIgnores = {
  * Allow default exports and relative imports in config files
  */
 export const configFilesOverride = {
-  files: ['**/*.config.{js,ts}'],
+  files: ['**/*.config.{js,mjs,cjs,ts,mts,cts}'],
   rules: {
     'import/no-default-export': 'off',
     'no-restricted-imports': 'off',

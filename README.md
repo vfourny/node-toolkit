@@ -43,6 +43,17 @@ npm install -D eslint prettier typescript commitlint semantic-release
 - Commitlint: `^19.8.0 || ^20.1.0`
 - Semantic Release: `^24.0.0 || ^25.0.0`
 
+**Framework plugins (optional, install only what your project uses):**
+
+```bash
+# React
+npm install -D eslint-plugin-react eslint-plugin-react-hooks
+# Next.js
+npm install -D eslint-plugin-react eslint-plugin-react-hooks @next/eslint-plugin-next
+# Astro
+npm install -D eslint-plugin-astro@^1.7.0
+```
+
 ## Environment Variables
 
 For `semantic-release` to work properly, certain environment variables must be defined in your GitHub repository configuration.
@@ -91,11 +102,44 @@ import nuxtConfig from '@vfourny/node-toolkit/eslint/nuxt'
 export default nuxtConfig
 ```
 
+#### For React Projects
+
+Requires `eslint-plugin-react` and `eslint-plugin-react-hooks`.
+
+```typescript
+// eslint.config.ts
+import reactConfig from '@vfourny/node-toolkit/eslint/react'
+
+export default reactConfig
+```
+
+#### For Next.js Projects
+
+Requires `eslint-plugin-react`, `eslint-plugin-react-hooks` and `@next/eslint-plugin-next`.
+
+```typescript
+// eslint.config.ts
+import nextConfig from '@vfourny/node-toolkit/eslint/next'
+
+export default nextConfig
+```
+
+#### For Astro Projects
+
+Requires `eslint-plugin-astro` (`^1.7.0`, ESLint 9 compatible).
+
+```typescript
+// eslint.config.ts
+import astroConfig from '@vfourny/node-toolkit/eslint/astro'
+
+export default astroConfig
+```
+
 #### Default Import (Node.js)
 
 ```typescript
 // eslint.config.ts
-import config from '@vfourny/node-toolkit/eslint/node'
+import config from '@vfourny/node-toolkit/eslint'
 
 export default config
 ```
@@ -108,10 +152,10 @@ For advanced users who want to compose their own configuration:
 // eslint.config.ts
 import {
   baseConfig,
-  nodeGlobalsConfig,
   typescriptConfigs,
   prettierConfig,
 } from '@vfourny/node-toolkit/eslint/base'
+import { nodeGlobalsConfig } from '@vfourny/node-toolkit/eslint/node'
 import typescriptEslint from 'typescript-eslint'
 
 export default typescriptEslint.config(
@@ -146,7 +190,7 @@ All ESLint configurations include the following enforced rules:
 **Import Rules:**
 
 - `no-restricted-imports`: **Disallow relative imports** - must use absolute imports with `@/` prefix
-- `import/no-default-export`: Disallow default exports (except in `*.config.{js,ts}` files)
+- `import/no-default-export`: Disallow default exports (except in `*.config.{js,mjs,cjs,ts,mts,cts}` files)
 - `simple-import-sort/imports`: Auto-sort imports alphabetically
 - `simple-import-sort/exports`: Auto-sort exports alphabetically
 
@@ -155,6 +199,9 @@ All ESLint configurations include the following enforced rules:
 - **Node.js**: Includes Node.js global variables (`process`, `__dirname`, etc.)
 - **Vue**: Includes Vue ESLint plugin rules, enforces PascalCase for component names in templates
 - **Nuxt**: Includes Vue rules + auto-import globals for Nuxt composables (`useRouter`, `useFetch`, etc.), allows single-word component names for pages
+- **React**: `eslint-plugin-react` (recommended + JSX runtime) on `.jsx`/`.tsx`, rules of hooks on all JS/TS files, sorted JSX props
+- **Next.js**: React rules + `@next/eslint-plugin-next` (recommended + Core Web Vitals), default exports allowed in Next.js file conventions (`app/**/page.tsx`, `layout.tsx`, `pages/**`, `middleware.ts`, etc.)
+- **Astro**: `eslint-plugin-astro` recommended rules, TypeScript rules applied to `.astro` frontmatter and `<script>` tags
 
 **Import Resolution:**
 All configurations automatically resolve TypeScript path aliases (like `@/*`) using `eslint-import-resolver-typescript`.
@@ -218,6 +265,36 @@ This package provides multiple TypeScript configurations for different project t
     }
     // Your custom configurations
   }
+}
+```
+
+#### For React Projects
+
+```json
+{
+  "extends": "@vfourny/node-toolkit/tsconfig/react"
+}
+```
+
+#### For Next.js Projects
+
+Includes the `next` TypeScript plugin, `next-env.d.ts` and `.next/types`. Adjust `paths` if you don't use a `src/` directory.
+
+```json
+{
+  "extends": "@vfourny/node-toolkit/tsconfig/next"
+}
+```
+
+#### For Astro Projects
+
+Astro ships its own TypeScript presets; combine them with the base configuration:
+
+```json
+{
+  "extends": ["astro/tsconfigs/strict", "@vfourny/node-toolkit/tsconfig/base"],
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
 }
 ```
 

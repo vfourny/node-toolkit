@@ -72,6 +72,9 @@ The package uses explicit exports in package.json:
 - `@vfourny/node-toolkit/eslint/node` → Node.js ESLint configuration
 - `@vfourny/node-toolkit/eslint/vue` → Vue.js ESLint configuration
 - `@vfourny/node-toolkit/eslint/nuxt` → Nuxt.js ESLint configuration
+- `@vfourny/node-toolkit/eslint/react` → React ESLint configuration
+- `@vfourny/node-toolkit/eslint/next` → Next.js ESLint configuration
+- `@vfourny/node-toolkit/eslint/astro` → Astro ESLint configuration
 
 **TypeScript configurations:**
 
@@ -80,6 +83,8 @@ The package uses explicit exports in package.json:
 - `@vfourny/node-toolkit/tsconfig/node` → Node.js TypeScript configuration
 - `@vfourny/node-toolkit/tsconfig/vue` → Vue.js TypeScript configuration
 - `@vfourny/node-toolkit/tsconfig/nuxt` → Nuxt.js TypeScript configuration
+- `@vfourny/node-toolkit/tsconfig/react` → React TypeScript configuration
+- `@vfourny/node-toolkit/tsconfig/next` → Next.js TypeScript configuration
 - `@vfourny/node-toolkit/tsconfig/test` → Test files TypeScript configuration
 
 **Other configurations:**
@@ -107,6 +112,12 @@ The package provides multiple ESLint configurations:
 - **node.ts** - Node.js specific configuration (includes Node.js globals)
 - **vue.ts** - Vue.js configuration (includes Vue plugin and component naming rules)
 - **nuxt.ts** - Nuxt.js configuration (includes Vue rules + Nuxt auto-imports and globals)
+- **react.ts** - React configuration (eslint-plugin-react + react-hooks)
+- **next.ts** - Next.js configuration (React rules + @next/eslint-plugin-next, default exports allowed in Next file conventions)
+- **astro.ts** - Astro configuration (eslint-plugin-astro, TS rules scoped to .astro files)
+
+Framework plugins (react, react-hooks, next, astro) are optional peerDependencies: only import them from their own config file so other configs keep working without them.
+
 - `@vfourny/node-toolkit/eslint` (no subpath) resolves to node.ts
 
 All configurations:
@@ -131,6 +142,8 @@ The package provides multiple TypeScript base configurations:
 - **node.json** - Node.js specific configuration (extends base)
 - **vue.json** - Vue.js configuration (extends base, includes JSX support)
 - **nuxt.json** - Nuxt.js configuration (extends vue)
+- **react.json** - React configuration (extends base, `jsx: react-jsx`)
+- **next.json** - Next.js configuration (extends base, noEmit, `next` TS plugin)
 - **test.json** - Test files configuration (extends base, includes Vitest types)
 
 #### Prettier Configuration (configs/prettier.config.ts)
@@ -194,4 +207,4 @@ The package exports utility functions from `src/index.ts`:
 - **`kebabCase(string: string): string`** - Converts various string formats (camelCase, PascalCase, snake_case, spaces) to kebab-case
 - **`lowerCaseFirstLetter(string: string): string`** - Converts the first letter of a string to lowercase
 
-These utilities are tested in `tests/index.test.ts` with comprehensive test coverage. Package `exports` are validated in `tests/exports.test.ts`.
+These utilities are tested in `tests/index.test.ts` with comprehensive test coverage. Package `exports` are validated in `tests/exports.test.ts`. Each ESLint config is smoke-tested against sample files in `tests/eslint-configs.test.ts`.

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "baseUrl": "${configDir}",
+
+    /* Emit */
+    "incremental": true,
+
+    /* Interop Constraints */
+    "isolatedModules": true,
+
+    /* Language and Environment */
+    "jsx": "react-jsx",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+    "noEmit": true,
+    "paths": {
+      "@/*": ["${configDir}/src/*"]
+    },
+    "plugins": [{ "name": "next" }],
+    /* Build Configuration */
+    "tsBuildInfoFile": "${configDir}/.cache/next.tsbuildinfo"
+  },
+  "exclude": ["${configDir}/node_modules", "${configDir}/.next"],
+  "extends": "./base.json",
+  "include": [
+    "${configDir}/next-env.d.ts",
+    "${configDir}/**/*.ts",
+    "${configDir}/**/*.tsx",
+    "${configDir}/.next/types/**/*.ts"
+  ]
+}
