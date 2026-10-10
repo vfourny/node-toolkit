@@ -23,7 +23,6 @@
     "noUnusedParameters": true,
 
     /* Emit */
-    "removeComments": true,
     "resolveJsonModule": true,
     /* Completeness */
     "skipLibCheck": true,

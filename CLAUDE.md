@@ -107,7 +107,7 @@ The package provides multiple ESLint configurations:
 - **node.ts** - Node.js specific configuration (includes Node.js globals)
 - **vue.ts** - Vue.js configuration (includes Vue plugin and component naming rules)
 - **nuxt.ts** - Nuxt.js configuration (includes Vue rules + Nuxt auto-imports and globals)
-- **index.ts** - Default export (same as node.ts)
+- `@vfourny/node-toolkit/eslint` (no subpath) resolves to node.ts
 
 All configurations:
 
@@ -146,7 +146,7 @@ The package provides multiple TypeScript base configurations:
   - `defaultConfig` - Standard Angular commits with required scope
   - `createCommitlintMonorepoConfig()` - Factory for monorepo setups with scope validation and optional subscopes
 
-#### Semantic Release Configuration (configs/release.config.js)
+#### Semantic Release Configuration (configs/release.config.ts)
 
 - Publishes to npm only when `PUBLISH=true` environment variable is set
 - Updates changelog in `docs/CHANGELOG.md`
@@ -183,7 +183,8 @@ Only the `dist/` directory is published to npm (specified in package.json `files
 - **No default exports** - The ESLint config enforces `import/no-default-export` everywhere except `*.config.{js,ts}` files
 - **Absolute imports required** - Must use `@/` prefix instead of relative paths
 - **Strict TypeScript** - Full strict mode enabled with no implicit any, unused locals/parameters forbidden
-- **Node version** - Requires Node.js >= 22 and npm >= 10.9.4
+- **Node version** - Requires Node.js >= 22
+- **Config sources must be `.ts` or `.json`** - tsc only emits those; `tests/exports.test.ts` checks every `exports` entry maps to an existing source (and has a default export where expected)
 - **Testing** - Uses Vitest for testing utility functions and configurations
 
 ## Utility Functions
@@ -193,4 +194,4 @@ The package exports utility functions from `src/index.ts`:
 - **`kebabCase(string: string): string`** - Converts various string formats (camelCase, PascalCase, snake_case, spaces) to kebab-case
 - **`lowerCaseFirstLetter(string: string): string`** - Converts the first letter of a string to lowercase
 
-These utilities are tested in `tests/index.test.ts` with comprehensive test coverage.
+These utilities are tested in `tests/index.test.ts` with comprehensive test coverage. Package `exports` are validated in `tests/exports.test.ts`.

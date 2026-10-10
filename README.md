@@ -281,7 +281,7 @@ export default mergeConfig(
 
 - Node.js environment by default
 - Global test APIs enabled (`describe`, `it`, `expect`, etc.)
-- V8 coverage provider
+- V8 coverage provider (install `@vitest/coverage-v8` to use `vitest run --coverage`)
 - Text, JSON, and HTML coverage reports
 - Default reporter for test results
 

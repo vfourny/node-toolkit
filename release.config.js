@@ -1,1 +1,1 @@
-export { default } from './configs/release.config.js'
+export { default } from './configs/release.config.ts'

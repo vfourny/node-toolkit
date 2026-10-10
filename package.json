@@ -2,6 +2,7 @@
   "author": "Valentin Fourny - @VFOURNY",
   "dependencies": {
     "@commitlint/config-angular": "^20.5.0",
+    "@eslint/js": "^9.39.4",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "eslint-config-prettier": "^10.1.8",
@@ -18,9 +19,9 @@
   "description": "Toolkit for Node.js projects",
   "devDependencies": {
     "@commitlint/types": "20.5.0",
-    "@eslint/js": "9.39.4",
     "@types/eslint-config-prettier": "6.11.3",
     "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "4.1.4",
     "@vitest/ui": "4.1.4",
     "commitlint": "20.5.0",
     "eslint": "9.39.4",
@@ -31,14 +32,22 @@
     "vitest": "4.1.4"
   },
   "engines": {
-    "node": "22.22.2"
+    "node": ">=22"
   },
   "exports": {
+    ".": {
+      "types": "./dist/libs/index.d.ts",
+      "default": "./dist/libs/index.js"
+    },
     "./commitlint": {
       "types": "./dist/configs/commitlint.config.d.ts",
       "default": "./dist/configs/commitlint.config.js"
     },
     "./eslint": {
+      "types": "./dist/configs/eslint/node.d.ts",
+      "default": "./dist/configs/eslint/node.js"
+    },
+    "./eslint/base": {
       "types": "./dist/configs/eslint/base.d.ts",
       "default": "./dist/configs/eslint/base.js"
     },
@@ -88,16 +97,19 @@
   "license": "ISC",
   "main": "dist/libs/index.js",
   "name": "@vfourny/node-toolkit",
-  "optionalDependencies": {
-    "@rolldown/binding-linux-x64-gnu": "1.0.0-rc.12"
-  },
   "packageManager": "npm@10.9.7",
   "peerDependencies": {
+    "@vitest/coverage-v8": "^3.0.0 || ^4.0.0",
     "commitlint": "^19.8.0 || ^20.1.0",
-    "eslint": "^9.3.0 || ^10.0.0",
+    "eslint": "^9.3.0",
     "prettier": "^3.2.5",
     "semantic-release": "^24.0.0 || ^25.0.0",
     "typescript": "^5.5.2"
+  },
+  "peerDependenciesMeta": {
+    "@vitest/coverage-v8": {
+      "optional": true
+    }
   },
   "private": false,
   "publishConfig": {
@@ -109,7 +121,7 @@
     "url": "git+https://github.com/vfourny/node-toolkit.git"
   },
   "scripts": {
-    "build": "tsc --build",
+    "build": "rm -rf dist .cache && tsc --build",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
