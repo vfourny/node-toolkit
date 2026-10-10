@@ -12,7 +12,7 @@
     "eslint-plugin-perfectionist": "^5.8.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^17.4.0",
-    "typescript-eslint": "^8.57.2"
+    "typescript-eslint": "^8.71.1"
   },
   "description": "Toolkit for Node.js projects",
   "devDependencies": {
@@ -31,7 +31,7 @@
     "husky": "9.1.7",
     "prettier": "3.8.3",
     "semantic-release": "25.0.3",
-    "typescript": "5.9.3",
+    "typescript": "6.0.3",
     "vitest": "4.1.4"
   },
   "engines": {
@@ -125,7 +125,7 @@
     "eslint-plugin-vue": "^10.0.0",
     "prettier": "^3.2.5",
     "semantic-release": "^24.0.0 || ^25.0.0",
-    "typescript": "^5.5.2"
+    "typescript": ">=5.5.2 <6.1.0"
   },
   "peerDependenciesMeta": {
     "@next/eslint-plugin-next": {

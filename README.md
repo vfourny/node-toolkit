@@ -36,10 +36,9 @@ npm install -D eslint prettier typescript commitlint semantic-release
 **Minimum versions:**
 
 - Node.js: `>= 22`
-- npm: `>= 10.9.4`
 - ESLint: `^9.3.0`
 - Prettier: `^3.2.5`
-- TypeScript: `^5.5.2`
+- TypeScript: `>=5.5.2 <6.1.0` (TypeScript 7 is not supported yet: `typescript-eslint` requires the TypeScript JavaScript API, which TypeScript 7 does not provide)
 - Commitlint: `^19.8.0 || ^20.1.0`
 - Semantic Release: `^24.0.0 || ^25.0.0`
 
@@ -229,7 +228,6 @@ This package provides multiple TypeScript configurations for different project t
 {
   "extends": "@vfourny/node-toolkit/tsconfig/node",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
@@ -244,7 +242,6 @@ This package provides multiple TypeScript configurations for different project t
 {
   "extends": "@vfourny/node-toolkit/tsconfig/vue",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
@@ -310,7 +307,6 @@ Includes the `next` TypeScript plugin, `next-env.d.ts` and `.next/types`. Adjust
 {
   "extends": "@vfourny/node-toolkit/tsconfig",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }

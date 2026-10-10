@@ -1,8 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "baseUrl": "${configDir}",
-
     /* Emit */
     "declaration": true,
     "outDir": "${configDir}/dist",

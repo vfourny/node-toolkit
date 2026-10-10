@@ -195,6 +195,7 @@ Only the `dist/` directory is published to npm (specified in package.json `files
 - **Absolute imports required** - Must use `@/` prefix instead of relative paths
 - **Strict TypeScript** - Full strict mode enabled with no implicit any, unused locals/parameters forbidden
 - **Node version** - Requires Node.js >= 22
+- **TypeScript version** - Supports `>=5.5.2 <6.1.0`, bounded by typescript-eslint (TypeScript 7 has no JS API). Shared tsconfigs must not use `baseUrl` (error in TS 6, removed in TS 7) and must list needed `types` explicitly (TS 6 defaults `types` to `[]`)
 - **Config sources must be `.ts` or `.json`** - tsc only emits those; `tests/exports.test.ts` checks every `exports` entry maps to an existing source (and has a default export where expected)
 - **Testing** - Uses Vitest for testing utility functions and configurations
 
