@@ -1,5 +1,4 @@
 import type { Linter } from 'eslint'
-import typescriptEslint from 'typescript-eslint'
 
 import {
   baseConfig,
@@ -8,174 +7,102 @@ import {
   jsonConfigs,
   prettierConfig,
   typescriptConfigs,
+  vueRules,
 } from './base.js'
-import { nodeGlobalsConfig } from './node.js'
-import { vueFilesConfig } from './vue.js'
 
 /**
- * Nuxt-specific globals for auto-imports
- * These are commonly auto-imported by Nuxt and should not trigger no-undef errors
+ * Plugins already registered by @nuxt/eslint (`withNuxt`).
+ * Registering them again with another instance makes ESLint throw
+ * "Cannot redefine plugin", so this config only adds rules for them.
  */
-const nuxtGlobals = {
-  languageOptions: {
-    globals: {
-      // Process (Nuxt provides this)
-      $fetch: 'readonly',
-
-      abortNavigation: 'readonly',
-
-      addRouteMiddleware: 'readonly',
-
-      callOnce: 'readonly',
-
-      clearError: 'readonly',
-
-      computed: 'readonly',
-
-      createError: 'readonly',
-
-      defineNuxtComponent: 'readonly',
-
-      defineNuxtPlugin: 'readonly',
-
-      defineNuxtRouteMiddleware: 'readonly',
-
-      definePageMeta: 'readonly',
-
-      inject: 'readonly',
-
-      isRef: 'readonly',
-
-      navigateTo: 'readonly',
-
-      nextTick: 'readonly',
-
-      onBeforeMount: 'readonly',
-
-      onBeforeUnmount: 'readonly',
-
-      onBeforeUpdate: 'readonly',
-
-      onMounted: 'readonly',
-
-      onUnmounted: 'readonly',
-
-      onUpdated: 'readonly',
-
-      prefetchComponents: 'readonly',
-
-      preloadComponents: 'readonly',
-
-      preloadRouteComponents: 'readonly',
-
-      provide: 'readonly',
-
-      reactive: 'readonly',
-
-      readonly: 'readonly',
-
-      // Vue auto-imports
-      ref: 'readonly',
-
-      refreshNuxtData: 'readonly',
-
-      reloadNuxtApp: 'readonly',
-
-      shallowReactive: 'readonly',
-
-      shallowRef: 'readonly',
-
-      showError: 'readonly',
-
-      toRef: 'readonly',
-
-      toRefs: 'readonly',
-
-      unref: 'readonly',
-
-      useAppConfig: 'readonly',
-
-      useAsyncData: 'readonly',
-
-      useCookie: 'readonly',
-
-      useError: 'readonly',
-
-      useFetch: 'readonly',
-
-      useHead: 'readonly',
-
-      useLazyAsyncData: 'readonly',
-
-      useLazyFetch: 'readonly',
-
-      useNuxtApp: 'readonly',
-
-      useRequestEvent: 'readonly',
-
-      useRequestHeaders: 'readonly',
-
-      useRoute: 'readonly',
-
-      // Nuxt auto-imports
-      useRouter: 'readonly',
-
-      useRuntimeConfig: 'readonly',
-
-      useSeoMeta: 'readonly',
-
-      useState: 'readonly',
-
-      watch: 'readonly',
-
-      watchEffect: 'readonly',
-    },
-  },
-  name: 'node-toolkit/nuxt-globals',
-} as const satisfies Linter.Config
+const NUXT_PROVIDED_PLUGINS = new Set(['@typescript-eslint', 'import', 'vue'])
 
 /**
- * Nuxt-specific override for Vue files
- * Disables multi-word component names rule (pages/index.vue is common in Nuxt)
+ * Files Nuxt lints with typescript-eslint (see nuxt/typescript/rules)
  */
-const nuxtVueOverride = {
+const NUXT_TS_FILES = ['**/*.{ts,tsx,mts,cts,vue}']
+
+/**
+ * Our TypeScript rules (recommended + strict + stylistic + custom), without
+ * parser or plugin setup since Nuxt already provides both
+ */
+const nuxtTypescriptRules = {
+  files: NUXT_TS_FILES,
+  name: 'node-toolkit/nuxt/typescript',
+  rules: Object.assign(
+    {},
+    ...typescriptConfigs.map((config) => config.rules ?? {}),
+  ) as Linter.RulesRecord,
+} satisfies Linter.Config
+
+/**
+ * Base rules, keeping only the plugins Nuxt does not register itself
+ */
+const nuxtBaseConfig = {
+  ...baseConfig,
+  name: 'node-toolkit/nuxt/base',
+  plugins: Object.fromEntries(
+    Object.entries(baseConfig.plugins ?? {}).filter(
+      ([name]) => !NUXT_PROVIDED_PLUGINS.has(name),
+    ),
+  ),
+} satisfies Linter.Config
+
+/**
+ * Our Vue rules on top of Nuxt's Vue setup.
+ * Single-word component names are allowed (pages/index.vue, layouts/default.vue, ...)
+ */
+const nuxtVueRules = {
   files: ['**/*.vue'],
-  name: 'node-toolkit/nuxt-vue-override',
+  name: 'node-toolkit/nuxt/vue',
   rules: {
+    ...vueRules,
     'vue/multi-word-component-names': 'off',
   },
 } satisfies Linter.Config
 
 /**
- * Complete ESLint configuration for Nuxt projects
+ * Nuxt requires default exports in its file conventions
+ * (server routes and handlers, plugins, route middleware, modules, app config)
+ */
+const nuxtDefaultExportsOverride = {
+  files: [
+    '**/server/**/*.{js,mjs,ts,mts}',
+    '**/{plugins,middleware,modules}/**/*.{js,mjs,ts,mts}',
+    '**/{app.config,router.options}.{js,mjs,ts,mts}',
+  ],
+  name: 'node-toolkit/nuxt/default-exports',
+  rules: {
+    'import/no-default-export': 'off',
+  },
+} satisfies Linter.Config
+
+/**
+ * ESLint configuration for Nuxt projects, to compose with @nuxt/eslint
  *
- * This configuration includes globals for Nuxt's auto-imports (composables, components, etc.)
+ * Nuxt's own config (parsers, Vue/TypeScript setup, auto-imports awareness)
+ * is generated by the `@nuxt/eslint` module; this config adds the toolkit
+ * rules on top of it.
  *
  * @example
  * ```typescript
- * // eslint.config.ts
+ * // eslint.config.mjs
  * import nuxtConfig from '@vfourny/node-toolkit/eslint/nuxt'
  *
- * export default nuxtConfig
+ * import withNuxt from './.nuxt/eslint.config.mjs'
+ *
+ * export default withNuxt(nuxtConfig)
  * ```
- *
- * @remarks
- * For optimal type safety with Nuxt auto-imports, ensure your project:
- * 1. Has a `.nuxt` directory generated (run `nuxt prepare` or `nuxt dev` once)
- * 2. Includes `.nuxt/tsconfig.json` in your project's tsconfig extends
- *
- * The auto-imported globals defined here cover the most common Nuxt composables,
- * but you may need to add project-specific auto-imports to your local ESLint config.
  */
-export default typescriptEslint.config(
-  ...typescriptConfigs,
-  nodeGlobalsConfig,
-  nuxtGlobals,
-  baseConfig,
-  vueFilesConfig,
-  nuxtVueOverride,
+const nuxtConfig: Linter.Config[] = [
+  nuxtTypescriptRules,
+  nuxtBaseConfig,
+  nuxtVueRules,
   ...jsonConfigs,
   prettierConfig,
   configFilesOverride,
+  nuxtDefaultExportsOverride,
   commonIgnores,
-)
+]
+
+export default nuxtConfig

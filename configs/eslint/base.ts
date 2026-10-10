@@ -79,6 +79,22 @@ export const baseConfig: Linter.Config = {
 }
 
 /**
+ * Toolkit Vue rules, without plugin setup.
+ * Shared by the Vue config and the Nuxt config (where @nuxt/eslint registers the plugin)
+ */
+export const vueRules = {
+  'vue/attributes-order': ['error', { alphabetical: true }],
+  'vue/component-name-in-template-casing': [
+    'error',
+    'PascalCase',
+    {
+      registeredComponentsOnly: false,
+    },
+  ],
+  'vue/order-in-components': 'off',
+} satisfies Linter.RulesRecord
+
+/**
  * Common ignores for all project types
  */
 export const commonIgnores = {
@@ -100,6 +116,8 @@ export const configFilesOverride = {
   files: ['**/*.config.{js,mjs,cjs,ts,mts,cts}'],
   rules: {
     'import/no-default-export': 'off',
+    // Config files often import generated defaults (e.g. withNuxt)
+    'import/no-named-as-default': 'off',
     'no-restricted-imports': 'off',
   },
 } satisfies Linter.Config

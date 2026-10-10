@@ -9,6 +9,7 @@ import {
   jsonConfigs,
   prettierConfig,
   typescriptConfigs,
+  vueRules,
 } from './base.js'
 import { nodeGlobalsConfig } from './node.js'
 
@@ -29,18 +30,7 @@ export const vueFilesConfig: ConfigWithExtends = {
     sourceType: 'module',
   },
   name: 'node-toolkit/vue',
-  rules: {
-    'vue/attributes-order': ['error', { alphabetical: true }],
-
-    'vue/component-name-in-template-casing': [
-      'error',
-      'PascalCase',
-      {
-        registeredComponentsOnly: false,
-      },
-    ],
-    'vue/order-in-components': 'off',
-  },
+  rules: vueRules,
 } satisfies ConfigWithExtends
 
 /**

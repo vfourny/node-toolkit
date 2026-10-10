@@ -1,6 +1,7 @@
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
+import { createConfigForNuxt } from '@nuxt/eslint-config/flat'
 import { ESLint, type Linter } from 'eslint'
 import { describe, expect, it } from 'vitest'
 
@@ -17,10 +18,15 @@ const loadConfig = async (name: string) =>
  * Lints a virtual file with the given config and returns the reported rule ids.
  * Fails on parsing errors (messages without ruleId).
  */
-const lint = async (configName: string, filePath: string, code: string) => {
+const lint = async (
+  config: Linter.Config[] | string,
+  filePath: string,
+  code: string,
+) => {
   const eslint = new ESLint({
     cwd: ROOT,
-    overrideConfig: await loadConfig(configName),
+    overrideConfig:
+      typeof config === 'string' ? await loadConfig(config) : config,
     overrideConfigFile: true,
   })
   const [result] = await eslint.lintText(code, {
@@ -54,14 +60,41 @@ describe('eslint configs', () => {
     expect(rules).toEqual([])
   })
 
-  it('nuxt: should allow single-word page components', async () => {
-    const rules = await lint(
-      'nuxt',
-      'pages/index.vue',
-      '<script setup lang="ts">\nconst data = useFetch(\'/api\')\n</script>\n\n<template>\n  <div>{{ data }}</div>\n</template>\n',
-    )
+  describe('nuxt (composed with @nuxt/eslint)', () => {
+    // Same composition as `withNuxt(nuxtConfig)` in a Nuxt project
+    const loadNuxtConfig = async () =>
+      createConfigForNuxt()
+        .append(await loadConfig('nuxt'))
+        .toConfigs() as Promise<Linter.Config[]>
 
-    expect(rules).toEqual([])
+    it('should not redefine plugins registered by Nuxt', async () => {
+      const rules = await lint(
+        await loadNuxtConfig(),
+        'app/pages/index.vue',
+        '<script setup lang="ts">\nconst { data } = await useFetch(\'/api\')\nconst value: any = data\n</script>\n\n<template>\n  <div>{{ value }}</div>\n</template>\n',
+      )
+
+      expect(rules).toEqual(['@typescript-eslint/no-explicit-any'])
+    })
+
+    it('should allow default exports in Nuxt file conventions only', async () => {
+      const config = await loadNuxtConfig()
+
+      expect(
+        await lint(
+          config,
+          'server/api/hello.ts',
+          "export default defineEventHandler(() => 'ok')\n",
+        ),
+      ).toEqual([])
+      expect(
+        await lint(
+          config,
+          'app/composables/useThing.ts',
+          'export default function useThing() {\n  return 1\n}\n',
+        ),
+      ).toContain('import/no-default-export')
+    })
   })
 
   it('react: should enforce the rules of hooks', async () => {
@@ -102,15 +135,5 @@ describe('eslint configs', () => {
     )
 
     expect(rules).toContain('@next/next/no-img-element')
-  })
-
-  it('astro: should parse components with TypeScript frontmatter', async () => {
-    const rules = await lint(
-      'astro',
-      'src/components/Card.astro',
-      '---\ninterface Props {\n  title: string\n}\n\nconst { title } = Astro.props as Props\nconst data: any = {}\n---\n\n<h1>{title}{data}</h1>\n',
-    )
-
-    expect(rules).toEqual(['@typescript-eslint/no-explicit-any'])
   })
 })

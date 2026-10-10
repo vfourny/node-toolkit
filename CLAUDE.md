@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a shared configuration toolkit for Node.js projects, published as `@vfourny/node-toolkit`. It provides:
 
 - **Pre-configured setups** for ESLint, Prettier, TypeScript, Commitlint, Semantic Release, and Vitest
-- **Multiple configurations** tailored for Node.js, Vue.js, and Nuxt.js projects
+- **Multiple configurations** tailored for Node.js, Vue.js, Nuxt, React and Next.js projects
 - **Utility functions** for common string operations (kebabCase, lowerCaseFirstLetter)
 - **Comprehensive testing** with Vitest
 
@@ -18,7 +18,7 @@ All configurations can be imported and extended by consumer projects.
 ### Build and Type Checking
 
 - `npm run build` - Compile TypeScript using project references
-- `npm run ts:check` - Type check without emitting files
+- `npm run ts:check` - Type check src, configs and tests without emitting files
 
 ### Linting and Formatting
 
@@ -45,16 +45,16 @@ The project uses TypeScript project references with three separate compilation t
    - Exports from `src/index.ts` to `dist/libs/index.js`
 
 2. **tsconfig.configs.json** - Compiles configuration files from `configs/` to `dist/configs/`
-   - ESLint configurations (base, node, vue, nuxt)
+   - ESLint configurations (base, node, vue, nuxt, react, next)
    - Prettier configuration
    - Commitlint configuration
    - Release configuration
    - Vitest configuration
-   - TypeScript base configurations (base, node, vue, nuxt, test)
+   - TypeScript base configurations (base, node, vue, nuxt, react, next, test)
 
-3. **tsconfig.tests.json** - Compiles test files from `tests/`
+3. **tsconfig.tests.json** - Type checks test files from `tests/` (not part of the build references)
    - Uses the test TypeScript configuration
-   - References the src configuration for testing library code
+   - Resolves `@/*` directly to `src/` sources, so `npm run ts:check` works without a prior build
 
 The main `tsconfig.json` orchestrates these using project references. This multi-target architecture allows the package to export both:
 
@@ -74,7 +74,6 @@ The package uses explicit exports in package.json:
 - `@vfourny/node-toolkit/eslint/nuxt` → Nuxt.js ESLint configuration
 - `@vfourny/node-toolkit/eslint/react` → React ESLint configuration
 - `@vfourny/node-toolkit/eslint/next` → Next.js ESLint configuration
-- `@vfourny/node-toolkit/eslint/astro` → Astro ESLint configuration
 
 **TypeScript configurations:**
 
@@ -111,12 +110,11 @@ The package provides multiple ESLint configurations:
 - **base.ts** - Core ESLint configuration with shared rules, can be composed with other configs
 - **node.ts** - Node.js specific configuration (includes Node.js globals)
 - **vue.ts** - Vue.js configuration (includes Vue plugin and component naming rules)
-- **nuxt.ts** - Nuxt.js configuration (includes Vue rules + Nuxt auto-imports and globals)
+- **nuxt.ts** - Nuxt configuration meant to be passed to `withNuxt()` from `@nuxt/eslint`: adds toolkit rules only, never registers the `@typescript-eslint`, `import` or `vue` plugins (Nuxt registers its own instances; redefining them makes ESLint throw)
 - **react.ts** - React configuration (eslint-plugin-react + react-hooks)
 - **next.ts** - Next.js configuration (React rules + @next/eslint-plugin-next, default exports allowed in Next file conventions)
-- **astro.ts** - Astro configuration (eslint-plugin-astro, TS rules scoped to .astro files)
 
-Framework plugins (react, react-hooks, next, astro) are optional peerDependencies: only import them from their own config file so other configs keep working without them.
+Framework plugins (vue, react, react-hooks, next) are optional peerDependencies: only import them from their own config file so other configs keep working without them.
 
 - `@vfourny/node-toolkit/eslint` (no subpath) resolves to node.ts
 
@@ -141,7 +139,7 @@ The package provides multiple TypeScript base configurations:
   - ES2020 target
 - **node.json** - Node.js specific configuration (extends base)
 - **vue.json** - Vue.js configuration (extends base, includes JSX support)
-- **nuxt.json** - Nuxt.js configuration (extends vue)
+- **nuxt.json** - Strictness flags only, injected into Nuxt's generated tsconfigs via `typescript.tsConfig` / `nodeTsConfig` / `sharedTsConfig` and `nitro.typescript.tsConfig`
 - **react.json** - React configuration (extends base, `jsx: react-jsx`)
 - **next.json** - Next.js configuration (extends base, noEmit, `next` TS plugin)
 - **test.json** - Test files configuration (extends base, includes Vitest types)
@@ -183,7 +181,7 @@ When building, TypeScript:
    - Exports utility functions like `kebabCase` and `lowerCaseFirstLetter`
 
 2. Compiles `configs/**/*.ts` → `dist/configs/**/*.js` + `.d.ts`
-   - ESLint configurations (base, node, vue, nuxt, index)
+   - ESLint configurations (base, node, vue, nuxt, react, next)
    - Prettier, Commitlint, Release, and Vitest configurations
 
 3. Copies `configs/tsconfig/*.json` → `dist/configs/tsconfig/*.json`
