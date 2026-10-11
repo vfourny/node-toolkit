@@ -7,6 +7,7 @@ import type { Options } from 'semantic-release'
  * - Commit analysis for version bumps (follows Angular convention)
  * - Automatic changelog generation in docs/CHANGELOG.md
  * - GitHub release creation
+ * - Releases from `main`, prereleases from `next`
  * - NPM publishing (only when PUBLISH=true)
  * - Git commits for changelog and package.json updates
  *
@@ -23,12 +24,13 @@ import type { Options } from 'semantic-release'
  *
  * export default {
  *   ...baseConfig,
- *   branches: ['main', 'next'],
+ *   branches: ['main', 'beta'],
  * }
  * ```
  */
 const config: Options = {
-  branches: ['main'],
+  // `next` publishes prereleases (x.y.z-next.n) on the `next` dist-tag
+  branches: ['main', { name: 'next', prerelease: true }],
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',

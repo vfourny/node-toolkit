@@ -14,3 +14,15 @@ jobs:
       is_tested: true
       is_type_checked: true
       node_version: '22'
+
+  package:
+    name: Check published package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - run: npm ci
+      - run: npm run build
+      - run: npm run lint:package
