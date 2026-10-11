@@ -1,41 +1,37 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    /* JavaScript Support */
-    "allowJs": true,
-    "alwaysStrict": true,
-    "checkJs": false,
-
-    /* Interop Constraints */
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    /* Language and Environment */
+    "target": "ES2022",
 
     /* Modules */
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "noEmitOnError": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
+    "resolveJsonModule": true,
     "noUncheckedSideEffectImports": true,
+
+    /* JavaScript Support */
+    "allowJs": true,
+    "checkJs": false,
+
+    /* Emit */
+    "noEmitOnError": true,
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
+
+    /* Type Checking */
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
 
-    /* Emit */
-    "removeComments": true,
-    "resolveJsonModule": true,
     /* Completeness */
-    "skipLibCheck": true,
-
-    /* Type Checking - Strict mode */
-    "strict": true,
-    "strictBindCallApply": true,
-    "strictFunctionTypes": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    /* Language and Environment */
-    "target": "ES2020",
-    "useUnknownInCatchVariables": true
+    "skipLibCheck": true
   }
 }

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./base.json",
+  "compilerOptions": {
+    /* Language and Environment */
+    "jsx": "react-jsx",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "plugins": [{ "name": "next" }],
+
+    /* Modules */
+    "paths": {
+      "@/*": ["${configDir}/src/*"]
+    },
+
+    /* Interop Constraints */
+    "isolatedModules": true,
+
+    /* Emit: Next.js compiles the project itself */
+    "incremental": true,
+    "noEmit": true,
+    "tsBuildInfoFile": "${configDir}/.cache/next.tsbuildinfo"
+  },
+  "include": [
+    "${configDir}/next-env.d.ts",
+    "${configDir}/**/*.ts",
+    "${configDir}/**/*.tsx",
+    "${configDir}/.next/types/**/*.ts"
+  ],
+  "exclude": ["${configDir}/node_modules", "${configDir}/.next"]
+}

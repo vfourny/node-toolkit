@@ -1,46 +1,48 @@
 {
+  "name": "@vfourny/node-toolkit",
+  "version": "1.1.15",
+  "private": false,
+  "description": "Shared ESLint, TypeScript, Prettier, Vitest, Commitlint and Semantic Release configurations for Node.js, Vue, Nuxt, React and Next.js projects",
+  "keywords": [
+    "eslint",
+    "prettier",
+    "commitlint",
+    "semantic-release",
+    "formatting",
+    "linting",
+    "typescript",
+    "vue",
+    "nuxt",
+    "react",
+    "nextjs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vfourny/node-toolkit.git"
+  },
+  "license": "ISC",
   "author": "Valentin Fourny - @VFOURNY",
-  "dependencies": {
-    "@commitlint/config-angular": "^20.5.0",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-import-resolver-typescript": "^4.4.4",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jsonc": "^3.1.2",
-    "eslint-plugin-perfectionist": "^5.8.0",
-    "eslint-plugin-simple-import-sort": "^12.1.1",
-    "eslint-plugin-vue": "^10.8.0",
-    "globals": "^17.4.0",
-    "typescript-eslint": "^8.57.2",
-    "vue-eslint-parser": "10.4.0"
-  },
-  "description": "Toolkit for Node.js projects",
-  "devDependencies": {
-    "@commitlint/types": "20.5.0",
-    "@eslint/js": "9.39.4",
-    "@types/eslint-config-prettier": "6.11.3",
-    "@types/node": "^22.0.0",
-    "@vitest/ui": "4.1.4",
-    "commitlint": "20.5.0",
-    "eslint": "9.39.4",
-    "husky": "9.1.7",
-    "prettier": "3.8.3",
-    "semantic-release": "25.0.3",
-    "typescript": "5.9.3",
-    "vitest": "4.1.4"
-  },
-  "engines": {
-    "node": "22.22.2"
-  },
+  "type": "module",
   "exports": {
+    ".": {
+      "types": "./dist/libs/index.d.ts",
+      "default": "./dist/libs/index.js"
+    },
     "./commitlint": {
       "types": "./dist/configs/commitlint.config.d.ts",
       "default": "./dist/configs/commitlint.config.js"
     },
     "./eslint": {
+      "types": "./dist/configs/eslint/node.d.ts",
+      "default": "./dist/configs/eslint/node.js"
+    },
+    "./eslint/base": {
       "types": "./dist/configs/eslint/base.d.ts",
       "default": "./dist/configs/eslint/base.js"
+    },
+    "./eslint/next": {
+      "types": "./dist/configs/eslint/next.d.ts",
+      "default": "./dist/configs/eslint/next.js"
     },
     "./eslint/node": {
       "types": "./dist/configs/eslint/node.d.ts",
@@ -49,6 +51,10 @@
     "./eslint/nuxt": {
       "types": "./dist/configs/eslint/nuxt.d.ts",
       "default": "./dist/configs/eslint/nuxt.js"
+    },
+    "./eslint/react": {
+      "types": "./dist/configs/eslint/react.d.ts",
+      "default": "./dist/configs/eslint/react.js"
     },
     "./eslint/vue": {
       "types": "./dist/configs/eslint/vue.d.ts",
@@ -64,8 +70,10 @@
     },
     "./tsconfig": "./dist/configs/tsconfig/node.json",
     "./tsconfig/base": "./dist/configs/tsconfig/base.json",
+    "./tsconfig/next": "./dist/configs/tsconfig/next.json",
     "./tsconfig/node": "./dist/configs/tsconfig/node.json",
     "./tsconfig/nuxt": "./dist/configs/tsconfig/nuxt.json",
+    "./tsconfig/react": "./dist/configs/tsconfig/react.json",
     "./tsconfig/test": "./dist/configs/tsconfig/test.json",
     "./tsconfig/vue": "./dist/configs/tsconfig/vue.json",
     "./vitest": {
@@ -73,55 +81,102 @@
       "default": "./dist/configs/vitest.config.js"
     }
   },
+  "main": "dist/libs/index.js",
+  "types": "dist/libs/index.d.ts",
   "files": [
     "dist"
   ],
-  "keywords": [
-    "eslint",
-    "prettier",
-    "commitlint",
-    "semantic-release",
-    "formatting",
-    "linting",
-    "typescript"
-  ],
-  "license": "ISC",
-  "main": "dist/libs/index.js",
-  "name": "@vfourny/node-toolkit",
-  "optionalDependencies": {
-    "@rolldown/binding-linux-x64-gnu": "1.0.0-rc.12"
-  },
-  "packageManager": "npm@10.9.7",
-  "peerDependencies": {
-    "commitlint": "^19.8.0 || ^20.1.0",
-    "eslint": "^9.3.0 || ^10.0.0",
-    "prettier": "^3.2.5",
-    "semantic-release": "^24.0.0 || ^25.0.0",
-    "typescript": "^5.5.2"
-  },
-  "private": false,
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vfourny/node-toolkit.git"
-  },
   "scripts": {
-    "build": "tsc --build",
+    "build": "rm -rf dist .cache && tsc --build",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
+    "lint:package": "publint --strict && attw --pack . --profile esm-only",
     "prepare": "husky",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "test:watch": "vitest",
-    "ts:check": "tsc --noEmit"
+    "ts:check": "tsc --build --noEmit && tsc -p tsconfig.tests.json"
   },
-  "type": "module",
-  "types": "dist/libs/index.d.ts",
-  "version": "1.1.15"
+  "lint-staged": {
+    "*.{js,mjs,cjs,ts,mts,cts,json}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{md,yml,yaml}": "prettier --write"
+  },
+  "dependencies": {
+    "@commitlint/config-angular": "^20.5.0",
+    "@eslint/js": "^9.39.4",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import-x": "^4.17.1",
+    "eslint-plugin-jsonc": "^3.1.2",
+    "eslint-plugin-perfectionist": "^5.12.1",
+    "globals": "^17.4.0",
+    "typescript-eslint": "^8.71.1"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.5",
+    "@commitlint/types": "20.5.0",
+    "@next/eslint-plugin-next": "16.4.0",
+    "@nuxt/eslint-config": "1.17.0",
+    "@types/eslint-config-prettier": "6.11.3",
+    "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "4.1.4",
+    "@vitest/ui": "4.1.4",
+    "commitlint": "20.5.0",
+    "eslint": "9.39.4",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-vue": "10.11.1",
+    "husky": "9.1.7",
+    "lint-staged": "17.6.0",
+    "prettier": "3.8.3",
+    "publint": "0.3.25",
+    "semantic-release": "25.0.3",
+    "typescript": "6.0.3",
+    "vitest": "4.1.4"
+  },
+  "peerDependencies": {
+    "@next/eslint-plugin-next": "^15.0.0 || ^16.0.0",
+    "@vitest/coverage-v8": "^3.0.0 || ^4.0.0",
+    "commitlint": "^19.8.0 || ^20.1.0",
+    "eslint": "^9.3.0",
+    "eslint-plugin-react": "^7.37.0",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "eslint-plugin-vue": "^10.0.0",
+    "prettier": "^3.2.5",
+    "semantic-release": "^24.0.0 || ^25.0.0",
+    "typescript": ">=5.5.2 <6.1.0"
+  },
+  "peerDependenciesMeta": {
+    "@next/eslint-plugin-next": {
+      "optional": true
+    },
+    "@vitest/coverage-v8": {
+      "optional": true
+    },
+    "eslint-plugin-react": {
+      "optional": true
+    },
+    "eslint-plugin-react-hooks": {
+      "optional": true
+    },
+    "eslint-plugin-vue": {
+      "optional": true
+    }
+  },
+  "packageManager": "npm@10.9.7",
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }
