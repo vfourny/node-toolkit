@@ -1,3 +1,84 @@
+# [2.0.0](https://github.com/vfourny/node-toolkit/compare/v1.1.15...v2.0.0) (2026-10-11)
+
+
+* Fix/package exports ([#120](https://github.com/vfourny/node-toolkit/issues/120)) ([666cc46](https://github.com/vfourny/node-toolkit/commit/666cc460b938c8c4b9251ca3a65414e16048c87e))
+
+
+### BREAKING CHANGES
+
+* eslint/nuxt must be passed to withNuxt() from @nuxt/eslint
+instead of being exported directly; tsconfig/nuxt must be referenced from
+nuxt.config typescript options; Vue projects must install eslint-plugin-vue.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+* feat(tsconfig): support TypeScript 6
+
+- remove baseUrl from shared tsconfigs (error in TS 6, removed in TS 7);
+  paths already use ${configDir} absolute paths
+- declare node types explicitly where needed (TS 6 defaults types to [])
+- upgrade typescript-eslint to ^8.71.1 (supports TS < 6.1)
+- typescript peer range is now >=5.5.2 <6.1.0 (TS 7 has no JS API, so
+  typescript-eslint cannot support it yet)
+- develop and test against TypeScript 6.0
+* shared tsconfigs no longer set baseUrl; non-relative imports
+resolved from the project root must go through paths.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+* feat(eslint): rework sorting, imports and add type-checked rules
+
+- drop perfectionist/sort-objects (reordered semantically ordered objects)
+- stop sorting keys of package.json and tsconfig files
+- replace simple-import-sort with perfectionist sort-imports/exports
+- replace eslint-plugin-import with eslint-plugin-import-x (kept under the
+  `import` namespace, same as @nuxt/eslint)
+- only forbid parent relative imports (../), sibling imports are allowed
+- no-console is a warning and allows console.warn/error
+- naming-convention covers functions (camelCase or PascalCase)
+- add createTypeCheckedConfigs() for opt-in type-aware rules
+* simple-import-sort rules are replaced by perfectionist ones
+(eslint-disable comments must be updated) and objects are no longer sorted.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+* feat(tsconfig): stricter base and native Node.js resolution
+
+- base: target ES2022, verbatimModuleSyntax, noUncheckedIndexedAccess,
+  noImplicitOverride; drop flags already implied by strict
+- node: module/moduleResolution NodeNext so tsc output runs as-is;
+  path aliases are replaced by package.json "imports" (#src/*)
+- vue/react/next: lib ES2022
+- nuxt: add noUncheckedIndexedAccess and noImplicitOverride
+- vitest: globals disabled, test APIs are imported explicitly
+- restore a readable, grouped key order in shared tsconfigs
+* tsconfig/node uses NodeNext (ESM projects, explicit .js
+extensions, no @/ paths), vitest globals are disabled, and
+noUncheckedIndexedAccess/verbatimModuleSyntax are enabled in the base config.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+* chore(repo): add package checks, pre-commit hook and next channel
+
+- add publint and arethetypeswrong (npm run lint:package) and run them in CI
+- add a lint-staged pre-commit hook (eslint --fix + prettier)
+- semantic-release publishes prereleases from the next branch
+- ignore the generated changelog in prettier
+- order package.json fields conventionally
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+* docs(readme): rewrite README for 2.0 and sync French translation
+
+- document every configuration (Node, Vue, Nuxt, React, Next.js)
+- document package.json subpath imports for Node.js projects
+- document opt-in type-aware rules
+- fix semantic-release environment variables (PUBLISH, trusted publishing)
+- add a 1.x migration guide
+- bring the French README up to date
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
 ## [1.1.15](https://github.com/vfourny/node-toolkit/compare/v1.1.14...v1.1.15) (2026-04-24)
 
 
