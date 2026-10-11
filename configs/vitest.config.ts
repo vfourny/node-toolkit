@@ -3,7 +3,7 @@
  *
  * This configuration provides sensible defaults for testing Node.js applications:
  * - Node environment
- * - Global test APIs (describe, it, expect, etc.)
+ * - Explicit test API imports (`import { describe, expect, it } from 'vitest'`)
  * - Coverage with V8 provider
  * - Text, JSON, and HTML coverage reports
  *
@@ -31,7 +31,7 @@ const config = {
       reporter: ['text', 'json', 'html'],
     },
     environment: 'node',
-    globals: true,
+    globals: false,
     reporters: ['default'],
   },
 }

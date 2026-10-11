@@ -13,16 +13,22 @@ import {
 } from './base.js'
 import { nodeGlobalsConfig } from './node.js'
 
+const {
+  'jsx-runtime': reactJsxRuntimeConfig,
+  recommended: reactRecommendedConfig,
+} = eslintPluginReact.configs.flat
+
+if (!reactRecommendedConfig || !reactJsxRuntimeConfig) {
+  throw new Error('eslint-plugin-react flat configs are missing')
+}
+
 /**
  * React-specific configuration for JSX/TSX files
  * Uses the automatic JSX runtime (no need to import React in scope)
  * Exported for reuse in other configs (Next, etc.)
  */
 export const reactFilesConfig: ConfigWithExtends = {
-  extends: [
-    eslintPluginReact.configs.flat.recommended,
-    eslintPluginReact.configs.flat['jsx-runtime'],
-  ],
+  extends: [reactRecommendedConfig, reactJsxRuntimeConfig],
   files: ['**/*.{jsx,tsx}'],
   languageOptions: {
     globals: globals.browser,

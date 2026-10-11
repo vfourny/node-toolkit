@@ -42,7 +42,7 @@ export const baseConfig: Linter.Config = {
     'no-console': ['warn', { allow: ['warn', 'error'] }],
     'no-const-assign': 'error',
     'no-debugger': 'error',
-    // Parent imports must go through an alias (@/, #/, ~/); sibling imports are allowed
+    // Parent imports must go through an alias (@/, ~/, #src/); sibling imports are allowed
     'no-restricted-imports': [
       'error',
       {
@@ -50,7 +50,7 @@ export const baseConfig: Linter.Config = {
           {
             group: ['../*', '..'],
             message:
-              'Parent relative imports are not allowed. Use an import alias instead (e.g. @/ or #/).',
+              'Parent relative imports are not allowed. Use an import alias instead (e.g. @/ or #src/).',
           },
         ],
       },
@@ -75,7 +75,8 @@ export const baseConfig: Linter.Config = {
           ['parent', 'sibling', 'index'],
           'unknown',
         ],
-        internalPattern: ['^[@#~]/.+'],
+        // Path aliases (@/, ~/) and package.json subpath imports (#src/...)
+        internalPattern: ['^[@~]/.+', '^#.+'],
       },
     ],
     'perfectionist/sort-interfaces': ['error', SORT_OPTIONS],

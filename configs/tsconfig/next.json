@@ -1,30 +1,30 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./base.json",
   "compilerOptions": {
-    /* Emit */
-    "incremental": true,
+    /* Language and Environment */
+    "jsx": "react-jsx",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "plugins": [{ "name": "next" }],
+
+    /* Modules */
+    "paths": {
+      "@/*": ["${configDir}/src/*"]
+    },
 
     /* Interop Constraints */
     "isolatedModules": true,
 
-    /* Language and Environment */
-    "jsx": "react-jsx",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-
+    /* Emit: Next.js compiles the project itself */
+    "incremental": true,
     "noEmit": true,
-    "paths": {
-      "@/*": ["${configDir}/src/*"]
-    },
-    "plugins": [{ "name": "next" }],
-    /* Build Configuration */
     "tsBuildInfoFile": "${configDir}/.cache/next.tsbuildinfo"
   },
-  "exclude": ["${configDir}/node_modules", "${configDir}/.next"],
-  "extends": "./base.json",
   "include": [
     "${configDir}/next-env.d.ts",
     "${configDir}/**/*.ts",
     "${configDir}/**/*.tsx",
     "${configDir}/.next/types/**/*.ts"
-  ]
+  ],
+  "exclude": ["${configDir}/node_modules", "${configDir}/.next"]
 }

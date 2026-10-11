@@ -19,4 +19,18 @@ const configsOverride: Linter.Config = {
   },
 }
 
-export default typescriptEslint.config(...nodeConfig, configsOverride)
+/**
+ * Shared tsconfig files keep a semantic (grouped and commented) key order
+ */
+const tsconfigOverride: Linter.Config = {
+  files: ['configs/tsconfig/*.json'],
+  rules: {
+    'jsonc/sort-keys': 'off',
+  },
+}
+
+export default typescriptEslint.config(
+  ...nodeConfig,
+  configsOverride,
+  tsconfigOverride,
+)

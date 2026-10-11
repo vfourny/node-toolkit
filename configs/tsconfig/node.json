@@ -1,27 +1,19 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./base.json",
   "compilerOptions": {
+    /* Modules: native Node.js ESM resolution, so tsc output runs as-is.
+       Use package.json "imports" (e.g. "#src/*") for aliases: Node resolves them at runtime. */
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "rootDir": "${configDir}/src",
+    "types": ["node"],
+
     /* Emit */
     "declaration": true,
     "outDir": "${configDir}/dist",
-
-    "paths": {
-      "@/*": ["${configDir}/src/*"]
-    },
-    /* Modules */
-    "rootDir": "${configDir}/src",
-    /* Build Configuration */
-    "tsBuildInfoFile": "${configDir}/.cache/node.tsbuildinfo",
-
-    /* Types */
-    "types": ["node"]
+    "tsBuildInfoFile": "${configDir}/.cache/node.tsbuildinfo"
   },
-  "exclude": [
-    "${configDir}/node_modules",
-    "${configDir}/dist",
-    "${configDir}/.nuxt",
-    "${configDir}/.output"
-  ],
-  "extends": "./base.json",
-  "include": ["${configDir}/src/**/*"]
+  "include": ["${configDir}/src/**/*"],
+  "exclude": ["${configDir}/node_modules", "${configDir}/dist"]
 }
