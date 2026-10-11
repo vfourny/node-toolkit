@@ -1,4 +1,6 @@
-import { resolve } from 'node:path'
+import { mkdtempSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
 import { createConfigForNuxt } from '@nuxt/eslint-config/flat'
@@ -48,6 +50,64 @@ describe('eslint configs', () => {
     )
 
     expect(rules).toContain('@typescript-eslint/no-explicit-any')
+  })
+
+  it('node: should allow sibling imports but not parent imports', async () => {
+    const rules = await lint(
+      'node',
+      'src/feature/sample.ts',
+      "import { parent } from '../parent'\nimport { sibling } from './sibling'\n\nexport const value = sibling + parent\n",
+    )
+
+    expect(rules).toEqual(['no-restricted-imports'])
+  })
+
+  it('node: should only warn on console.log', async () => {
+    const eslint = new ESLint({
+      cwd: ROOT,
+      overrideConfig: await loadConfig('node'),
+      overrideConfigFile: true,
+    })
+    const [result] = await eslint.lintText(
+      "console.log('debug')\nconsole.error('failure')\n",
+      { filePath: resolve(ROOT, 'fixtures/src/logger.ts') },
+    )
+
+    expect(
+      result?.messages.map(({ ruleId, severity }) => ({ ruleId, severity })),
+    ).toEqual([{ ruleId: 'no-console', severity: 1 }])
+  })
+
+  it('type-checked: should report floating promises', async () => {
+    const { createTypeCheckedConfigs } = (await import(
+      pathToFileURL(resolve(ROOT, 'configs/eslint/base.ts')).href
+    )) as {
+      createTypeCheckedConfigs: (tsconfigRootDir: string) => Linter.Config[]
+    }
+    const projectDir = mkdtempSync(join(tmpdir(), 'node-toolkit-'))
+
+    writeFileSync(
+      join(projectDir, 'tsconfig.json'),
+      JSON.stringify({ compilerOptions: { strict: true }, include: ['*.ts'] }),
+    )
+    writeFileSync(
+      join(projectDir, 'index.ts'),
+      'const load = (): Promise<number> => Promise.resolve(1)\n\nload()\n',
+    )
+
+    const eslint = new ESLint({
+      cwd: projectDir,
+      overrideConfig: [
+        ...(await loadConfig('node')),
+        ...createTypeCheckedConfigs(projectDir),
+      ],
+      overrideConfigFile: true,
+    })
+    const [result] = await eslint.lintFiles(['index.ts'])
+
+    expect(result?.messages.map(({ ruleId }) => ruleId)).toEqual([
+      '@typescript-eslint/no-floating-promises',
+    ])
   })
 
   it('vue: should parse SFCs with TypeScript', async () => {

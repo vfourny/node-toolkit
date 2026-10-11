@@ -1,24 +1,34 @@
 import eslintJS from '@eslint/js'
 import type { Linter } from 'eslint'
 import eslintConfigPrettier from 'eslint-config-prettier'
-import importPlugin from 'eslint-plugin-import'
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript'
+import importPlugin from 'eslint-plugin-import-x'
 import jsoncPlugin from 'eslint-plugin-jsonc'
 import perfectionist from 'eslint-plugin-perfectionist'
-import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import typescriptEslint from 'typescript-eslint'
 
 const TS_FILES = ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx,vue}']
 
+const SORT_OPTIONS = {
+  ignoreCase: true,
+  order: 'asc',
+  type: 'natural',
+} as const
+
 /**
  * Base ESLint configuration with JS-compatible rules only (no @typescript-eslint rules).
  * @typescript-eslint rules are in typescriptConfigs to avoid conflicts with JSON/other parsers.
+ *
+ * eslint-plugin-import-x is registered under the `import` namespace
+ * (same as @nuxt/eslint), so rules are named `import/*`.
  */
 export const baseConfig: Linter.Config = {
   name: 'node-toolkit/base',
   plugins: {
-    import: importPlugin,
+    import: importPlugin as unknown as NonNullable<
+      Linter.Config['plugins']
+    >[string],
     perfectionist,
-    'simple-import-sort': simpleImportSort,
   },
   rules: {
     // General JavaScript/TypeScript rules
@@ -29,18 +39,18 @@ export const baseConfig: Linter.Config = {
     'import/no-named-as-default': 'error',
     'import/no-named-as-default-member': 'error',
     'import/no-namespace': 'error',
-    'no-console': 'error',
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
     'no-const-assign': 'error',
     'no-debugger': 'error',
-    // Enforce absolute imports with @/ prefix
+    // Parent imports must go through an alias (@/, #/, ~/); sibling imports are allowed
     'no-restricted-imports': [
       'error',
       {
         patterns: [
           {
-            group: ['../*', './*'],
+            group: ['../*', '..'],
             message:
-              'Relative imports are not allowed. Use absolute imports instead with @/.',
+              'Parent relative imports are not allowed. Use an import alias instead (e.g. @/ or #/).',
           },
         ],
       },
@@ -51,30 +61,34 @@ export const baseConfig: Linter.Config = {
     'no-useless-constructor': 'error',
     'no-useless-rename': 'error',
     'no-var': 'error',
-    'perfectionist/sort-classes': [
+    'perfectionist/sort-classes': ['error', SORT_OPTIONS],
+    'perfectionist/sort-exports': ['error', SORT_OPTIONS],
+    'perfectionist/sort-imports': [
       'error',
-      { ignoreCase: true, order: 'asc', type: 'natural' },
+      {
+        ...SORT_OPTIONS,
+        groups: [
+          'side-effect',
+          'builtin',
+          'external',
+          'internal',
+          ['parent', 'sibling', 'index'],
+          'unknown',
+        ],
+        internalPattern: ['^[@#~]/.+'],
+      },
     ],
-    'perfectionist/sort-interfaces': [
-      'error',
-      { ignoreCase: true, order: 'asc', type: 'natural' },
-    ],
-    'perfectionist/sort-objects': [
-      'error',
-      { ignoreCase: true, order: 'asc', type: 'natural' },
-    ],
+    'perfectionist/sort-interfaces': ['error', SORT_OPTIONS],
+    'perfectionist/sort-named-exports': ['error', SORT_OPTIONS],
+    'perfectionist/sort-named-imports': ['error', SORT_OPTIONS],
     'prefer-const': ['error', { destructuring: 'all' }],
-    'simple-import-sort/exports': 'error',
-    'simple-import-sort/imports': 'error',
     'sort-imports': 'off',
     'sort-keys': 'off',
   },
   settings: {
-    'import/resolver': {
-      typescript: {
-        alwaysTryTypes: true,
-      },
-    },
+    'import-x/resolver-next': [
+      createTypeScriptImportResolver({ alwaysTryTypes: true }),
+    ],
   },
 }
 
@@ -149,6 +163,8 @@ export const typescriptConfigs: Linter.Config[] = typescriptEslint.config({
         selector: 'import',
       },
       { format: ['PascalCase'], selector: 'class' },
+      // PascalCase allowed for components (React, Vue render functions)
+      { format: ['camelCase', 'PascalCase'], selector: 'function' },
       {
         format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
         modifiers: ['const'],
@@ -187,6 +203,40 @@ export const typescriptConfigs: Linter.Config[] = typescriptEslint.config({
 }) as unknown as Linter.Config[]
 
 /**
+ * Opt-in type-aware rules (no-floating-promises, no-misused-promises, await-thenable,
+ * no-unsafe-*, switch-exhaustiveness-check, ...) for TypeScript files.
+ * Slower than syntax-only linting: each file is type checked through the TypeScript project service.
+ *
+ * @param tsconfigRootDir - Directory containing the project tsconfig (usually `import.meta.dirname`)
+ *
+ * @example
+ * ```typescript
+ * // eslint.config.ts
+ * import { createTypeCheckedConfigs } from '@vfourny/node-toolkit/eslint/base'
+ * import nodeConfig from '@vfourny/node-toolkit/eslint/node'
+ *
+ * export default [...nodeConfig, ...createTypeCheckedConfigs(import.meta.dirname)]
+ * ```
+ */
+export const createTypeCheckedConfigs = (
+  tsconfigRootDir: string,
+): Linter.Config[] =>
+  typescriptEslint.config({
+    extends: [...typescriptEslint.configs.recommendedTypeCheckedOnly],
+    files: ['**/*.{ts,mts,cts,tsx}'],
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir,
+      },
+    },
+    name: 'node-toolkit/type-checked',
+    rules: {
+      '@typescript-eslint/switch-exhaustiveness-check': 'error',
+    },
+  }) as unknown as Linter.Config[]
+
+/**
  * JSON files configuration with sorted keys.
  * Uses jsonc recommended config as base (handles parser + disables conflicting JS rules),
  * then adds sort-keys on top.
@@ -197,6 +247,8 @@ export const jsonConfigs: Linter.Config[] = [
   ] as unknown as Linter.Config[]),
   {
     files: ['**/*.json'],
+    // Keep the conventional/semantic key order of these files
+    ignores: ['**/package.json', '**/tsconfig*.json', '**/jsconfig*.json'],
     name: 'node-toolkit/json-sort',
     rules: {
       'jsonc/sort-keys': [
