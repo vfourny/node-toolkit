@@ -2,27 +2,58 @@ name: CI
 
 on:
   pull_request:
-    branches:
-      - main
-      - next
+    branches: [main, next]
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build:
-    uses: vfourny/.github/.github/workflows/build.yml@main
+  pr-checks:
+    uses: vfourny/.github/.github/workflows/pr-checks.yml@1c50b8eea90e3b146f1fc0e2cb2bb39736dab67f # v2.1.0
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: read
     with:
-      is_build: true
-      is_tested: true
-      is_type_checked: true
       node_version: '22'
+      # Toolkit maintained solo: most PRs (including Renovate's) have no issue
+      is_linked_issue_checked: false
+
+  build:
+    # Editing the PR title or description only re-runs pr-checks
+    if: github.event.action != 'edited'
+    uses: vfourny/.github/.github/workflows/build.yml@1c50b8eea90e3b146f1fc0e2cb2bb39736dab67f # v2.1.0
+    with:
+      node_version: '22'
+      is_build_upload: false
 
   package:
     name: Check published package
+    if: github.event.action != 'edited'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - name: Check out code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '22'
-      - run: npm ci
-      - run: npm run build
-      - run: npm run lint:package
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Check package
+        run: npm run lint:package
