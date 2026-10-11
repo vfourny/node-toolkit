@@ -2,24 +2,21 @@
 
 [![fr](https://img.shields.io/badge/lang-fr-blue)](https://github.com/vfourny/node-toolkit/blob/main/docs/README.fr.md)
 
-Welcome to **VFourny's Node Toolkit**! This repository contains a collection of tools and configurations designed to simplify development and automation for your projects.
+Shared configurations for ESLint, TypeScript, Prettier, Vitest, Commitlint and Semantic Release, for **Node.js, Vue, Nuxt, React and Next.js** projects.
 
 ## Table of Contents
 
 - [Installation](#installation)
-- [Environment Variables](#environment-variables)
-- [Configuration Files](#configuration-files)
-  - [ESLint](#eslint)
-  - [Prettier](#prettier)
-  - [TypeScript](#typescript)
-  - [Vitest](#vitest)
-  - [Semantic Release](#semantic-release)
-  - [Commitlint](#commitlint)
+- [ESLint](#eslint)
+- [TypeScript](#typescript)
+- [Prettier](#prettier)
+- [Vitest](#vitest)
+- [Semantic Release](#semantic-release)
+- [Commitlint](#commitlint)
 - [Utility Functions](#utility-functions)
+- [Migrating from 1.x](#migrating-from-1x)
 
 ## Installation
-
-To install **VFourny's Node Toolkit** via npm, make sure you have [Node.js](https://nodejs.org/) installed on your machine. Then, run the following command in your terminal:
 
 ```bash
 npm install -D @vfourny/node-toolkit
@@ -27,18 +24,16 @@ npm install -D @vfourny/node-toolkit
 
 ### Peer Dependencies
 
-This package requires the following peer dependencies to be installed in your project:
-
 ```bash
 npm install -D eslint prettier typescript commitlint semantic-release
 ```
 
-**Minimum versions:**
+**Supported versions:**
 
 - Node.js: `>= 22`
 - ESLint: `^9.3.0`
 - Prettier: `^3.2.5`
-- TypeScript: `>=5.5.2 <6.1.0` (TypeScript 7 is not supported yet: `typescript-eslint` requires the TypeScript JavaScript API, which TypeScript 7 does not provide)
+- TypeScript: `>=5.5.2 <6.1.0` (TypeScript 7 is not supported yet: `typescript-eslint` needs the TypeScript JavaScript API, which TypeScript 7 does not provide)
 - Commitlint: `^19.8.0 || ^20.1.0`
 - Semantic Release: `^24.0.0 || ^25.0.0`
 
@@ -46,61 +41,39 @@ npm install -D eslint prettier typescript commitlint semantic-release
 
 ```bash
 # Vue
-npm install -D eslint-plugin-vue
+npm install -D eslint-plugin-vue vue-eslint-parser
 # Nuxt (the module provides the Vue and TypeScript setup)
 npx nuxi module add eslint
 # React
 npm install -D eslint-plugin-react eslint-plugin-react-hooks
 # Next.js
 npm install -D eslint-plugin-react eslint-plugin-react-hooks @next/eslint-plugin-next
+# Vitest coverage
+npm install -D @vitest/coverage-v8
 ```
 
-## Environment Variables
+## ESLint
 
-For `semantic-release` to work properly, certain environment variables must be defined in your GitHub repository configuration.
+Pick the configuration matching your project:
 
-### Required Environment Variables
-
-- `NPM_TOKEN`: Access token for npm to publish packages.
-- `IS_PUBLISH`: Indicates whether the workflow should publish an npm package.
-
-## Configuration Files
-
-- `eslint.config.ts`: ESLint configuration for JavaScript code linting.
-- `prettier.js`: Prettier configuration for JavaScript code formatting.
-- `tsconfig.json`: TypeScript configuration for transpiling TypeScript code.
-- `release.config.js`: Semantic Release configuration for version management.
-- `commitlintrc.js`: Commitlint configuration for commit message validation.
-
-### ESLint
-
-This package provides multiple ESLint configurations tailored for different project types. Choose the one that fits your project:
-
-#### For Node.js Projects
+| Project | Import                                                    |
+| ------- | --------------------------------------------------------- |
+| Node.js | `@vfourny/node-toolkit/eslint` or `.../eslint/node`       |
+| Vue     | `@vfourny/node-toolkit/eslint/vue`                        |
+| Nuxt    | `@vfourny/node-toolkit/eslint/nuxt` (with `@nuxt/eslint`) |
+| React   | `@vfourny/node-toolkit/eslint/react`                      |
+| Next.js | `@vfourny/node-toolkit/eslint/next`                       |
 
 ```typescript
 // eslint.config.ts
-import nodeConfig from '@vfourny/node-toolkit/eslint/node'
+import config from '@vfourny/node-toolkit/eslint/react'
 
-export default nodeConfig
+export default config
 ```
 
-#### For Vue Projects
+### Nuxt
 
-```typescript
-// eslint.config.ts
-import vueConfig from '@vfourny/node-toolkit/eslint/vue'
-
-export default vueConfig
-```
-
-#### For Nuxt Projects
-
-The Nuxt configuration is meant to be composed with [`@nuxt/eslint`](https://eslint.nuxt.com), which generates the Nuxt-aware setup (parsers, Vue/TypeScript plugins, auto-imports, project structure). The toolkit rules are added on top of it, without registering plugins Nuxt already provides.
-
-```bash
-npx nuxi module add eslint
-```
+The Nuxt configuration is composed with [`@nuxt/eslint`](https://eslint.nuxt.com), which generates the Nuxt-aware setup (parsers, Vue/TypeScript plugins, auto-imports, project structure). The toolkit only adds its rules on top, without registering the plugins Nuxt already provides.
 
 ```javascript
 // eslint.config.mjs
@@ -111,148 +84,138 @@ import withNuxt from './.nuxt/eslint.config.mjs'
 export default withNuxt(nuxtConfig)
 ```
 
-Default exports are allowed where Nuxt requires them (`server/**`, `plugins/**`, `middleware/**`, `modules/**`, `app.config.ts`).
+### Type-aware rules (opt-in)
 
-#### For React Projects
-
-Requires `eslint-plugin-react` and `eslint-plugin-react-hooks`.
+`no-floating-promises`, `no-misused-promises`, `await-thenable`, `no-unsafe-*`, `switch-exhaustiveness-check`, ... These rules type check every file, so linting is slower.
 
 ```typescript
 // eslint.config.ts
-import reactConfig from '@vfourny/node-toolkit/eslint/react'
+import { createTypeCheckedConfigs } from '@vfourny/node-toolkit/eslint/base'
+import nodeConfig from '@vfourny/node-toolkit/eslint/node'
 
-export default reactConfig
+export default [...nodeConfig, ...createTypeCheckedConfigs(import.meta.dirname)]
 ```
 
-#### For Next.js Projects
+For Nuxt, use the type-aware option of `@nuxt/eslint` instead.
 
-Requires `eslint-plugin-react`, `eslint-plugin-react-hooks` and `@next/eslint-plugin-next`.
-
-```typescript
-// eslint.config.ts
-import nextConfig from '@vfourny/node-toolkit/eslint/next'
-
-export default nextConfig
-```
-
-#### Default Import (Node.js)
-
-```typescript
-// eslint.config.ts
-import config from '@vfourny/node-toolkit/eslint'
-
-export default config
-```
-
-#### Advanced Usage
-
-For advanced users who want to compose their own configuration:
+### Custom composition
 
 ```typescript
 // eslint.config.ts
 import {
   baseConfig,
-  typescriptConfigs,
+  commonIgnores,
   prettierConfig,
+  typescriptConfigs,
 } from '@vfourny/node-toolkit/eslint/base'
 import { nodeGlobalsConfig } from '@vfourny/node-toolkit/eslint/node'
-import typescriptEslint from 'typescript-eslint'
 
-export default typescriptEslint.config(
+export default [
   ...typescriptConfigs,
   nodeGlobalsConfig,
   baseConfig,
   // Your custom configs here
-  prettierConfig, // Should be last
-)
+  prettierConfig, // Should come after rule configs
+  commonIgnores,
+]
 ```
 
-#### Configuration Rules Overview
+### Rules overview
 
-All ESLint configurations include the following enforced rules:
+**Code quality**
 
-**Code Quality:**
+- `eqeqeq`, `prefer-const`, `no-var`, `no-debugger`, `no-throw-literal`
+- `no-console`: warning, `console.warn` and `console.error` are allowed
 
-- `eqeqeq`: Require `===` and `!==` instead of `==` and `!=`
-- `prefer-const`: Prefer `const` over `let` when variables are not reassigned
-- `no-console`: Disallow `console.log` statements (prevents debug code in production)
-- `no-debugger`: Disallow `debugger` statements
-- `no-var`: Require `let` or `const` instead of `var`
+**TypeScript** (`typescript-eslint` recommended + strict + stylistic)
 
-**TypeScript:**
+- `consistent-type-definitions`: `interface` over `type`
+- `consistent-type-imports`: `import type` for type-only imports
+- `no-explicit-any` (auto-fixed to `unknown`)
+- `no-unused-vars` (except names prefixed with `_`)
+- `naming-convention`: PascalCase classes, enums and type parameters; camelCase or PascalCase functions
 
-- `@typescript-eslint/consistent-type-definitions`: Enforce `interface` over `type`
-- `@typescript-eslint/no-explicit-any`: Disallow `any` type (suggests `unknown` instead)
-- `@typescript-eslint/consistent-type-imports`: Enforce `import type` for type-only imports
-- `@typescript-eslint/no-unused-vars`: Disallow unused variables (except those prefixed with `_`)
-- `@typescript-eslint/naming-convention`: Enforce naming conventions (PascalCase for classes, camelCase for variables, etc.)
+**Imports and sorting**
 
-**Import Rules:**
+- `no-restricted-imports`: parent relative imports (`../`) are forbidden, use an alias (`@/`, `~/`, `#src/`); sibling imports (`./`) are allowed
+- `import/no-default-export`: named exports only, except in `*.config.*` files and framework conventions (Next.js and Nuxt special files)
+- `perfectionist`: sorted imports (builtin, external, internal aliases, relative), exports, named imports/exports, interfaces and class members
+- `jsonc/sort-keys`: sorted keys in JSON files, except `package.json` and `tsconfig*.json`
 
-- `no-restricted-imports`: **Disallow relative imports** - must use absolute imports with `@/` prefix
-- `import/no-default-export`: Disallow default exports (except in `*.config.{js,mjs,cjs,ts,mts,cts}` files)
-- `simple-import-sort/imports`: Auto-sort imports alphabetically
-- `simple-import-sort/exports`: Auto-sort exports alphabetically
+**Framework specific**
 
-**Project-Specific:**
-
-- **Node.js**: Includes Node.js global variables (`process`, `__dirname`, etc.)
-- **Vue**: Includes Vue ESLint plugin rules, enforces PascalCase for component names in templates
-- **Nuxt**: Toolkit rules (TypeScript, imports, Vue) layered on top of `@nuxt/eslint`, allows single-word component names for pages
+- **Node.js**: Node.js globals
+- **Vue**: `eslint-plugin-vue` recommended, alphabetical attributes, PascalCase components in templates
+- **Nuxt**: toolkit rules on top of `@nuxt/eslint`, single-word component names allowed, default exports allowed in `server/`, `plugins/`, `middleware/`, `modules/` and `app.config.ts`
 - **React**: `eslint-plugin-react` (recommended + JSX runtime) on `.jsx`/`.tsx`, rules of hooks on all JS/TS files, sorted JSX props
-- **Next.js**: React rules + `@next/eslint-plugin-next` (recommended + Core Web Vitals), default exports allowed in Next.js file conventions (`app/**/page.tsx`, `layout.tsx`, `pages/**`, `middleware.ts`, etc.)
+- **Next.js**: React rules + `@next/eslint-plugin-next` (recommended + Core Web Vitals), default exports allowed in Next.js file conventions (`page`, `layout`, `pages/**`, `middleware`, ...)
 
-**Import Resolution:**
-All configurations automatically resolve TypeScript path aliases (like `@/*`) using `eslint-import-resolver-typescript`.
+## TypeScript
 
-### Prettier
+All configurations extend `@vfourny/node-toolkit/tsconfig/base`: `strict`, `noUncheckedIndexedAccess`, `noImplicitOverride`, `noImplicitReturns`, `noUnusedLocals`/`Parameters`, `verbatimModuleSyntax`, ES2022 target.
 
-To import the Prettier configuration into your project, add the following code to your [Prettier](https://prettier.io/docs/en/configuration.html) configuration file:
+### Node.js
 
-```javascript
-import nodeToolkitPrettierConfig from '@vfourny/node-toolkit/prettier'
+Native Node.js ESM resolution (`NodeNext`): the output of `tsc` runs as-is with `node`. Your package must be ESM (`"type": "module"`) and relative imports need the `.js` extension.
 
-export default {
-  ...nodeToolkitPrettierConfig,
-  // Your custom configurations
-}
-```
-
-### TypeScript
-
-This package provides multiple TypeScript configurations for different project types:
-
-#### For Node.js Projects
+Use [subpath imports](https://nodejs.org/api/packages.html#subpath-imports) instead of `paths` aliases, so Node.js resolves them at runtime (Node.js 22 requires a name after `#`, e.g. `#src/`):
 
 ```json
+// package.json
 {
-  "extends": "@vfourny/node-toolkit/tsconfig/node",
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
+  "type": "module",
+  "imports": {
+    "#src/*": {
+      "types": "./src/*",
+      "development": "./src/*",
+      "default": "./dist/*"
     }
-    // Your custom configurations
   }
 }
 ```
 
-#### For Vue Projects
-
 ```json
+// tsconfig.json
 {
-  "extends": "@vfourny/node-toolkit/tsconfig/vue",
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-    // Your custom configurations
-  }
+  "extends": "@vfourny/node-toolkit/tsconfig/node"
 }
 ```
 
-#### For Nuxt Projects
+```typescript
+import { double } from '#src/lib/math.js'
+```
 
-Nuxt generates its own tsconfig files (`.nuxt/tsconfig.{app,server,shared,node}.json`) and owns module resolution, aliases and types. The Nuxt configuration only adds the toolkit strictness flags (`noUnusedLocals`, `noImplicitReturns`, ...), injected in every generated context from `nuxt.config.ts`:
+TypeScript resolves `#src/*` to the sources (`types`), Vitest too (`development`), and Node.js to the compiled output (`default`).
+
+### Vue and React
+
+```json
+{
+  "extends": "@vfourny/node-toolkit/tsconfig/vue"
+}
+```
+
+```json
+{
+  "extends": "@vfourny/node-toolkit/tsconfig/react"
+}
+```
+
+Both are meant for bundled projects (Vite, ...) and define the `@/*` alias to `src/*`.
+
+### Next.js
+
+Includes the `next` TypeScript plugin, `next-env.d.ts` and `.next/types`. Override `paths` if you don't use a `src/` directory.
+
+```json
+{
+  "extends": "@vfourny/node-toolkit/tsconfig/next"
+}
+```
+
+### Nuxt
+
+Nuxt generates its own tsconfig files (`.nuxt/tsconfig.{app,server,shared,node}.json`) and owns module resolution, aliases and types. The Nuxt configuration only adds the toolkit strictness flags, injected in every generated context from `nuxt.config.ts`:
 
 ```typescript
 // nuxt.config.ts
@@ -272,132 +235,101 @@ export default defineNuxtConfig({
 
 Keep the root `tsconfig.json` generated by Nuxt (project references to `.nuxt/tsconfig.*.json`).
 
-#### For React Projects
+### Tests
 
 ```json
 {
-  "extends": "@vfourny/node-toolkit/tsconfig/react"
+  "extends": "@vfourny/node-toolkit/tsconfig/test"
 }
 ```
 
-#### For Next.js Projects
+## Prettier
 
-Includes the `next` TypeScript plugin, `next-env.d.ts` and `.next/types`. Adjust `paths` if you don't use a `src/` directory.
+```javascript
+// prettier.config.js
+export { default } from '@vfourny/node-toolkit/prettier'
+```
 
-```json
-{
-  "extends": "@vfourny/node-toolkit/tsconfig/next"
+Or with customization:
+
+```javascript
+// prettier.config.js
+import baseConfig from '@vfourny/node-toolkit/prettier'
+
+export default {
+  ...baseConfig,
+  printWidth: 100,
 }
 ```
 
-#### For Test Files
+Single quotes, no semicolons, trailing commas, 80 columns, LF line endings.
 
-```json
-{
-  "extends": "@vfourny/node-toolkit/tsconfig/test",
-  "compilerOptions": {
-    // Your custom configurations
-  }
-}
-```
-
-#### Default Import (Node.js)
-
-```json
-{
-  "extends": "@vfourny/node-toolkit/tsconfig",
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-    // Your custom configurations
-  }
-}
-```
-
-**Important:** The `paths` configuration is required for the ESLint import resolver to work correctly with absolute imports using the `@/` prefix.
-
-**Base Configuration:** All TypeScript configurations extend from `@vfourny/node-toolkit/tsconfig/base` which provides strict TypeScript settings including:
-
-- Strict mode enabled
-- No implicit any
-- No unused locals/parameters
-- ESNext module resolution
-- ES2020 target
-
-### Vitest
-
-To use the Vitest configuration in your project, create a `vitest.config.ts` file:
+## Vitest
 
 ```typescript
 // vitest.config.ts
-import { defineConfig, mergeConfig } from 'vitest/config'
 import baseConfig from '@vfourny/node-toolkit/vitest'
+import { defineConfig, mergeConfig } from 'vitest/config'
 
 export default mergeConfig(
   baseConfig,
   defineConfig({
     test: {
       include: ['tests/**/*.test.ts'],
-      // Your custom configurations
     },
   }),
 )
 ```
 
-**Features:**
+- Node.js environment
+- Test APIs are imported explicitly: `import { describe, expect, it } from 'vitest'`
+- V8 coverage (install `@vitest/coverage-v8`), text, JSON and HTML reports
 
-- Node.js environment by default
-- Global test APIs enabled (`describe`, `it`, `expect`, etc.)
-- V8 coverage provider (install `@vitest/coverage-v8` to use `vitest run --coverage`)
-- Text, JSON, and HTML coverage reports
-- Default reporter for test results
-
-### Semantic Release
-
-To import the Semantic Release configuration into your project, add the following code to your [Semantic Release](https://semantic-release.gitbook.io/semantic-release) configuration file:
+## Semantic Release
 
 ```javascript
-import nodeToolkitReleaseConfig from '@vfourny/node-toolkit/release'
-
-export default {
-  extends: '@vfourny/node-toolkit/release',
-  // Your custom configurations
-}
+// release.config.js
+export { default } from '@vfourny/node-toolkit/release'
 ```
 
-### Commitlint
+- Angular commit convention for version bumps
+- Releases from `main`, prereleases from `next` (`x.y.z-next.n` on the `next` dist-tag)
+- Changelog in `docs/CHANGELOG.md`, GitHub release, version commit
+- npm publication only when the `PUBLISH` environment variable is `true`. Authentication uses npm [trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC, `id-token: write` permission) or an `NPM_TOKEN` secret
 
-To import the Commitlint configuration into your project, add the following code to your [Commitlint](https://commitlint.js.org/#/concepts-shareable-config) configuration file:
+## Commitlint
 
 ```javascript
-export default {
-  extends: '@vfourny/node-toolkit/commitlint',
-}
+// commitlint.config.js
+export { default } from '@vfourny/node-toolkit/commitlint'
+```
+
+Angular convention with a required scope. For monorepos, restrict scopes with `createCommitlintMonorepoConfig`:
+
+```javascript
+// commitlint.config.js
+import { createCommitlintMonorepoConfig } from '@vfourny/node-toolkit/commitlint'
+
+export default createCommitlintMonorepoConfig({ scopes: ['api', 'web'] })
 ```
 
 ## Utility Functions
 
-This package also exports utility functions that can be used in your projects:
-
 ```typescript
 import { kebabCase, lowerCaseFirstLetter } from '@vfourny/node-toolkit'
 
-// Convert strings to kebab-case
 kebabCase('HelloWorld') // 'hello-world'
-kebabCase('myVariableName') // 'my-variable-name'
 kebabCase('hello_world') // 'hello-world'
-
-// Convert first letter to lowercase
 lowerCaseFirstLetter('HelloWorld') // 'helloWorld'
-lowerCaseFirstLetter('HELLO') // 'hELLO'
 ```
 
-### Available Functions
+## Migrating from 1.x
 
-- **`kebabCase(string: string): string`** - Converts camelCase, PascalCase, snake_case, or space-separated strings to kebab-case
-- **`lowerCaseFirstLetter(string: string): string`** - Converts the first letter of a string to lowercase while preserving the rest
-
----
-
-_Thank you for using **VFourny's Node Toolkit**! For any questions or support, please open an issue on the GitHub repository._
+- **Framework plugins are optional peer dependencies**: install `eslint-plugin-vue` (Vue), `eslint-plugin-react` + `eslint-plugin-react-hooks` (React, Next.js) and `@next/eslint-plugin-next` (Next.js).
+- **Nuxt**: install `@nuxt/eslint` and wrap the config with `withNuxt(nuxtConfig)`. Move `tsconfig/nuxt` to the `nuxt.config.ts` TypeScript options (see [Nuxt](#nuxt-1)).
+- **`tsconfig/node`** uses `NodeNext`: ESM package, `.js` extensions on relative imports, subpath imports (`#src/*`) instead of `@/*` paths.
+- **No more `baseUrl`** in shared tsconfigs: non-relative imports from the project root must go through `paths`.
+- **Stricter base tsconfig**: `noUncheckedIndexedAccess`, `noImplicitOverride` and `verbatimModuleSyntax` are enabled.
+- **Sorting**: objects are no longer sorted, `simple-import-sort` is replaced by `perfectionist` (update `eslint-disable` comments), `package.json`/`tsconfig*.json` keys are no longer sorted.
+- **Imports**: `eslint-plugin-import` is replaced by `eslint-plugin-import-x` (rules keep the `import/` prefix); sibling relative imports (`./`) are now allowed.
+- **Vitest**: globals are disabled, import test APIs from `vitest`.

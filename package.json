@@ -2,7 +2,7 @@
   "name": "@vfourny/node-toolkit",
   "version": "1.1.15",
   "private": false,
-  "description": "Toolkit for Node.js projects",
+  "description": "Shared ESLint, TypeScript, Prettier, Vitest, Commitlint and Semantic Release configurations for Node.js, Vue, Nuxt, React and Next.js projects",
   "keywords": [
     "eslint",
     "prettier",

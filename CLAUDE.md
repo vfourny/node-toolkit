@@ -26,6 +26,7 @@ All configurations can be imported and extended by consumer projects.
 - `npm run lint:fix` - Auto-fix ESLint issues
 - `npm run format` - Format code with Prettier
 - `npm run format:check` - Check if code is properly formatted
+- `npm run lint:package` - Check the packed package with publint and arethetypeswrong (run after `npm run build`)
 
 ### Testing
 
@@ -121,28 +122,31 @@ Framework plugins (vue, react, react-hooks, next) are optional peerDependencies:
 All configurations:
 
 - Enforce TypeScript strict rules and stylistic conventions
-- Require absolute imports with `@/` prefix (no relative imports)
+- Forbid parent relative imports (`../`), sibling imports (`./`) are allowed; aliases are `@/`, `~/` or `#src/`
 - Enforce interface over type for type definitions
-- Auto-sort imports with simple-import-sort plugin
+- Sort imports/exports/interfaces/class members with perfectionist (objects are intentionally not sorted)
+- Sort JSON keys with jsonc, except `package.json` and `tsconfig*.json`
+- Use eslint-plugin-import-x registered under the `import` namespace (same as @nuxt/eslint)
 - Use flat config format (ESLint 9+)
-- Disallow default exports (except in `*.config.{js,ts}` files)
+- Disallow default exports (except in `*.config.*` files and framework conventions)
+
+`createTypeCheckedConfigs(tsconfigRootDir)` in base.ts provides opt-in type-aware rules (project service).
 
 #### TypeScript Configurations (configs/tsconfig/)
 
 The package provides multiple TypeScript base configurations:
 
 - **base.json** - Core TypeScript configuration with strict settings
-  - Strict mode enabled
-  - No implicit any
-  - No unused locals/parameters
-  - ESNext module resolution with bundler strategy
-  - ES2020 target
-- **node.json** - Node.js specific configuration (extends base)
+  - `strict`, `noUncheckedIndexedAccess`, `noImplicitOverride`, `noImplicitReturns`, no unused locals/parameters
+  - `verbatimModuleSyntax`
+  - ESNext modules with bundler resolution
+  - ES2022 target
+- **node.json** - Node.js configuration (extends base, `NodeNext` so tsc output runs on Node; aliases via package.json `imports` such as `#src/*`, not `paths`)
 - **vue.json** - Vue.js configuration (extends base, includes JSX support)
 - **nuxt.json** - Strictness flags only, injected into Nuxt's generated tsconfigs via `typescript.tsConfig` / `nodeTsConfig` / `sharedTsConfig` and `nitro.typescript.tsConfig`
 - **react.json** - React configuration (extends base, `jsx: react-jsx`)
 - **next.json** - Next.js configuration (extends base, noEmit, `next` TS plugin)
-- **test.json** - Test files configuration (extends base, includes Vitest types)
+- **test.json** - Test files configuration (extends base, Node types; Vitest globals are disabled)
 
 #### Prettier Configuration (configs/prettier.config.ts)
 
@@ -162,12 +166,12 @@ The package provides multiple TypeScript base configurations:
 - Publishes to npm only when `PUBLISH=true` environment variable is set
 - Updates changelog in `docs/CHANGELOG.md`
 - Commits changelog and package.json changes back to repo
-- Configured for `main` branch only
+- Releases from `main`, prereleases from `next`
 
 #### Vitest Configuration (configs/vitest.config.ts)
 
 - Node.js environment by default
-- Global test APIs enabled (describe, it, expect, etc.)
+- Globals disabled: test APIs are imported from `vitest`
 - V8 coverage provider
 - Text, JSON, and HTML coverage reports
 - Default reporter for test results
@@ -191,8 +195,8 @@ Only the `dist/` directory is published to npm (specified in package.json `files
 
 ## Important Constraints
 
-- **No default exports** - The ESLint config enforces `import/no-default-export` everywhere except `*.config.{js,ts}` files
-- **Absolute imports required** - Must use `@/` prefix instead of relative paths
+- **No default exports** - The ESLint config enforces `import/no-default-export` everywhere except `*.config.*` files
+- **Shared tsconfig key order** - `configs/tsconfig/*.json` keep a grouped, commented key order (`jsonc/sort-keys` is off for them)
 - **Strict TypeScript** - Full strict mode enabled with no implicit any, unused locals/parameters forbidden
 - **Node version** - Requires Node.js >= 22
 - **TypeScript version** - Supports `>=5.5.2 <6.1.0`, bounded by typescript-eslint (TypeScript 7 has no JS API). Shared tsconfigs must not use `baseUrl` (error in TS 6, removed in TS 7) and must list needed `types` explicitly (TS 6 defaults `types` to `[]`)
