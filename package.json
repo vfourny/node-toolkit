@@ -1,6 +1,6 @@
 {
   "name": "@vfourny/node-toolkit",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": false,
   "description": "Shared ESLint, TypeScript, Prettier, Vitest, Commitlint and Semantic Release configurations for Node.js, Vue, Nuxt, React and Next.js projects",
   "keywords": [

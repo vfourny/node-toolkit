@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/vfourny/node-toolkit/compare/v2.0.0...v2.0.1) (2026-10-12)
+
+
+### Bug Fixes
+
+* **tsconfig:** make react and vue configs type-check only ([#131](https://github.com/vfourny/node-toolkit/issues/131)) ([ce7d5fb](https://github.com/vfourny/node-toolkit/commit/ce7d5fb0274071e03ab8b0caefddebfd89b23dad))
+
 # [2.0.0](https://github.com/vfourny/node-toolkit/compare/v1.1.15...v2.0.0) (2026-10-11)
 
 
