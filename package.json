@@ -126,7 +126,7 @@
     "@next/eslint-plugin-next": "16.4.0",
     "@nuxt/eslint-config": "1.17.0",
     "@types/eslint-config-prettier": "6.11.3",
-    "@types/node": "^22.0.0",
+    "@types/node": "^24.0.0",
     "@vitest/coverage-v8": "4.1.11",
     "@vitest/ui": "4.1.11",
     "commitlint": "20.5.3",
