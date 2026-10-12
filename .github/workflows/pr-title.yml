@@ -1,0 +1,28 @@
+name: PR title
+
+# Separate from pr.yml so that editing the title or description re-runs this check
+# only, without publishing skipped build checks.
+on:
+  pull_request:
+    branches: [main, next]
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Job id kept as `pr-checks`: the required status check is `pr-checks / pr-title`
+  pr-checks:
+    uses: vfourny/.github/.github/workflows/pr-checks.yml@1c50b8eea90e3b146f1fc0e2cb2bb39736dab67f # v2.1.0
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: read
+    with:
+      node_version: '22'
+      # Toolkit maintained solo: most PRs (including Renovate's) have no issue
+      is_linked_issue_checked: false
