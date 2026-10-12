@@ -218,7 +218,7 @@ Ajoutez les types de votre outillage, et redéfinissez `paths` en entier s'il vo
 }
 ```
 
-Pour publier une librairie de composants compilée par `tsc`, définissez les options d'émission dans votre projet (`noEmit: false`, `declaration`, `outDir`, `rootDir`) et retirez `allowImportingTsExtensions`.
+Ces configurations visent uniquement les apps : il n'y a pas encore de configuration pour une librairie de composants. `tsc` ne réécrit ni l'alias `@/` ni les extensions `.ts` dans les déclarations qu'il génère, donc une librairie demande sa propre configuration (par exemple des imports relatifs sans extension, ou un plugin du bundler qui génère les déclarations).
 
 ### Next.js
 

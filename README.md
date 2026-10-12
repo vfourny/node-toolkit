@@ -218,7 +218,7 @@ Add the types of your tooling, and redefine `paths` entirely if you need more al
 }
 ```
 
-To publish a component library compiled by `tsc`, set the emit options in your project (`noEmit: false`, `declaration`, `outDir`, `rootDir`) and remove `allowImportingTsExtensions`.
+These configurations are for apps only: there is no component library configuration yet. `tsc` does not rewrite the `@/` alias nor the `.ts` extensions in the declarations it emits, so a library needs its own setup (for example extensionless relative imports, or a bundler plugin that generates the declarations).
 
 ### Next.js
 
