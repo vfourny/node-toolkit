@@ -201,7 +201,24 @@ TypeScript résout `#src/*` vers les sources (`types`), Vitest aussi (`developme
 }
 ```
 
-Ces deux configurations visent les projets bundlés (Vite…) et définissent l'alias `@/*` vers `src/*`.
+Ces deux configurations visent les **apps bundlées** (Vite…) : le bundler compile le code, `tsc` (ou `vue-tsc`) ne fait que vérifier les types (`noEmit`, ce qui permet d'importer les extensions `.ts`). Elles définissent l'alias `@/*` vers `src/*` et incluent tous les fichiers `.ts`/`.tsx` (et `.vue`) du projet, `src/` et au-delà (`server/`, `vite.config.ts`…).
+
+Ajoutez les types de votre outillage, et redéfinissez `paths` en entier s'il vous faut d'autres alias (`extends` remplace `paths`, il ne le fusionne pas) :
+
+```json
+{
+  "extends": "@vfourny/node-toolkit/tsconfig/react",
+  "compilerOptions": {
+    "types": ["vite/client"],
+    "paths": {
+      "@/*": ["./src/*"],
+      "@server/*": ["./server/*"]
+    }
+  }
+}
+```
+
+Ces configurations visent uniquement les apps : il n'y a pas encore de configuration pour une librairie de composants. `tsc` ne réécrit ni l'alias `@/` ni les extensions `.ts` dans les déclarations qu'il génère, donc une librairie demande sa propre configuration (par exemple des imports relatifs sans extension, ou un plugin du bundler qui génère les déclarations).
 
 ### Next.js
 

@@ -142,9 +142,9 @@ The package provides multiple TypeScript base configurations:
   - ESNext modules with bundler resolution
   - ES2022 target
 - **node.json** - Node.js configuration (extends base, `NodeNext` so tsc output runs on Node; aliases via package.json `imports` such as `#src/*`, not `paths`)
-- **vue.json** - Vue.js configuration (extends base, includes JSX support)
+- **vue.json** - Vue.js app configuration (extends base, `jsx: preserve`, noEmit: the bundler compiles, includes every `.ts`/`.tsx`/`.vue` file)
 - **nuxt.json** - Strictness flags only, injected into Nuxt's generated tsconfigs via `typescript.tsConfig` / `nodeTsConfig` / `sharedTsConfig` and `nitro.typescript.tsConfig`
-- **react.json** - React configuration (extends base, `jsx: react-jsx`)
+- **react.json** - React app configuration (extends base, `jsx: react-jsx`, noEmit: the bundler compiles, includes every `.ts`/`.tsx` file)
 - **next.json** - Next.js configuration (extends base, noEmit, `next` TS plugin)
 - **test.json** - Test files configuration (extends base, Node types; Vitest globals are disabled)
 
