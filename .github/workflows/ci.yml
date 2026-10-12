@@ -9,7 +9,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  # Separate group for title/description edits, so they never cancel a build
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event.action == 'edited' && 'edited' || 'code' }}
   cancel-in-progress: true
 
 jobs:
