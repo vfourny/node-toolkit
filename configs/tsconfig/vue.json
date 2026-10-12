@@ -7,20 +7,23 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
 
     /* Modules */
+    "allowImportingTsExtensions": true,
+    "moduleDetection": "force",
     "paths": {
       "@/*": ["${configDir}/src/*"]
     },
-    "rootDir": "${configDir}/src",
 
     /* Interop Constraints */
     "isolatedModules": true,
 
-    /* Emit */
-    "declaration": true,
-    "outDir": "${configDir}/dist",
-    "tsBuildInfoFile": "${configDir}/.cache/vue.tsbuildinfo"
+    /* Emit: the bundler (Vite, ...) compiles the project, vue-tsc only type checks */
+    "noEmit": true
   },
-  "include": ["${configDir}/src/**/*", "${configDir}/src/**/*.vue"],
+  "include": [
+    "${configDir}/**/*.ts",
+    "${configDir}/**/*.tsx",
+    "${configDir}/**/*.vue"
+  ],
   "exclude": [
     "${configDir}/node_modules",
     "${configDir}/dist",

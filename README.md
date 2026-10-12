@@ -201,7 +201,24 @@ TypeScript resolves `#src/*` to the sources (`types`), Vitest too (`development`
 }
 ```
 
-Both are meant for bundled projects (Vite, ...) and define the `@/*` alias to `src/*`.
+Both are meant for **bundled apps** (Vite, ...): the bundler compiles the code, `tsc` (or `vue-tsc`) only type checks (`noEmit`, so `.ts` extensions can be imported). They define the `@/*` alias to `src/*` and include every `.ts`/`.tsx` (and `.vue`) file of the project, `src/` and beyond (`server/`, `vite.config.ts`, ...).
+
+Add the types of your tooling, and redefine `paths` entirely if you need more aliases (`extends` replaces `paths`, it does not merge it):
+
+```json
+{
+  "extends": "@vfourny/node-toolkit/tsconfig/react",
+  "compilerOptions": {
+    "types": ["vite/client"],
+    "paths": {
+      "@/*": ["./src/*"],
+      "@server/*": ["./server/*"]
+    }
+  }
+}
+```
+
+To publish a component library compiled by `tsc`, set the emit options in your project (`noEmit: false`, `declaration`, `outDir`, `rootDir`) and remove `allowImportingTsExtensions`.
 
 ### Next.js
 
