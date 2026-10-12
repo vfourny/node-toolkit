@@ -31,11 +31,11 @@ jobs:
     uses: vfourny/.github/.github/workflows/build.yml@1c50b8eea90e3b146f1fc0e2cb2bb39736dab67f # v2.1.0
     with:
       node_version: '22'
-      is_build_upload: false
 
   package:
     name: Check published package
-    if: github.event.action != 'edited'
+    # Reuses the dist artifact uploaded by build (skipped along with it on PR edits)
+    needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -53,8 +53,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Download build artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist
+          path: dist
 
       - name: Check package
         run: npm run lint:package
