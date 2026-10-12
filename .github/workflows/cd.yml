@@ -2,27 +2,28 @@ name: CD
 
 on:
   push:
-    branches:
-      - main
-      - next
+    branches: [main, next]
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
-    uses: vfourny/.github/.github/workflows/build.yml@main
+    uses: vfourny/.github/.github/workflows/build.yml@1c50b8eea90e3b146f1fc0e2cb2bb39736dab67f # v2.1.0
     with:
-      is_build: true
-      is_pr_title_checked: false
-      is_tested: true
-      is_type_checked: true
       node_version: '22'
+
   release:
     needs: build
-    uses: vfourny/.github/.github/workflows/release.yml@main
+    uses: vfourny/.github/.github/workflows/release.yml@1c50b8eea90e3b146f1fc0e2cb2bb39736dab67f # v2.1.0
+    # id-token: npm trusted publishing (OIDC)
+    permissions:
+      contents: read
+      id-token: write
     with:
-      is_build: true
-      is_publish: true
       node_version: '22'
+      is_publish: true
     secrets:
-      SEMANTIC_BOT_APP_ID: ${{ secrets.SEMANTIC_BOT_APP_ID }}
+      SEMANTIC_BOT_CLIENT_ID: ${{ secrets.SEMANTIC_BOT_CLIENT_ID }}
       SEMANTIC_BOT_PRIVATE_KEY: ${{ secrets.SEMANTIC_BOT_PRIVATE_KEY }}
