@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a shared configuration toolkit for Node.js projects, published as `@vfourny/node-toolkit`. It provides:
 
-- **Pre-configured setups** for ESLint, Prettier, TypeScript, Commitlint, Semantic Release, and Vitest
+- **Pre-configured setups** for ESLint, Prettier, TypeScript, Commitlint, and Vitest
 - **Multiple configurations** tailored for Node.js, Vue.js, Nuxt, React and Next.js projects
 - **Utility functions** for common string operations (kebabCase, lowerCaseFirstLetter)
 - **Comprehensive testing** with Vitest
@@ -49,7 +49,6 @@ The project uses TypeScript project references with three separate compilation t
    - ESLint configurations (base, node, vue, nuxt, react, next)
    - Prettier configuration
    - Commitlint configuration
-   - Release configuration
    - Vitest configuration
    - TypeScript base configurations (base, node, vue, nuxt, react, next, test)
 
@@ -91,7 +90,6 @@ The package uses explicit exports in package.json:
 
 - `@vfourny/node-toolkit/prettier` → Prettier configuration
 - `@vfourny/node-toolkit/commitlint` → Commitlint configuration
-- `@vfourny/node-toolkit/release` → Semantic Release configuration
 - `@vfourny/node-toolkit/vitest` → Vitest configuration
 
 **Library utilities:**
@@ -161,13 +159,6 @@ The package provides multiple TypeScript base configurations:
   - `defaultConfig` - Standard Angular commits with required scope
   - `createCommitlintMonorepoConfig()` - Factory for monorepo setups with scope validation and optional subscopes
 
-#### Semantic Release Configuration (configs/release.config.ts)
-
-- Publishes to npm only when `PUBLISH=true` environment variable is set
-- Updates changelog in `docs/CHANGELOG.md`
-- Commits changelog and package.json changes back to repo
-- Releases from `main`, prereleases from `next`
-
 #### Vitest Configuration (configs/vitest.config.ts)
 
 - Node.js environment by default
@@ -186,7 +177,7 @@ When building, TypeScript:
 
 2. Compiles `configs/**/*.ts` → `dist/configs/**/*.js` + `.d.ts`
    - ESLint configurations (base, node, vue, nuxt, react, next)
-   - Prettier, Commitlint, Release, and Vitest configurations
+   - Prettier, Commitlint, and Vitest configurations
 
 3. Copies `configs/tsconfig/*.json` → `dist/configs/tsconfig/*.json`
    - TypeScript base configurations for different project types

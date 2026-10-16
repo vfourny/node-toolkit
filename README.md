@@ -2,7 +2,7 @@
 
 [![fr](https://img.shields.io/badge/lang-fr-blue)](https://github.com/vfourny/node-toolkit/blob/main/docs/README.fr.md)
 
-Shared configurations for ESLint, TypeScript, Prettier, Vitest, Commitlint and Semantic Release, for **Node.js, Vue, Nuxt, React and Next.js** projects.
+Shared configurations for ESLint, TypeScript, Prettier, Vitest and Commitlint, for **Node.js, Vue, Nuxt, React and Next.js** projects.
 
 ## Table of Contents
 
@@ -11,9 +11,9 @@ Shared configurations for ESLint, TypeScript, Prettier, Vitest, Commitlint and S
 - [TypeScript](#typescript)
 - [Prettier](#prettier)
 - [Vitest](#vitest)
-- [Semantic Release](#semantic-release)
 - [Commitlint](#commitlint)
 - [Utility Functions](#utility-functions)
+- [Migrating from 2.x](#migrating-from-2x)
 - [Migrating from 1.x](#migrating-from-1x)
 
 ## Installation
@@ -25,7 +25,7 @@ npm install -D @vfourny/node-toolkit
 ### Peer Dependencies
 
 ```bash
-npm install -D eslint prettier typescript commitlint semantic-release
+npm install -D eslint prettier typescript commitlint
 ```
 
 **Supported versions:**
@@ -35,7 +35,6 @@ npm install -D eslint prettier typescript commitlint semantic-release
 - Prettier: `^3.2.5`
 - TypeScript: `>=5.5.2 <6.1.0` (TypeScript 7 is not supported yet: `typescript-eslint` needs the TypeScript JavaScript API, which TypeScript 7 does not provide)
 - Commitlint: `^19.8.0 || ^20.1.0`
-- Semantic Release: `^24.0.0 || ^25.0.0`
 
 **Framework plugins (optional, install only what your project uses):**
 
@@ -302,18 +301,6 @@ export default mergeConfig(
 - Test APIs are imported explicitly: `import { describe, expect, it } from 'vitest'`
 - V8 coverage (install `@vitest/coverage-v8`), text, JSON and HTML reports
 
-## Semantic Release
-
-```javascript
-// release.config.js
-export { default } from '@vfourny/node-toolkit/release'
-```
-
-- Angular commit convention for version bumps
-- Releases from `main`, prereleases from `next` (`x.y.z-next.n` on the `next` dist-tag)
-- Changelog in `docs/CHANGELOG.md`, GitHub release, version commit
-- npm publication only when the `PUBLISH` environment variable is `true`. Authentication uses npm [trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC, `id-token: write` permission) or an `NPM_TOKEN` secret
-
 ## Commitlint
 
 ```javascript
@@ -339,6 +326,10 @@ kebabCase('HelloWorld') // 'hello-world'
 kebabCase('hello_world') // 'hello-world'
 lowerCaseFirstLetter('HelloWorld') // 'helloWorld'
 ```
+
+## Migrating from 2.x
+
+The Semantic Release configuration (`@vfourny/node-toolkit/release`) is removed, along with the `semantic-release` peer dependency. Release with the reusable `release.yml` workflow of [`vfourny/.github`](https://github.com/vfourny/.github) (release-please), or keep a local `release.config.js` with your own semantic-release setup.
 
 ## Migrating from 1.x
 
