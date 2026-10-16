@@ -86,6 +86,17 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 
+## [3.0.0](https://github.com/vfourny/node-toolkit/compare/v2.0.1...v3.0.0) (2026-10-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **release:** @vfourny/node-toolkit/release is removed. Use the release.yml workflow of vfourny/.github, or keep a local semantic-release config.
+
+### Features
+
+* **release:** remove the semantic-release config ([#134](https://github.com/vfourny/node-toolkit/issues/134)) ([48e9327](https://github.com/vfourny/node-toolkit/commit/48e932709f43457a08fbe9d164d5ebd3cdea5444))
+
 ## [1.1.15](https://github.com/vfourny/node-toolkit/compare/v1.1.14...v1.1.15) (2026-04-24)
 
 
