@@ -2,7 +2,7 @@
 
 [![en](https://img.shields.io/badge/lang-en-red)](https://github.com/vfourny/node-toolkit/blob/main/README.md)
 
-Configurations partagées pour ESLint, TypeScript, Prettier, Vitest, Commitlint et Semantic Release, pour les projets **Node.js, Vue, Nuxt, React et Next.js**.
+Configurations partagées pour ESLint, TypeScript, Prettier, Vitest et Commitlint, pour les projets **Node.js, Vue, Nuxt, React et Next.js**.
 
 ## Table des matières
 
@@ -11,9 +11,9 @@ Configurations partagées pour ESLint, TypeScript, Prettier, Vitest, Commitlint 
 - [TypeScript](#typescript)
 - [Prettier](#prettier)
 - [Vitest](#vitest)
-- [Semantic Release](#semantic-release)
 - [Commitlint](#commitlint)
 - [Fonctions utilitaires](#fonctions-utilitaires)
+- [Migrer depuis la 2.x](#migrer-depuis-la-2x)
 - [Migrer depuis la 1.x](#migrer-depuis-la-1x)
 
 ## Installation
@@ -25,7 +25,7 @@ npm install -D @vfourny/node-toolkit
 ### Peer dependencies
 
 ```bash
-npm install -D eslint prettier typescript commitlint semantic-release
+npm install -D eslint prettier typescript commitlint
 ```
 
 **Versions supportées :**
@@ -35,7 +35,6 @@ npm install -D eslint prettier typescript commitlint semantic-release
 - Prettier : `^3.2.5`
 - TypeScript : `>=5.5.2 <6.1.0` (TypeScript 7 n'est pas encore supporté : `typescript-eslint` a besoin de l'API JavaScript de TypeScript, que TypeScript 7 ne fournit pas)
 - Commitlint : `^19.8.0 || ^20.1.0`
-- Semantic Release : `^24.0.0 || ^25.0.0`
 
 **Plugins de framework (optionnels, n'installez que ceux de votre projet) :**
 
@@ -302,18 +301,6 @@ export default mergeConfig(
 - Les API de test s'importent explicitement : `import { describe, expect, it } from 'vitest'`
 - Couverture V8 (installez `@vitest/coverage-v8`), rapports texte, JSON et HTML
 
-## Semantic Release
-
-```javascript
-// release.config.js
-export { default } from '@vfourny/node-toolkit/release'
-```
-
-- Convention de commits Angular pour déterminer les versions
-- Releases depuis `main`, prereleases depuis `next` (`x.y.z-next.n` sur le dist-tag `next`)
-- Changelog dans `docs/CHANGELOG.md`, release GitHub, commit de version
-- Publication npm uniquement si la variable d'environnement `PUBLISH` vaut `true`. L'authentification passe par le [trusted publishing](https://docs.npmjs.com/trusted-publishers) npm (OIDC, permission `id-token: write`) ou par un secret `NPM_TOKEN`
-
 ## Commitlint
 
 ```javascript
@@ -339,6 +326,10 @@ kebabCase('HelloWorld') // 'hello-world'
 kebabCase('hello_world') // 'hello-world'
 lowerCaseFirstLetter('HelloWorld') // 'helloWorld'
 ```
+
+## Migrer depuis la 2.x
+
+La configuration Semantic Release (`@vfourny/node-toolkit/release`) est supprimée, ainsi que la peer dependency `semantic-release`. Utilisez le workflow réutilisable `release.yml` de [`vfourny/.github`](https://github.com/vfourny/.github) (release-please), ou gardez un `release.config.js` local avec votre propre configuration semantic-release.
 
 ## Migrer depuis la 1.x
 

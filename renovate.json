@@ -1,12 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>vfourny/.github"],
-  "packageRules": [
-    {
-      "automerge": true,
-      "description": "This repository only: automerge semantic-release major updates too (overrides the shared default.json rule)",
-      "matchPackageNames": ["semantic-release", "@semantic-release/**"],
-      "matchUpdateTypes": ["major"]
-    }
-  ]
+  "extends": ["github>vfourny/.github"]
 }
