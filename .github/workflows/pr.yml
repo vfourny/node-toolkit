@@ -2,7 +2,7 @@ name: PR
 
 on:
   pull_request:
-    branches: [main, next]
+    branches: [main]
     # Title/description edits only re-run the title check (pr-title.yml)
     types: [opened, synchronize, reopened]
 
@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   build:
-    uses: vfourny/.github/.github/workflows/build.yml@1c50b8eea90e3b146f1fc0e2cb2bb39736dab67f # v2.1.0
+    uses: vfourny/.github/.github/workflows/build.yml@v4.0.0
     with:
       node_version: '22'
 
