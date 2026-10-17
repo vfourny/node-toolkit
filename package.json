@@ -131,7 +131,7 @@
     "lint-staged": "17.6.0",
     "prettier": "3.9.9",
     "publint": "0.3.25",
-    "typescript": "6.0.3",
+    "typescript": "7.0.2",
     "vitest": "4.1.11"
   },
   "peerDependencies": {
@@ -143,7 +143,7 @@
     "eslint-plugin-react-hooks": "^7.0.0",
     "eslint-plugin-vue": "^10.0.0",
     "prettier": "^3.2.5",
-    "typescript": ">=5.5.2 <6.1.0"
+    "typescript": ">=5.5.2 <7.1.0"
   },
   "peerDependenciesMeta": {
     "@next/eslint-plugin-next": {
