@@ -17,7 +17,7 @@ concurrency:
 jobs:
   # Job id kept as `pr-checks`: the required status check is `pr-checks / pr-title`
   pr-checks:
-    uses: vfourny/.github/.github/workflows/pr-checks.yml@v4.0.0
+    uses: vfourny/.github/.github/workflows/pr-checks.yml@v4.0.1
     permissions:
       contents: read
       issues: read

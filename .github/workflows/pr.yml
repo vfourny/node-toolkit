@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   build:
-    uses: vfourny/.github/.github/workflows/build.yml@v4.0.0
+    uses: vfourny/.github/.github/workflows/build.yml@v4.0.1
     with:
       node_version: '22'
 

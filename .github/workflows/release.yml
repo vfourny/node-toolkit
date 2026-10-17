@@ -1,8 +1,10 @@
-name: CD
+name: Release
 
-# Automatic release: release.yml (release-please) opens the release PR and auto-merges it once its
-# checks pass; the run triggered by that merge creates the vX.Y.Z tag, then `publish` publishes
-# the dist built by `build` in the same run.
+# Every push on main runs release-please (shared release.yml, auto-merged release PR):
+# - a feat / fix merge opens or updates the release PR, nothing is published;
+# - the merge of the release PR creates the vX.Y.Z tag: `build` then `publish` ship it to npm.
+# Manual run (Actions › Release › Run workflow): builds and publishes the version in package.json,
+# to recover from a failed publish (the release already exists, so release-please won't redo it).
 on:
   push:
     branches: [main]
@@ -12,22 +14,25 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    uses: vfourny/.github/.github/workflows/build.yml@v4.0.0
-    with:
-      node_version: '22'
-
   release:
-    needs: build
-    uses: vfourny/.github/.github/workflows/release.yml@v4.0.0
+    if: ${{ github.event_name == 'push' }}
+    uses: vfourny/.github/.github/workflows/release.yml@v4.0.1
     with:
       is_auto_merged: true
     secrets:
       RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
 
+  build:
+    needs: release
+    # !cancelled(): still runs on a manual run, where `release` is skipped
+    if: ${{ !cancelled() && (needs.release.outputs.release_created == 'true' || github.event_name == 'workflow_dispatch') }}
+    uses: vfourny/.github/.github/workflows/build.yml@v4.0.1
+    with:
+      node_version: '22'
+
   publish:
-    needs: [build, release]
-    if: ${{ needs.release.outputs.release_created == 'true' }}
+    needs: build
+    if: ${{ !cancelled() && needs.build.result == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
