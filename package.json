@@ -162,7 +162,7 @@
       "optional": true
     }
   },
-  "packageManager": "npm@11.21.0",
+  "packageManager": "npm@12.2.1",
   "engines": {
     "node": ">=22"
   },
